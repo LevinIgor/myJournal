@@ -1,7 +1,5 @@
 <template>
-  <div class="post">
-      <div class="test">{{test}}</div>
-     
+  <div class="post">     
     <div class="post-date">12.12.2022 17:00</div>
     <div class="post-title">How to create new Vue3 project</div>
     <div class="post-tags">Vue3 JavaScript</div>
@@ -22,9 +20,6 @@
     <button class="btn-more">Читать далее</button>
   </div>
 </template>
-<script setup>
-const test = ' <a href="">test</a>';
-</script>
 <style scoped>
 .post {
   box-sizing: border-box;

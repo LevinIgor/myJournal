@@ -2,43 +2,19 @@
   <div class="wrapper">
     <div class="block-btn" v-if="blocks.length == 0">
       <img
-        src="../../public/icons/add.png"
+        src="/icons/add.png"
         @click="addBlock(0)"
         alt="add block"
         class="block-btn"
       />
     </div>
     <div class="block" v-for="(block, index) in blocks">
-      <div class="block-control">
-        <img
-          src="../../public/icons/remove.png"
-          @click="deleteBlock(index)"
-          class="block-btn"
-        />
-        <img
-          src="../../public/icons/text.png"
-          @click="changeType(index, 'img')"
-          v-if="block.type == 'text'"
-          class="block-btn"
-        />
-        <img
-          src="../../public/icons/img.png"
-          v-if="block.type == 'img'"
-          @click="changeType(index, 'title')"
-          class="block-btn"
-        />
-        <img
-          src="../../public/icons/title.png"
-          v-if="block.type == 'title'"
-          @click="changeType(index, 'text')"
-          class="block-btn"
-        />
-        <img
-          src="../../public/icons/add.png"
-          @click="addBlock(index)"
-          class="block-btn"
-        />
-      </div>
+      <VBlockControl
+        :block="block"
+        @addBlock="addBlock(index)"
+        @deleteBlock="deleteBlock(index)"
+        @changeType="changeType(index, $event)"
+      />
       <div class="text-type" v-if="block.type == 'text'">
         <textarea
           cols="30"
@@ -63,6 +39,7 @@
 </template>
 <script setup>
 import { reactive, ref } from "vue";
+import VBlockControl from "../components/v-blockControl.vue";
 const getDefaultBlock = () => {
   return {
     text: "",
@@ -102,13 +79,14 @@ const setImgUrl = (index) => {
 }
 textarea {
   width: 100%;
+  padding: 10px;
   box-sizing: border-box;
 }
 
 .text-type {
   width: 100%;
 }
-.text-type textarea{
+.text-type textarea {
   border: none;
   font-size: 18px;
 }
@@ -120,7 +98,7 @@ textarea {
   justify-content: center;
   align-items: center;
 }
-.img-type img{
+.img-type img {
   width: 100%;
   object-fit: cover;
 }
@@ -133,15 +111,7 @@ textarea {
   min-height: 150px;
   padding: 10px;
 }
-.block-control {
-  position: absolute;
-  right: -80px;
-  display: flex;
-  flex-direction: column;
-  opacity: 0;
-  padding: 10px 40px;
-}
-.block:hover .block-control{
+.block:hover .block-control {
   opacity: 1;
 }
 .title-type {
@@ -155,16 +125,5 @@ textarea {
   width: 100%;
   font-size: 28px;
   text-align: center;
-}
-
-.block-btn {
-  cursor: pointer;
-  margin-bottom: 5px;
-  padding: 5px 0;
-  transition: filter 0.3s ease-in-out;
-  filter: invert(40%);
-}
-.block-btn:hover {
-  filter: invert(0%);
 }
 </style>
