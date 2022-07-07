@@ -8,7 +8,6 @@
 </template>
 <script setup>
 import { reactive, ref } from "vue";
-import VBlockControl from "../components/v-blockControl.vue";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "@/firebase";
 

@@ -6,3 +6,7 @@ body {
 /* ::-webkit-scrollbar {
   width: 0;
 } */
+
+:root{
+  --content-wrapper-width: 800px;
+}
