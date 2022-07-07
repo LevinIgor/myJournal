@@ -2,16 +2,30 @@
   <div class="wrapper">
     <div class="post">
       <div class="post-title">Test post title</div>
-      <div class="blocks">
-          <div class="block" v-html="test">
-          </div>
-      </div>
+      <div class="post-content" v-html="content"></div>
     </div>
   </div>
 </template>
 <script setup>
-const test = `<h1>Test</h1>
-                <img src="https://www.middlewareinventory.com/blog/v-html-vue-js/#Example1" alt="">
-                <textarea name="" id="" cols="30" rows="10">Test</textarea>`
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/firebase/";
+
+const content = ref("");
+
+onMounted(async () => {
+  const route = useRoute();
+  const postId = route.params.id;
+  const docRef = doc(db, "posts", postId);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    content.value = docSnap.data().text;
+  } else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
+  }
+});
 </script>
 <style scoped></style>

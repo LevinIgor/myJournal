@@ -1,19 +1,30 @@
 <template>
   <div class="post">
     <div class="post-date">{{ date }}</div>
-    <div class="post-title">{{ post.title }}</div>
+    <router-link :to="postUrl">
+      <div class="post-title">{{ post.title }}</div></router-link
+    >
     <div class="post-tags">Vue3 JavaScript</div>
     <img :src="post.img" alt="" class="post-img" v-if="post.img.length != 0" />
     <div class="post-description" v-html="post.text" />
-    <button class="btn-more">Читать далее</button>
+
+    <router-link :to="postUrl"
+      ><button class="btn-more">Читать далее</button>
+    </router-link>
   </div>
 </template>
 <script setup>
 import { useDateFormat } from "@vueuse/core";
 const props = defineProps(["post"]);
 const date = useDateFormat(props.post.id, "YYYY-MM-DD HH:mm");
+const postUrl = `/post/${props.post.id}`;
 </script>
 <style scoped>
+a {
+  text-decoration: none;
+  color: Black;
+  font-size: 2rem;
+}
 .post {
   box-sizing: border-box;
   width: 800px;
@@ -34,7 +45,6 @@ const date = useDateFormat(props.post.id, "YYYY-MM-DD HH:mm");
 }
 .post-title {
   cursor: pointer;
-  font-size: 22px;
   font-weight: bold;
 }
 
