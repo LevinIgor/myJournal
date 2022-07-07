@@ -1,72 +1,31 @@
 <template>
   <div class="wrapper">
-    <div class="block-btn" v-if="blocks.length == 0">
-      <img
-        src="/icons/add.png"
-        @click="addBlock(0)"
-        alt="add block"
-        class="block-btn"
-      />
-    </div>
-    <div class="block" v-for="(block, index) in blocks">
-      <VBlockControl
-        :block="block"
-        @addBlock="addBlock(index)"
-        @deleteBlock="deleteBlock(index)"
-        @changeType="changeType(index, $event)"
-      />
-      <div class="text-type" v-if="block.type == 'text'">
-        <textarea
-          cols="30"
-          rows="10"
-          v-model="block.text"
-          placeholder="Enter text"
-        />
-      </div>
-
-      <div class="img-type" v-if="block.type == 'img'">
-        <img :src="block.imgUrl" alt="" />
-        <div class="block-img-control" v-if="block.imgUrl.length == ''">
-          <input type="text" v-model="imgUrl" />
-          <button @click="setImgUrl(index)">Ok</button>
-        </div>
-      </div>
-      <div class="title-type" v-if="block.type == 'title'">
-        <input type="text" v-model="block.text" />
-      </div>
-    </div>
+    <input class="title" v-model="post.title" />
+    <input class="text" v-model="post.img" />
+    <textarea name="" id="" v-model="post.text"></textarea>
+    <button @click="createPost" class="btn-create-post">Create post</button>
   </div>
 </template>
 <script setup>
 import { reactive, ref } from "vue";
 import VBlockControl from "../components/v-blockControl.vue";
-const getDefaultBlock = () => {
-  return {
-    text: "",
-    type: "text",
-    imgUrl: "",
-  };
-};
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "@/firebase";
+
 const imgUrl = ref("");
-const blocks = reactive([
-  {
-    text: "",
-    type: "text",
-    imgUrl: "",
-  },
-]);
-const addBlock = (index) => {
-  blocks.splice(index + 1, 0, getDefaultBlock());
-};
-const deleteBlock = (index) => {
-  blocks.splice(index, 1);
-};
-const changeType = (index, type) => {
-  blocks[index].type = type;
-};
-const setImgUrl = (index) => {
-  blocks[index].imgUrl = imgUrl.value;
-  imgUrl.value = "";
+
+const post = reactive({
+  id: Date.now(),
+  title: "",
+  img: "",
+  text: "",
+  tags: [],
+});
+
+const createPost = async () => {
+  await setDoc(doc(db, "posts", post.id.toString()), post).then(() => {
+    console.log("Done");
+  });
 };
 </script>
 <style scoped>
@@ -77,10 +36,19 @@ const setImgUrl = (index) => {
   margin: 0 auto;
   padding: 100px;
 }
+.title {
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 24px;
+  padding: 10px 20px;
+  background-color: #f5f5f5;
+  margin-bottom: 40px;
+}
 textarea {
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
+  font-size: 20px;
 }
 
 .text-type {
@@ -125,5 +93,22 @@ textarea {
   width: 100%;
   font-size: 28px;
   text-align: center;
+}
+.btn-create-post {
+  box-sizing: border-box;
+  margin-top: 40px;
+  cursor: pointer;
+  color: rgb(28, 171, 49);
+  font-weight: bold;
+  font-size: 22px;
+  border: 1px solid rgb(32, 158, 23);
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: white;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+.btn-create-post:hover {
+  color: white;
+  background-color: rgb(32, 158, 23);
 }
 </style>
