@@ -12,8 +12,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "@/firebase/";
+import getPost from "../firebase/getPost";
 
 const post = ref("");
 const notFound = ref(false);
@@ -21,22 +20,19 @@ const notFound = ref(false);
 onMounted(async () => {
   const route = useRoute();
   const postId = route.params.id;
-
-  const docRef = doc(db, "posts", postId);
-  const docSnap = await getDoc(docRef);
-
-  docSnap.exists() ? (post.value = docSnap.data()) : (notFound.value = true);
+  const answer = await getPost(postId);
+  answer === null ? (notFound.value = true) : (post.value = answer);
 });
 </script>
 <style scoped>
-.post-content{
+.post-content {
   white-space: pre-wrap;
   overflow: scroll;
 }
-.post-content  {
+.post-content {
   font-size: 20px;
 }
-.post-content img{
+.post-content img {
   box-sizing: border-box;
   width: 100%;
 }
@@ -49,7 +45,7 @@ onMounted(async () => {
 }
 .post {
   box-sizing: border-box;
-  width: 1000px;
+  width: var(--content-wrapper-width);
   margin: 0 auto;
   padding: 20px;
   background-color: #fff;

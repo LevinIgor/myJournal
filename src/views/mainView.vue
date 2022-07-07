@@ -12,17 +12,13 @@
 import VPost from "@/components/v-post.vue";
 import VHeader from "../components/v-header.vue";
 
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/firebase";
-import { onMounted, reactive } from "vue";
+import { onMounted, ref } from "vue";
+import getPosts from "../firebase/getPosts";
 
-const posts = reactive([]);
+const posts = ref([]);
 
 onMounted(async () => {
-  const querySnapshot = await getDocs(collection(db, "posts"));
-  querySnapshot.forEach((doc) => {
-    posts.push(doc.data());
-  });
+  posts.value = await getPosts();
 });
 </script>
 <style scoped>
@@ -31,9 +27,8 @@ onMounted(async () => {
   min-height: 100vh;
 }
 .posts {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 0 auto;
+  width: var(--content-wrapper-width);
 }
 
 .list-enter-active,

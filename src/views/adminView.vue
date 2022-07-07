@@ -27,12 +27,11 @@
   </div>
 </template>
 <script setup>
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/firebase";
-import { onMounted, reactive } from "vue";
+import getPosts from "../firebase/getPosts";
+import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
-const posts = reactive([]);
+const posts = ref([]);
 const router = useRouter();
 
 const goToPostEdit = (id) => {
@@ -40,10 +39,7 @@ const goToPostEdit = (id) => {
 };
 
 onMounted(async () => {
-  const querySnapshot = await getDocs(collection(db, "posts"));
-  querySnapshot.forEach((doc) => {
-    posts.push(doc.data());
-  });
+  posts.value = await getPosts();
 });
 </script>
 <style scoped>

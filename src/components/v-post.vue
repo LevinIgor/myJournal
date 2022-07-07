@@ -27,7 +27,7 @@ a {
 }
 .post {
   box-sizing: border-box;
-  width: 800px;
+  width: 100%;
   background-color: rgb(255, 255, 255);
   margin-top: 20px;
   padding: 2rem;
