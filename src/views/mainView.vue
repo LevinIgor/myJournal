@@ -1,8 +1,9 @@
 <template>
   <div class="main">
-    <div class="header"></div>
     <div class="posts">
-      <VPost v-for="post in posts" :post="post" />
+      <transition-group name="list">
+        <VPost v-for="post in posts" :post="post" :key="post.id" />
+      </transition-group>
     </div>
   </div>
 </template>
@@ -22,10 +23,24 @@ onMounted(async () => {
 });
 </script>
 <style scoped>
+.main {
+  width: 100%;
+  min-height: 100vh;
+}
 .posts {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px 0;
+}
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>

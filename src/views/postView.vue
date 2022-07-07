@@ -1,8 +1,11 @@
 <template>
   <div class="wrapper">
-    <div class="post">
-      <div class="post-title">Test post title</div>
-      <div class="post-content" v-html="content"></div>
+    <div class="post" v-if="!notFound">
+      <div class="post-title">{{post.title}}</div>
+      <div class="post-content" v-html="post.text"></div>
+    </div>
+    <div class="not-found" v-if="notFound">
+      <h1>Post of that index is not found</h1>
     </div>
   </div>
 </template>
@@ -12,7 +15,8 @@ import { useRoute } from "vue-router";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/firebase/";
 
-const content = ref("");
+const post = ref("");
+const notFound = ref(false);
 
 onMounted(async () => {
   const route = useRoute();
@@ -21,11 +25,29 @@ onMounted(async () => {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    content.value = docSnap.data().text;
+    post.value = docSnap.data();
   } else {
-    // doc.data() will be undefined in this case
-    console.log("No such document!");
+    notFound.value = true;
   }
 });
 </script>
-<style scoped></style>
+<style scoped>
+.wrapper{
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+.post{
+  box-sizing: border-box;
+  width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+}
+.post-title{
+  margin-top: 40px;
+  font-size: 44px;
+}
+</style>
