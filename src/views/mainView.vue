@@ -1,5 +1,6 @@
 <template>
   <div class="main">
+    <VHeader />
     <div class="posts">
       <transition-group name="list">
         <VPost v-for="post in posts" :post="post" :key="post.id" />
@@ -9,6 +10,8 @@
 </template>
 <script setup>
 import VPost from "@/components/v-post.vue";
+import VHeader from "../components/v-header.vue";
+
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/firebase";
 import { onMounted, reactive } from "vue";
@@ -31,7 +34,6 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 0;
 }
 
 .list-enter-active,
