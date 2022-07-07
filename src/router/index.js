@@ -28,6 +28,7 @@ const router = createRouter({
       name: "create post",
       component: () => import("@/views/postCreateView.vue"),
     },
+   
   ],
 });
 

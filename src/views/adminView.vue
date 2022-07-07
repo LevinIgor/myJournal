@@ -30,12 +30,20 @@
 import getPosts from "../firebase/getPosts";
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
+import VPopupCenter from "@/components/v-popup-center.vue";
 
 const posts = ref([]);
 const router = useRouter();
+const isConfirmDeletePost = ref(false);
 
 const goToPostEdit = (id) => {
-  router.push('/post/edit/' + id);
+  router.push("/post/edit/" + id);
+};
+
+const deletePost = (id) => {
+  if (confirm("Delete post?")) {
+    console.log('delete');
+  }
 };
 
 onMounted(async () => {
@@ -87,5 +95,31 @@ onMounted(async () => {
 }
 .icon:hover {
   filter: grayscale(0%);
+}
+
+.popup-title {
+  font-size: 33px;
+}
+.popup-control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 100px;
+  height: 100px;
+}
+.btn {
+  cursor: pointer;
+  padding: 10px 40px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: transparent;
+  transition: background-color 0.2s ease;
+}
+.yes {
+  border: 1px solid rgb(20, 176, 33);
+}
+.no {
+  border: 1px solid rgb(177, 33, 33);
 }
 </style>
