@@ -9,4 +9,7 @@
   background-color: rgba(0, 255, 255, 0.197);
   font-family: 'Roboto', sans-serif;
 }
+#app img{
+  width: 100%;
+}
 </style>
