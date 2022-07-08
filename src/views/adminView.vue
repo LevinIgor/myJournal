@@ -1,9 +1,10 @@
 <template>
   <div class="wrapper">
     <div class="admin">
-      <div class="header"></div>
+      <div class="header"><input type="text" class="search" />
+      <img src="@/assets/icons/create.png" alt="create post" class="create-icon" @click="goToPostCreate()">
+      </div>
       <div class="content">
-        <input type="text" class="search" />
         <div class="post" v-for="post in posts">
           <div class="post-title">{{ post.title }}</div>
           <div class="post-id">{{ post.id }}</div>
@@ -28,21 +29,24 @@
 </template>
 <script setup>
 import getPosts from "../firebase/getPosts";
+import deletePostBD from "../firebase/deletePost";
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
-import VPopupCenter from "@/components/v-popup-center.vue";
 
 const posts = ref([]);
 const router = useRouter();
-const isConfirmDeletePost = ref(false);
 
 const goToPostEdit = (id) => {
   router.push("/post/edit/" + id);
 };
+const goToPostCreate = () => {
+  router.push("/post/create");
+};
 
-const deletePost = (id) => {
+const deletePost = async (id) => {
   if (confirm("Delete post?")) {
-    console.log('delete');
+    deletePostBD(id);
+    posts.value = posts.value.filter((post) => post.id !== id);
   }
 };
 
@@ -62,6 +66,21 @@ onMounted(async () => {
   width: var(--content-wrapper-width);
   padding: 20px;
   background-color: rgb(255, 255, 255);
+}
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.create-icon{
+  cursor: pointer;
+  width: 30px !important;
+  height: 30px;
+  filter: invert(50%);
+  transition: filter 0.3s ease-in-out;
+}
+.create-icon:hover{
+  filter: invert(0%);
 }
 
 .post {
