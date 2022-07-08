@@ -3,7 +3,7 @@
     <div class="header-content">
       <RouterLink to="/"><span class="logo">Journal</span></RouterLink>
       <div class="right-block">
-        <input type="text" placeholder="Search" class="search" />
+        <input type="text" placeholder="Search" class="search" @input="emits('search',$event)" />
         <router-link to="/admin">
           <img src="@/assets/icons/admin.png" alt="" class="admin-icon"
         /></router-link>
@@ -11,7 +11,9 @@
     </div>
   </header>
 </template>
-<script setup></script>
+<script setup>
+const emits = defineEmits(['search']);
+</script>
 <style scoped>
 header {
   width: 100%;
