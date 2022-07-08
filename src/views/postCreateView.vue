@@ -1,17 +1,14 @@
 <template>
   <div class="wrapper">
-    <input class="title" v-model="post.title" />
-    <input class="text" v-model="post.img" />
-    <textarea name="" id="" v-model="post.text"></textarea>
+    <input class="title" v-model="post.title" placeholder="Title post..." />
+    <input class="title" v-model="post.img" placeholder="Img url" />
+    <textarea v-model="post.text" placeholder="Main content" />
     <button @click="createPost" class="btn-create-post">Create post</button>
   </div>
 </template>
 <script setup>
-import { reactive, ref } from "vue";
-import { doc, setDoc } from "firebase/firestore";
-import { db } from "@/firebase";
-
-const imgUrl = ref("");
+import { reactive } from "vue";
+import createPostBD from "../firebase/createPost.js";
 
 const post = reactive({
   id: Date.now(),
@@ -22,8 +19,11 @@ const post = reactive({
 });
 
 const createPost = async () => {
-  await setDoc(doc(db, "posts", post.id.toString()), post).then(() => {
-    console.log("Done");
+  createPostBD(post).then(() => {
+    post.title = "";
+    post.img = "";
+    post.text = "";
+    post.tags = [];
   });
 };
 </script>
@@ -40,13 +40,15 @@ const createPost = async () => {
   width: 100%;
   font-size: 24px;
   padding: 10px 20px;
+  margin: 10px 0;
   background-color: #f5f5f5;
-  margin-bottom: 40px;
 }
 textarea {
+  box-sizing: border-box;
+  min-height: 600px;
   width: 100%;
   padding: 10px;
-  box-sizing: border-box;
+  margin-top: 40px;
   font-size: 20px;
 }
 
