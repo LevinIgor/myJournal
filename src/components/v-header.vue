@@ -2,8 +2,13 @@
   <header>
     <div class="header-content">
       <RouterLink to="/"><span class="logo">Journal</span></RouterLink>
-      <div class="right-block">
-        <input type="text" placeholder="Search" class="search" @input="emits('search',$event)" />
+      <div class="right-block" v-if="props.mode != 'onlyLogo'">
+        <input
+          type="text"
+          placeholder="Search"
+          class="search"
+          @input="emits('search', $event)"
+        />
         <router-link to="/admin">
           <img src="@/assets/icons/admin.png" alt="" class="admin-icon"
         /></router-link>
@@ -12,7 +17,8 @@
   </header>
 </template>
 <script setup>
-const emits = defineEmits(['search']);
+const props = defineProps(["mode"]);
+const emits = defineEmits(["search"]);
 </script>
 <style scoped>
 header {

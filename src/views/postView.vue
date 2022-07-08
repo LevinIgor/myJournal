@@ -1,7 +1,10 @@
 <template>
   <div class="wrapper">
+    <VHeader mode="onlyLogo" />
     <div class="post" v-if="!notFound">
       <div class="post-title">{{ post.title }}</div>
+      <div class="post-tags">{{ post.tags }}</div>
+      <img :src="post.img" alt="post img" class="post-img" />
       <div class="post-content" v-html="post.text"></div>
     </div>
     <div class="not-found" v-if="notFound">
@@ -13,6 +16,7 @@
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import getPost from "../firebase/getPost";
+import VHeader from "../components/v-header.vue";
 
 const post = ref("");
 const notFound = ref(false);
@@ -25,23 +29,29 @@ onMounted(async () => {
 });
 </script>
 <style scoped>
-.post-content {
-  white-space: pre-wrap;
-  overflow: scroll;
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+}
+.post-title {
+  margin-top: 40px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.post-img {
+  margin-top: 40px;
+  width: 100%;
 }
 .post-content {
-  font-size: 20px;
+  white-space: pre-wrap;
+}
+.post-content {
+  font-size: 16px;
 }
 .post-content img {
   box-sizing: border-box;
   width: 100%;
-}
-.wrapper {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  padding: 20px 0;
 }
 .post {
   box-sizing: border-box;
@@ -49,9 +59,5 @@ onMounted(async () => {
   margin: 0 auto;
   padding: 20px;
   background-color: #fff;
-}
-.post-title {
-  margin-top: 40px;
-  font-size: 44px;
 }
 </style>
