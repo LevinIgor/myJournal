@@ -12,7 +12,7 @@
       </div>
       <div class="content">
         <TransitionGroup name="list">
-          <div class="post" v-for="post in filterPosts">
+          <div class="post" v-for="post in filterPosts" :key="post.id">
             <div class="post-title">{{ post.title }}</div>
             <div class="post-id">{{ post.id }}</div>
             <div class="post-control">
@@ -131,33 +131,7 @@ onMounted(async () => {
   filter: grayscale(0%);
 }
 
-.popup-title {
-  font-size: 33px;
-}
-.popup-control {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 100px;
-  height: 100px;
-}
-.btn {
-  cursor: pointer;
-  padding: 10px 40px;
-  font-size: 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: transparent;
-  transition: background-color 0.2s ease;
-}
-.yes {
-  border: 1px solid rgb(20, 176, 33);
-}
-.no {
-  border: 1px solid rgb(177, 33, 33);
-}
-
-.list-move, /* apply transition to moving elements */
+.list-move,
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s ease;
@@ -166,12 +140,7 @@ onMounted(async () => {
 .list-enter-from,
 .list-leave-to {
   opacity: 0;
-  transform: translateX(30px);
+  transform: translateX(300px);
 }
 
-/* ensure leaving items are taken out of layout flow so that moving
-   animations can be calculated correctly. */
-.list-leave-active {
-  position: absolute;
-}
 </style>

@@ -15,7 +15,7 @@ const post = reactive({
   title: "",
   img: "",
   text: "",
-  tags: [],
+  tags: "",
 });
 
 const createPost = async () => {
