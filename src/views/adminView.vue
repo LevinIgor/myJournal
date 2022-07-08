@@ -1,15 +1,14 @@
 <template>
   <div class="wrapper">
+    <VHeader @search="search = $event.target.value">
+      <img
+        src="@/assets/icons/create.png"
+        alt="create post"
+        class="create-icon"
+        @click="goToPostCreate()"
+      />
+    </VHeader>
     <div class="admin">
-      <div class="header">
-        <input type="text" class="search" v-model="search" />
-        <img
-          src="@/assets/icons/create.png"
-          alt="create post"
-          class="create-icon"
-          @click="goToPostCreate()"
-        />
-      </div>
       <div class="content">
         <TransitionGroup name="list">
           <div class="post" v-for="post in filterPosts" :key="post.id">
@@ -40,6 +39,7 @@ import getPosts from "../firebase/getPosts";
 import deletePostBD from "../firebase/deletePost";
 import { onMounted, ref, computed } from "vue";
 import { useRouter } from "vue-router";
+import VHeader from "../components/v-header.vue";
 
 let search = ref("");
 const posts = ref([]);
@@ -74,7 +74,8 @@ onMounted(async () => {
   width: 100%;
   min-height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 .admin {
   box-sizing: border-box;
@@ -91,11 +92,12 @@ onMounted(async () => {
   cursor: pointer;
   width: 30px !important;
   height: 30px;
-  filter: invert(50%);
+  filter: invert(70%);
+  margin-left: 10px;
   transition: filter 0.3s ease-in-out;
 }
 .create-icon:hover {
-  filter: invert(0%);
+  filter: invert(100%);
 }
 
 .post {
@@ -142,5 +144,4 @@ onMounted(async () => {
   opacity: 0;
   transform: translateX(300px);
 }
-
 </style>
