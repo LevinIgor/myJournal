@@ -29,7 +29,7 @@ a {
   box-sizing: border-box;
   width: 100%;
   background-color: rgb(255, 255, 255);
-  margin-top: 20px;
+  margin-bottom: 20px;
   padding: 2rem;
 }
 .post-date {
