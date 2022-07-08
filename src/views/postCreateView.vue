@@ -1,14 +1,20 @@
 <template>
   <div class="wrapper">
-    <input class="title" v-model="post.title" placeholder="Title post..." />
-    <input class="title" v-model="post.img" placeholder="Img url" />
-    <textarea v-model="post.text" placeholder="Main content" />
-    <button @click="createPost" class="btn-create-post">Create post</button>
+    <VHeader mode="onlyLogo" />
+    <div class="create-post">
+      <div class="title">Create post</div>
+      <input class="input" v-model="post.title" placeholder="Title post..." />
+      <input class="input" v-model="post.tags" placeholder="Tags post..." />
+      <input class="input" v-model="post.img" placeholder="Img url" />
+      <textarea v-model="post.text" placeholder="Main content" />
+      <button @click="createPost" class="btn-create-post">Create post</button>
+    </div>
   </div>
 </template>
 <script setup>
 import { reactive } from "vue";
 import createPostBD from "../firebase/createPost.js";
+import VHeader from "@/components/v-header.vue";
 
 const post = reactive({
   id: Date.now(),
@@ -30,12 +36,23 @@ const createPost = async () => {
 <style scoped>
 .wrapper {
   box-sizing: border-box;
-  width: 1200px;
   min-height: 100vh;
-  margin: 0 auto;
-  padding: 100px;
 }
-.title {
+.create-post {
+  box-sizing: border-box;
+  width: var(--content-wrapper-width);
+  background-color: aliceblue;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.title{
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.input {
   box-sizing: border-box;
   width: 100%;
   font-size: 24px;
@@ -50,6 +67,7 @@ textarea {
   padding: 10px;
   margin-top: 40px;
   font-size: 20px;
+  resize: vertical;
 }
 
 .text-type {

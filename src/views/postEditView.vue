@@ -2,6 +2,7 @@
   <div class="wrapper">
     <VHeader mode="onlyLogo" />
     <div class="edit">
+      <div class="header">Edit post</div>
       <input
         type="text"
         class="title input"
@@ -63,6 +64,11 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
   padding: 20px;
+}
+.header{
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 .input {
   font-size: 28px;

@@ -12,7 +12,9 @@
       <div class="content">
         <TransitionGroup name="list">
           <div class="post" v-for="post in filterPosts" :key="post.id">
-            <div class="post-title">{{ post.title }}</div>
+            <RouterLink :to="`/post/${post.id}`" class="post-title">
+              {{ post.title }}
+            </RouterLink>
             <div class="post-id">{{ post.id }}</div>
             <div class="post-control">
               <img
@@ -79,6 +81,7 @@ onMounted(async () => {
 }
 .admin {
   box-sizing: border-box;
+  min-height: 100vh;
   width: var(--content-wrapper-width);
   padding: 20px;
   background-color: rgb(255, 255, 255);
@@ -119,6 +122,8 @@ onMounted(async () => {
   cursor: pointer;
   font-size: 20px;
   font-weight: bold;
+  text-decoration: none;
+  color: black;
 }
 .post-control {
   display: flex;
@@ -142,6 +147,5 @@ onMounted(async () => {
 .list-enter-from,
 .list-leave-to {
   opacity: 0;
-  transform: translateX(300px);
 }
 </style>
