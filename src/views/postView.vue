@@ -2,10 +2,7 @@
   <div class="wrapper">
     <VHeader mode="onlyLogo" />
     <div class="post" v-if="!notFound">
-      <div class="post-title">{{ post.title }}</div>
-      <div class="post-tags">{{ post.tags }}</div>
-      <img :src="post.img" alt="post img" class="post-img" />
-      <div class="post-content" v-html="post.text"></div>
+    <Markdown :source="post.text" />
     </div>
     <div class="not-found" v-if="notFound">
       <h1>Post of that index is not found</h1>
@@ -17,6 +14,7 @@ import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import getPost from "../firebase/getPost";
 import VHeader from "../components/v-header.vue";
+import Markdown from "vue3-markdown-it";
 
 const post = ref("");
 const notFound = ref(false);
