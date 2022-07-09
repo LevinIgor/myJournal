@@ -22,8 +22,7 @@
         placeholder="Img"
       />
 
-      <textarea v-model="post.text" class="content"></textarea>
-
+      <v-md-editor v-model="post.text" height="900px" />
       <button class="btn-save" @click="save()">Save</button>
     </div>
   </div>
@@ -65,7 +64,7 @@ onMounted(async () => {
   flex-direction: column;
   padding: 20px;
 }
-.header{
+.header {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 20px;

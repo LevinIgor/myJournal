@@ -31,6 +31,7 @@ header {
   position: sticky;
   padding: 1px 0;
   top: 0;
+  z-index: 100;
 }
 a {
   text-decoration: none;
