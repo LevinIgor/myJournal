@@ -9,7 +9,7 @@ const router = createRouter({
       component: () => import("@/views/mainView.vue"),
     },
     {
-      path: "/admin",
+      path: "/admin/:tab",
       name: "admin",
       component: () => import("@/views/adminView.vue"),
     },
@@ -23,16 +23,7 @@ const router = createRouter({
       name: "edit post",
       component: () => import("@/views/postEditView.vue"),
     },
-    {
-      path: "/post/create/",
-      name: "create post",
-      component: () => import("@/views/postCreateView.vue"),
-    },
-    {
-      path: "/test",
-      name: "test",
-      component: () => import("@/views/testMD.vue"),
-    },
+  
    
   ],
 });

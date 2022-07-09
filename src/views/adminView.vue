@@ -1,39 +1,28 @@
 <template>
   <div class="wrapper">
-    <VHeader @search="search = $event.target.value">
-      <img
-        src="@/assets/icons/create.png"
-        alt="create post"
-        class="create-icon"
-        @click="goToPostCreate()"
-      />
-    </VHeader>
-    <div class="admin">
-      <div class="content">
-        <TransitionGroup name="list">
-          <div class="post" v-for="post in filterPosts" :key="post.id">
-            <RouterLink :to="`/post/${post.id}`" class="post-title">
-              {{ post.title }}
-            </RouterLink>
-            <div class="post-id">{{ post.id }}</div>
-            <div class="post-control">
-              <img
-                src="@/assets/icons/edit.png"
-                alt="edit"
-                class="icon"
-                @click="goToPostEdit(post.id)"
-              />
-              <img
-                src="@/assets/icons/delete.png"
-                alt="delete"
-                class="icon"
-                @click="deletePost(post.id)"
-              />
-            </div>
-          </div>
-        </TransitionGroup>
+    <VHeader @search="search = $event.target.value" />
+    <main>
+      <div class="admin-menu">
+        <div class="admin-menu-item" @click="$router.push('/admin/posts')">
+          <img src="@/assets/icons/create.png" alt="list" />
+          <span>Список постов</span>
+        </div>
+        <div class="admin-menu-item" @click="$router.push('/admin/create')">
+          <img src="@/assets/icons/create.png" alt="create" />
+          <span>Создать пост</span>
+        </div>
       </div>
-    </div>
+
+      <div class="content">
+        <VPosts
+          v-if="$route.params.tab == 'posts'"
+          :posts="filterPosts"
+          @deletePost="deletePost($event)"
+          @editPost="goToPostEdit($event)"
+        />
+        <VCreatePost v-if="$route.params.tab == 'create'" />
+      </div>
+    </main>
   </div>
 </template>
 <script setup>
@@ -42,6 +31,8 @@ import deletePostBD from "../firebase/deletePost";
 import { onMounted, ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import VHeader from "../components/v-header.vue";
+import VPosts from "../components/v-posts.vue";
+import VCreatePost from "../components/v-createPost.vue";
 
 let search = ref("");
 const posts = ref([]);
@@ -49,9 +40,6 @@ const router = useRouter();
 
 const goToPostEdit = (id) => {
   router.push("/post/edit/" + id);
-};
-const goToPostCreate = () => {
-  router.push("/post/create");
 };
 
 const deletePost = async (id) => {
@@ -76,21 +64,49 @@ onMounted(async () => {
   width: 100%;
   min-height: 100vh;
   display: flex;
+}
+main {
+  width: 100%;
+  min-height: 100vh;
+  margin-top: 50px;
+}
+.content {
+  width: var(--content-wrapper-width);
+  margin: 0 0 0 350px;
+}
+.admin-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 80px 10px 0 10px;
+  box-sizing: border-box;
+  height: 100%;
+  width: 300px;
+  display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgb(38, 38, 38);
+  border-right: 1px solid var(--main-border-color);
 }
-.admin {
+.admin-menu-item {
+  cursor: pointer;
   box-sizing: border-box;
-  min-height: 100vh;
-  width: var(--content-wrapper-width);
-  padding: 20px;
-  background-color: rgb(255, 255, 255);
-}
-.header {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px 10px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  background-color: var(--main-block-color);
 }
+.admin-menu-item img {
+  filter: invert(100%);
+  margin-right: 10px;
+  width: 30px !important;
+}
+.admin-menu-item:hover {
+  background-color: var(--main-block-color-hover);
+}
+
 .create-icon {
   cursor: pointer;
   width: 30px !important;
@@ -101,51 +117,5 @@ onMounted(async () => {
 }
 .create-icon:hover {
   filter: invert(100%);
-}
-
-.post {
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 40px;
-  margin-top: 20px;
-  border: 1px solid rgb(221, 221, 221);
-  border-radius: 2px;
-  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.2s ease;
-}
-.post:hover {
-  background-color: rgb(221, 221, 221);
-}
-.post-title {
-  cursor: pointer;
-  font-size: 20px;
-  font-weight: bold;
-  text-decoration: none;
-  color: black;
-}
-.post-control {
-  display: flex;
-  align-items: center;
-}
-.icon {
-  cursor: pointer;
-  padding: 10px 20px;
-  filter: grayscale(100%);
-}
-.icon:hover {
-  filter: grayscale(0%);
-}
-
-.list-move,
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.5s ease;
-}
-
-.list-enter-from,
-.list-leave-to {
-  opacity: 0;
 }
 </style>

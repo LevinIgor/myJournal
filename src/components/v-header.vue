@@ -9,7 +9,7 @@
         @input="emits('search', $event)"
       />
       <slot />
-      <router-link to="/admin">
+      <router-link to="/admin/posts">
         <img src="@/assets/icons/admin.png" alt="" class="admin-icon"
       /></router-link>
     </div>
@@ -24,13 +24,13 @@ header {
   z-index: 100;
   box-sizing: border-box;
   width: 100%;
-  position: sticky;
+  padding: 1px 20px;
+  position: fixed;
   top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: var(--main-bg-color);
-  padding: 1px 20px;
   border-bottom: 4px solid var(--main-border-color);
 }
 a {
