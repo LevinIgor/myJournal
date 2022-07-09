@@ -1,4 +1,7 @@
 <template>
+  <VPopupMsg :show="isMessage" @click="isMessage = false">
+    <span>Публикация успешно добавлена</span>
+  </VPopupMsg>
   <div class="create-post">
     <h1>Создание публикации</h1>
     <form class="post-details">
@@ -31,8 +34,11 @@
   </div>
 </template>
 <script setup>
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import createPostBD from "../firebase/createPost.js";
+import VPopupMsg from "@/components/v-popup-msg.vue";
+
+const isMessage = ref(false);
 
 const post = reactive({
   id: Date.now(),
@@ -45,6 +51,10 @@ const post = reactive({
 
 const createPost = async () => {
   createPostBD(post).then(() => {
+    isMessage.value = true;
+    setTimeout(() => {
+      isMessage.value = false;
+    }, 4000);
     post.title = "";
     post.img = "";
     post.text = "";
