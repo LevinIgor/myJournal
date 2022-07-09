@@ -5,7 +5,7 @@
       <div class="post-title">{{ post.title }}</div></router-link
     >
     <div class="post-tags">Vue3 JavaScript</div>
-    <img :src="post.img" alt="" class="post-img" v-if="post.img.length != 0" />
+    <img :src="post.img" alt="" class="img-post" v-if="post.img.length != 0" />
     <div class="post-description" v-html="post.text" />
 
     <router-link :to="postUrl"
@@ -29,8 +29,8 @@ a {
   box-sizing: border-box;
   width: 100%;
   margin: 20px 0;
-  padding: 2rem;
-  border:1px solid #6e7a97ab;
+  padding: 1rem 1rem 2rem 2rem ;
+  border: 1px solid #6e7a97ab;
   background-color: var(--main-block-color);
   /* box-shadow: 1px 2px 10px rgba(255, 255, 255, 0.2); */
 }
@@ -38,12 +38,11 @@ a {
   text-align: right;
   font-size: 0.8rem;
 }
-.post-img {
+.img-post {
+  margin: 40px 0;
   width: 100%;
-  max-height: 400px;
-  height: auto;
+  max-height: 450px;
   object-fit: cover;
-  margin-top: 30px;
 }
 .post-title {
   cursor: pointer;
@@ -58,7 +57,7 @@ a {
 .post-description {
   font-size: 16px;
   line-height: 1.5rem;
-  margin-top: 30px;
+  margin-top: 20px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;

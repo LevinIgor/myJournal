@@ -36,6 +36,7 @@ onMounted(async () => {
 }
 .posts {
   margin: 0 auto;
+  padding-top: 100px;
   width: var(--content-wrapper-width);
 }
 .filter {
