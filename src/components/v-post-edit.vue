@@ -1,4 +1,7 @@
 <template>
+  <VPopupMsg :show="isMessage">
+    <span>Изменения успешно применены</span>
+  </VPopupMsg>
   <div class="post-edit">
     <h1 class="header">Редактирование публикации</h1>
     <form class="post-details">
@@ -34,12 +37,17 @@ import { useRoute } from "vue-router";
 import { ref, onMounted } from "vue";
 import getPost from "../firebase/getPost";
 import createPost from "../firebase/createPost";
+import VPopupMsg from "./v-popup-msg.vue";
 
+const isMessage = ref(false);
 const post = ref({});
 
 const save = async () => {
   await createPost(post.value).then(() => {
-    console.log("post saved");
+    isMessage.value = true;
+    setTimeout(() => {
+      isMessage.value = false;
+    }, 5000);
   });
 };
 
@@ -53,8 +61,8 @@ onMounted(async () => {
 });
 </script>
 <style scoped>
-h1{
-    margin-bottom: 40px;
+h1 {
+  margin-bottom: 40px;
 }
 .edit {
   box-sizing: border-box;
@@ -84,7 +92,7 @@ textarea {
   display: flex;
   flex-direction: column;
   margin-bottom: 50px;
-  border:1px solid var(--main-border-color)
+  border: 1px solid var(--main-border-color);
 }
 .post-title {
   font-size: 24px;
