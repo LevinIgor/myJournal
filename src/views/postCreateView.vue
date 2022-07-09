@@ -2,11 +2,28 @@
   <div class="wrapper">
     <VHeader mode="onlyLogo" />
     <div class="create-post">
-      <div class="title">Create post</div>
-      <input class="input" v-model="post.title" placeholder="Title post..." />
-      <input class="input" v-model="post.tags" placeholder="Tags post..." />
-      <input class="input" v-model="post.img" placeholder="Img url" />
-      <v-md-editor v-model="post.text" height="900px" />
+      <form class="post-details">
+        <input
+          class="post-title"
+          v-model="post.title"
+          placeholder="Title post..."
+          required
+        />
+        <input
+          class="post-tags"
+          v-model="post.tags"
+          placeholder="Tags post..."
+        />
+        <input class="post-img" v-model="post.img" placeholder="Img url" />
+        <textarea
+          class="post-desc"
+          v-model="post.desc"
+          placeholder="Post desc"
+        />
+      </form>
+      <div class="post-content">
+        <v-md-editor v-model="post.text" height="900px" />
+      </div>
       <button @click="createPost" class="btn-create-post">Create post</button>
     </div>
   </div>
@@ -22,6 +39,7 @@ const post = reactive({
   img: "",
   text: "",
   tags: "",
+  desc: "",
 });
 
 const createPost = async () => {
@@ -34,6 +52,18 @@ const createPost = async () => {
 };
 </script>
 <style scoped>
+input {
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+}
+textarea {
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  resize: vertical;
+  padding: 10px 20px;
+}
 .wrapper {
   box-sizing: border-box;
   min-height: 100vh;
@@ -43,76 +73,20 @@ const createPost = async () => {
   width: var(--content-wrapper-width);
   background-color: aliceblue;
   margin: 20px auto;
-  display: flex;
-  flex-direction: column;
   padding: 20px;
 }
-.title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-.input {
-  box-sizing: border-box;
-  width: 100%;
-  font-size: 24px;
-  padding: 10px 20px;
-  margin: 10px 0;
-  background-color: #f5f5f5;
-}
-textarea {
-  box-sizing: border-box;
-  min-height: 600px;
-  width: 100%;
-  padding: 10px;
-  margin-top: 40px;
-  font-size: 20px;
-  resize: vertical;
-}
-
-.text-type {
-  width: 100%;
-}
-.text-type textarea {
-  border: none;
-  font-size: 18px;
-}
-.img-type {
-  width: 100%;
-  background-color: white;
+.post-details {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
-.img-type img {
-  width: 100%;
-  object-fit: cover;
+.post-title {
+  font-size: 24px;
+  font-weight: bold;
 }
-.block {
-  position: relative;
-  box-sizing: border-box;
-  width: 100%;
-  display: flex;
-  background-color: white;
-  min-height: 150px;
-  padding: 10px;
+.post-content {
+  margin-top: 40px;
 }
-.block:hover .block-control {
-  opacity: 1;
-}
-.title-type {
-  width: 100%;
-  display: flex;
-  align-items: flex-end;
-  padding-bottom: 20px;
-}
-.title-type input {
-  box-sizing: border-box;
-  width: 100%;
-  font-size: 28px;
-  text-align: center;
-}
+
 .btn-create-post {
   box-sizing: border-box;
   margin-top: 40px;

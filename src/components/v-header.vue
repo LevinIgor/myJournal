@@ -1,19 +1,17 @@
 <template>
   <header>
-    <div class="header-content">
-      <RouterLink to="/"><span class="logo">Journal</span></RouterLink>
-      <div class="right-block" v-if="props.mode != 'onlyLogo'">
-        <input
-          type="text"
-          placeholder="Search"
-          class="search"
-          @input="emits('search', $event)"
-        />
-        <slot />
-        <router-link to="/admin">
-          <img src="@/assets/icons/admin.png" alt="" class="admin-icon"
-        /></router-link>
-      </div>
+    <RouterLink to="/"><span class="logo">Journal</span></RouterLink>
+    <div class="right-block" v-if="props.mode != 'onlyLogo'">
+      <input
+        type="text"
+        placeholder="Search"
+        class="search"
+        @input="emits('search', $event)"
+      />
+      <slot />
+      <router-link to="/admin">
+        <img src="@/assets/icons/admin.png" alt="" class="admin-icon"
+      /></router-link>
     </div>
   </header>
 </template>
@@ -23,15 +21,17 @@ const emits = defineEmits(["search"]);
 </script>
 <style scoped>
 header {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(79, 79, 79);
-  position: sticky;
-  padding: 1px 0;
-  top: 0;
   z-index: 100;
+  box-sizing: border-box;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--main-bg-color);
+  padding: 1px 20px;
+  border-bottom: 4px solid var(--main-border-color);
 }
 a {
   text-decoration: none;
@@ -46,7 +46,6 @@ a {
 .logo {
   font-size: 30px;
   color: aliceblue;
-  background-color: rgba(0, 0, 0, 0.411);
   padding: 1px 20px;
 }
 .right-block {

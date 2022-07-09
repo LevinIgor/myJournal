@@ -3,12 +3,16 @@
 body {
   margin: 0;
   padding: 0;
+  font-size: 18px;
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
 }
-a{
+
+a {
   line-height: 1.7;
   color: #3eaf7c;
   font-weight: 500;
-    text-decoration: none;
+  text-decoration: none;
 }
 P {
   color: #2c3e50;
@@ -45,4 +49,9 @@ li {
 
 :root {
   --content-wrapper-width: 1000px;
+  --main-bg-color:#232529;
+  --main-border-color:#35383fab;
+  --main-text-color:#e2e3e7;
+  --second-text-color:#e2e3e7e2;
+  --main-block-color:#35383f;
 }

@@ -22,15 +22,17 @@ const postUrl = `/post/${props.post.id}`;
 <style scoped>
 a {
   text-decoration: none;
-  color: Black;
+  color: var(--main-font-color);
   font-size: 2rem;
 }
 .post {
   box-sizing: border-box;
   width: 100%;
-  background-color: rgb(255, 255, 255);
-  margin-bottom: 20px;
+  margin: 20px 0;
   padding: 2rem;
+  border:1px solid #6e7a97ab;
+  background-color: var(--main-block-color);
+  /* box-shadow: 1px 2px 10px rgba(255, 255, 255, 0.2); */
 }
 .post-date {
   text-align: right;
@@ -50,12 +52,11 @@ a {
 
 .post-tags {
   font-size: 12px;
-  color: rgba(0, 0, 0, 0.894);
+  color: var(--second-font-color);
   padding: 5px 0;
 }
 .post-description {
   font-size: 16px;
-  color: rgba(0, 0, 0, 0.822);
   line-height: 1.5rem;
   margin-top: 30px;
   overflow: hidden;
@@ -66,7 +67,7 @@ a {
 }
 .btn-more {
   cursor: pointer;
-  color: rgba(38, 38, 242, 0.628);
+  color: var(--main-font-color);
   font-weight: bold;
   border: 1px solid rgba(38, 38, 242, 0.628);
   border-radius: 5px;

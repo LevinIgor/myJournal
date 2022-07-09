@@ -2,14 +2,6 @@
   <div class="main">
     <VHeader @search="search = $event.target.value" />
     <div class="posts">
-      <div class="filter">
-        <select v-model="filter">
-          <option value="New">New</option>
-          <option value="dateUp">Date up</option>
-          <option value="dateDown">Date down</option>
-        </select>
-        {{ filter }}
-      </div>
       <transition-group name="list">
         <VPost v-for="post in filterPost" :post="post" :key="post.id" />
       </transition-group>
