@@ -6,7 +6,7 @@
       <input class="input" v-model="post.title" placeholder="Title post..." />
       <input class="input" v-model="post.tags" placeholder="Tags post..." />
       <input class="input" v-model="post.img" placeholder="Img url" />
-      <textarea v-model="post.text" placeholder="Main content" />
+      <v-md-editor v-model="post.text" height="900px" />
       <button @click="createPost" class="btn-create-post">Create post</button>
     </div>
   </div>
@@ -47,7 +47,7 @@ const createPost = async () => {
   flex-direction: column;
   padding: 20px;
 }
-.title{
+.title {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 20px;

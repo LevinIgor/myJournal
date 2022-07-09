@@ -2,7 +2,7 @@
   <div class="wrapper">
     <VHeader mode="onlyLogo" />
     <div class="post" v-if="!notFound">
-    <Markdown :source="post.text" />
+      <Markdown :source="post.text" :html="true" :linkify="true" />
     </div>
     <div class="not-found" v-if="notFound">
       <h1>Post of that index is not found</h1>
@@ -19,6 +19,8 @@ import Markdown from "vue3-markdown-it";
 const post = ref("");
 const notFound = ref(false);
 
+// const md = require("markdown-it")().use(require("markdown-it-highlightjs"));
+
 onMounted(async () => {
   const route = useRoute();
   const postId = route.params.id;
@@ -27,6 +29,16 @@ onMounted(async () => {
 });
 </script>
 <style scoped>
+p {
+  line-height: 1.7;
+  color: #2c3e50;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fff;
+}
 .wrapper {
   width: 100%;
   min-height: 100vh;

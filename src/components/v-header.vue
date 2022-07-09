@@ -37,7 +37,7 @@ a {
 }
 .header-content {
   box-sizing: border-box;
-  width: 800px;
+  width: var(--content-wrapper-width);
   display: flex;
   justify-content: space-between;
   align-items: center;
