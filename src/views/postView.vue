@@ -29,7 +29,6 @@ onMounted(async () => {
 });
 </script>
 <style scoped>
-
 .wrapper {
   width: 100%;
   min-height: 100vh;
@@ -57,7 +56,7 @@ onMounted(async () => {
 .post {
   box-sizing: border-box;
   width: var(--content-wrapper-width);
-  margin: 0 auto;
+  margin: 100px auto;
   padding: 20px;
   color: var(--main-font-color);
 }

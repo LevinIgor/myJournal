@@ -3,6 +3,9 @@
     <VHeader @search="search = $event.target.value" />
     <main>
       <div class="admin-menu">
+        <div class="admin-menu-title">
+          Панель администратора
+        </div>
         <div class="admin-menu-item" @click="$router.push('/admin/posts')">
           <img src="@/assets/icons/list.png" alt="list" />
           <span>Список постов</span>
@@ -87,8 +90,11 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(38, 38, 38);
+  background-color: var(--main-bg-color);
   border-right: 1px solid var(--main-border-color);
+}
+.admin-menu-title{
+  margin-bottom: 40px;
 }
 .admin-menu-item {
   cursor: pointer;
