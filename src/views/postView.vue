@@ -29,16 +29,7 @@ onMounted(async () => {
 });
 </script>
 <style scoped>
-p {
-  line-height: 1.7;
-  color: #2c3e50;
-  font-size: 16px;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #fff;
-}
+
 .wrapper {
   width: 100%;
   min-height: 100vh;
@@ -68,6 +59,6 @@ p {
   width: var(--content-wrapper-width);
   margin: 0 auto;
   padding: 20px;
-  background-color: #fff;
+  color: var(--main-font-color);
 }
 </style>
