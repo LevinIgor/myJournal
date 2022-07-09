@@ -9,7 +9,7 @@ const router = createRouter({
       component: () => import("@/views/mainView.vue"),
     },
     {
-      path: "/admin/:tab",
+      path: "/admin/:tab/:id?",
       name: "admin",
       component: () => import("@/views/adminView.vue"),
     },

@@ -4,7 +4,7 @@
     <div class="right-block" v-if="props.mode != 'onlyLogo'">
       <input
         type="text"
-        placeholder="Search"
+        placeholder="Поиск"
         class="search"
         @input="emits('search', $event)"
       />

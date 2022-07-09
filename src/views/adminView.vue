@@ -4,7 +4,7 @@
     <main>
       <div class="admin-menu">
         <div class="admin-menu-item" @click="$router.push('/admin/posts')">
-          <img src="@/assets/icons/create.png" alt="list" />
+          <img src="@/assets/icons/list.png" alt="list" />
           <span>Список постов</span>
         </div>
         <div class="admin-menu-item" @click="$router.push('/admin/create')">
@@ -18,9 +18,10 @@
           v-if="$route.params.tab == 'posts'"
           :posts="filterPosts"
           @deletePost="deletePost($event)"
-          @editPost="goToPostEdit($event)"
+          @editPost="$router.push('/admin/edit/' + $event)"
         />
         <VCreatePost v-if="$route.params.tab == 'create'" />
+        <VPostEdit v-if="$route.params.tab == 'edit'" />
       </div>
     </main>
   </div>
@@ -33,6 +34,7 @@ import { useRouter } from "vue-router";
 import VHeader from "../components/v-header.vue";
 import VPosts from "../components/v-posts.vue";
 import VCreatePost from "../components/v-createPost.vue";
+import VPostEdit from "../components/v-post-edit.vue";
 
 let search = ref("");
 const posts = ref([]);

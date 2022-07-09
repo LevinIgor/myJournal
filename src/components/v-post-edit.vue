@@ -1,6 +1,6 @@
 <template>
-  <div class="create-post">
-    <h1>Создание публикации</h1>
+  <div class="post-edit">
+    <h1 class="header">Редактирование публикации</h1>
     <form class="post-details">
       <input
         class="post-title"
@@ -24,35 +24,47 @@
         placeholder="Описание поста"
       />
     </form>
-    <div class="post-content">
-      <v-md-editor v-model="post.text" height="900px" />
-    </div>
-    <button @click="createPost" class="btn-create-post">Создать</button>
+
+    <v-md-editor v-model="post.text" height="900px" />
+    <button @click="save()" class="btn-create-post">Сохранить</button>
   </div>
 </template>
 <script setup>
-import { reactive } from "vue";
-import createPostBD from "../firebase/createPost.js";
+import { useRoute } from "vue-router";
+import { ref, onMounted } from "vue";
+import getPost from "../firebase/getPost";
+import createPost from "../firebase/createPost";
 
-const post = reactive({
-  id: Date.now(),
-  title: "",
-  img: "",
-  text: "",
-  tags: "",
-  desc: "",
-});
+const post = ref({});
 
-const createPost = async () => {
-  createPostBD(post).then(() => {
-    post.title = "";
-    post.img = "";
-    post.text = "";
-    post.tags = [];
+const save = async () => {
+  await createPost(post.value).then(() => {
+    console.log("post saved");
   });
 };
+
+onMounted(async () => {
+  const route = useRoute();
+  const id = route.params.id;
+  console.log(id);
+  await getPost(id).then((_post) => {
+    post.value = _post;
+  });
+});
 </script>
 <style scoped>
+h1{
+    margin-bottom: 40px;
+}
+.edit {
+  box-sizing: border-box;
+  width: var(--content-wrapper-width);
+  background-color: aliceblue;
+
+  display: flex;
+  flex-direction: column;
+}
+
 input,
 textarea {
   box-sizing: border-box;
@@ -71,7 +83,8 @@ textarea {
 .post-details {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--main-border-color);
+  margin-bottom: 50px;
+  border:1px solid var(--main-border-color)
 }
 .post-title {
   font-size: 24px;
@@ -83,6 +96,7 @@ textarea {
 
 .btn-create-post {
   box-sizing: border-box;
+  margin-bottom: 100px;
   margin-top: 40px;
   cursor: pointer;
   color: rgb(28, 171, 49);
@@ -93,7 +107,6 @@ textarea {
   padding: 10px 20px;
   background-color: transparent;
   transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
-  margin-bottom: 100px;
 }
 .btn-create-post:hover {
   color: white;
