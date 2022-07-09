@@ -11,7 +11,8 @@
     "@vueuse/core": "^8.9.0",
     "firebase": "^9.8.4",
     "vue": "^3.2.37",
-    "vue-router": "^4.0.16"
+    "vue-router": "^4.0.16",
+    "vue3-markdown-it": "^1.0.10"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
