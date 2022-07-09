@@ -1,28 +1,32 @@
 <template>
   <div class="main">
     <h1>Все публикации</h1>
-    <TransitionGroup name="list">
-      <div class="post" v-for="post in props.posts" :key="post.id">
-        <RouterLink :to="`/post/${post.id}`" class="post-title">
-          {{ post.title }}
-        </RouterLink>
-        <div class="post-id">{{ post.id }}</div>
-        <div class="post-control">
-          <img
-            src="@/assets/icons/edit.png"
-            alt="edit"
-            class="icon"
-            @click="emits('editPost', post.id)"
-          />
-          <img
-            src="@/assets/icons/delete.png"
-            alt="delete"
-            class="icon"
-            @click="emits('deletePost', post.id)"
-          />
-        </div>
+
+    <div class="post" v-for="post in props.posts" :key="post.id">
+      <RouterLink :to="`/post/${post.id}`" class="post-title">
+        {{ post.title }}
+      </RouterLink>
+      <div class="post-id">{{ post.id }}</div>
+      <div class="post-control">
+        <img
+          src="@/assets/icons/edit.png"
+          alt="edit"
+          class="icon"
+          @click="emits('editPost', post.id)"
+        />
+        <img
+          src="@/assets/icons/delete.png"
+          alt="delete"
+          class="icon"
+          @click="emits('deletePost', post.id)"
+        />
       </div>
-    </TransitionGroup>
+    </div>
+
+    <div class="not-found" v-if="props.posts.length == 0">
+      <img src="@/assets/icons/notFound.png" alt="" />
+      <h2>Not found</h2>
+    </div>
   </div>
 </template>
 <script setup>
@@ -30,7 +34,7 @@ const props = defineProps(["posts"]);
 const emits = defineEmits(["deletePost", "editPost"]);
 </script>
 <style scoped>
-h1{
+h1 {
   margin-bottom: 80px;
 }
 .post {
@@ -68,14 +72,14 @@ h1{
   filter: grayscale(0%);
 }
 
-.list-move,
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.5s ease;
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
-
-.list-enter-from,
-.list-leave-to {
-  opacity: 0;
+.not-found img {
+  width: 200px !important;
+  filter: invert(90%);
 }
 </style>
