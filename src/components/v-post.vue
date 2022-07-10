@@ -1,43 +1,53 @@
 <template>
-  <div class="post">
-    <div class="post-date">{{ date }}</div>
-    <router-link :to="postUrl">
-      <div class="post-title">{{ post.title }}</div></router-link
-    >
+  <div class="post" @click="openPost()">
+    <div class="post-header">
+      <span class="post-date">{{ date }}</span>
+      <span class="post-views">Просмотров: {{ post.views }}</span>
+    </div>
+    <h2 class="post-title">{{ post.title }}</h2>
     <div class="post-tags">Vue3 JavaScript</div>
     <img :src="post.img" alt="" class="img-post" v-if="post.img.length != 0" />
     <div class="post-description" v-html="post.text" />
 
-    <router-link :to="postUrl"
-      ><button class="btn-more">Читать далее</button>
-    </router-link>
+    <button class="btn-more">Читать далее</button>
   </div>
 </template>
 <script setup>
 import { useDateFormat } from "@vueuse/core";
+import { useRouter } from "vue-router";
+import incrementView from "../firebase/incrementView";
+
 const props = defineProps(["post"]);
+const router = useRouter();
 const date = useDateFormat(props.post.id, "YYYY-MM-DD HH:mm");
-const postUrl = `/post/${props.post.id}`;
+
+const openPost = () => {
+  incrementView(props.post.id, props.post.views);
+  router.push(`/post/${props.post.id}`);
+};
 </script>
 <style scoped>
-a {
+h2 {
   text-decoration: none;
   color: var(--main-font-color);
   font-size: 2rem;
+  margin: 0;
 }
 .post {
   box-sizing: border-box;
   width: 100%;
-  margin: 20px 0;
-  padding: 1rem 1rem 2rem 2rem ;
+  margin: 30px 0;
+  padding: 1rem 1rem 2rem 2rem;
   border: 1px solid #6e7a97ab;
   background-color: var(--main-block-color);
   /* box-shadow: 1px 2px 10px rgba(255, 255, 255, 0.2); */
 }
-.post-date {
-  text-align: right;
+.post-header {
+  display: flex;
+  justify-content: space-between;
   font-size: 0.8rem;
 }
+
 .img-post {
   margin: 40px 0;
   width: 100%;

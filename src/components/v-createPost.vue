@@ -39,9 +39,9 @@ import createPostBD from "../firebase/createPost.js";
 import VPopupMsg from "@/components/v-popup-msg.vue";
 
 const isMessage = ref(false);
-
 const post = reactive({
   id: Date.now(),
+  views:0,
   title: "",
   img: "",
   text: "",

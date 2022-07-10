@@ -86,6 +86,7 @@ main {
   margin: 0 0 0 350px;
 }
 .admin-menu {
+  user-select: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -101,6 +102,7 @@ main {
 }
 .admin-menu-title {
   margin-bottom: 40px;
+  color: rgba(240, 248, 255, 0.422);
 }
 .admin-menu-item {
   cursor: pointer;

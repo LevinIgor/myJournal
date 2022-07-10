@@ -3,9 +3,9 @@
     <h1>Все публикации</h1>
 
     <div class="post" v-for="post in props.posts" :key="post.id">
-      <RouterLink :to="`/post/${post.id}`" class="post-title">
-        {{ post.title }}
-      </RouterLink>
+      <span class="post-title" @click="$router.push(`/post/${post.id}`)">
+        {{ post.title }}</span
+      >
       <div class="post-id">{{ post.id }}</div>
       <div class="post-control">
         <img
@@ -39,6 +39,7 @@ h1 {
 }
 .post {
   box-sizing: border-box;
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -58,6 +59,11 @@ h1 {
   font-weight: bold;
   text-decoration: none;
   color: var(--main-font-color);
+}
+.post-id{
+  position: absolute;
+  top: -10px;
+  right: 10px;
 }
 .post-control {
   display: flex;
