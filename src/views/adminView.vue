@@ -3,14 +3,20 @@
     <VHeader @search="search = $event.target.value" />
     <main>
       <div class="admin-menu">
-        <div class="admin-menu-title">
-          Панель администратора
-        </div>
-        <div class="admin-menu-item" @click="$router.push('/admin/posts')">
+        <div class="admin-menu-title">Панель администратора</div>
+        <div
+          class="admin-menu-item"
+          @click="$router.push('/admin/posts')"
+          :class="{ active: $route.params.tab == 'posts' }"
+        >
           <img src="@/assets/icons/list.png" alt="list" />
           <span>Список постов</span>
         </div>
-        <div class="admin-menu-item" @click="$router.push('/admin/create')">
+        <div
+          class="admin-menu-item"
+          @click="$router.push('/admin/create')"
+          :class="{ active: $route.params.tab == 'create' }"
+        >
           <img src="@/assets/icons/create.png" alt="create" />
           <span>Создать пост</span>
         </div>
@@ -93,7 +99,7 @@ main {
   background-color: var(--main-bg-color);
   border-right: 1px solid var(--main-border-color);
 }
-.admin-menu-title{
+.admin-menu-title {
   margin-bottom: 40px;
 }
 .admin-menu-item {
@@ -106,6 +112,7 @@ main {
   align-items: center;
   background-color: var(--main-block-color);
 }
+
 .admin-menu-item img {
   filter: invert(100%);
   margin-right: 10px;
@@ -113,6 +120,9 @@ main {
 }
 .admin-menu-item:hover {
   background-color: var(--main-block-color-hover);
+}
+.active {
+  background-color: rgba(238, 238, 238, 0.398);
 }
 
 .create-icon {
