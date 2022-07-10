@@ -46,6 +46,7 @@ li {
 
 :root {
   --content-wrapper-width: 1000px;
+  --header-height: 60px;
   --main-bg-color:#232529;
   --main-border-color:#35383fab;
   --main-text-color:#e2e3e7;

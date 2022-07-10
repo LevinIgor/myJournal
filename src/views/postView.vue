@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper">
+    <VProgressBar />
     <VHeader mode="onlyLogo" />
     <div class="post" v-if="!notFound">
       <Markdown :source="post.text" :html="true" :linkify="true" />
@@ -15,6 +16,7 @@ import { useRoute } from "vue-router";
 import getPost from "../firebase/getPost";
 import VHeader from "../components/v-header.vue";
 import Markdown from "vue3-markdown-it";
+import VProgressBar from "../components/v-progress-bar.vue";
 
 const post = ref("");
 const notFound = ref(false);

@@ -9,9 +9,7 @@
         @input="emits('search', $event)"
       />
       <slot />
-      <router-link to="/admin/posts">
-        <img src="@/assets/icons/admin.png" alt="" class="admin-icon"
-      /></router-link>
+      <img src="@/assets/icons/admin.png" alt="" class="admin-icon" @click="$router.push('/admin/posts')" />
     </div>
   </header>
 </template>
@@ -24,6 +22,7 @@ header {
   z-index: 100;
   box-sizing: border-box;
   width: 100%;
+  height: var(--header-height);
   padding: 1px 20px;
   position: fixed;
   top: 0;
