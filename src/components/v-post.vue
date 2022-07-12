@@ -23,6 +23,7 @@ const date = useDateFormat(props.post.id, "YYYY-MM-DD HH:mm");
 
 const openPost = () => {
   incrementView(props.post.id, props.post.views);
+  localStorage.setItem("post", JSON.stringify(props.post));
   router.push(`/post/${props.post.id}`);
 };
 </script>

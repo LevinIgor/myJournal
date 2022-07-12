@@ -23,10 +23,16 @@ const post = ref("");
 const notFound = ref(false);
 
 onMounted(async () => {
-  const route = useRoute();
-  const postId = route.params.id;
-  const answer = await getPost(postId);
-  answer === undefined ? (notFound.value = true) : (post.value = answer);
+  const _post = localStorage.getItem("post");
+  if (_post) {
+    post.value = JSON.parse(_post);
+  } else {
+    const route = useRoute();
+    const postId = route.params.id;
+    const answer = await getPost(postId);
+
+    post.value = answer === undefined ? (notFound = true) : answer;
+  }
 
   window.scroll(0, 0);
 });

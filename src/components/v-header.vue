@@ -45,6 +45,8 @@ a {
   align-items: center;
 }
 .logo {
+  cursor: pointer;
+  user-select: none;
   font-size: 30px;
   color: aliceblue;
   padding: 1px 20px;
