@@ -33,7 +33,6 @@ onMounted(async () => {
 
     post.value = answer === undefined ? (notFound = true) : answer;
   }
-
   window.scroll(0, 0);
 });
 </script>

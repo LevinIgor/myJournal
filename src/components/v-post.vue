@@ -8,22 +8,22 @@
     <div class="post-tags">Vue3 JavaScript</div>
     <img :src="post.img" alt="" class="img-post" v-if="post.img.length != 0" />
     <div class="post-description" v-html="post.text" />
-
-    <button class="btn-more">Читать далее</button>
+    <VButton class="btn-post">Читать далее</VButton>
   </div>
 </template>
 <script setup>
 import { useDateFormat } from "@vueuse/core";
 import { useRouter } from "vue-router";
 import incrementView from "../firebase/incrementView";
+import VButton from "./UI/v-button.vue";
 
 const props = defineProps(["post"]);
 const router = useRouter();
 const date = useDateFormat(props.post.id, "YYYY-MM-DD HH:mm");
 
-const openPost = () => {
-  incrementView(props.post.id, props.post.views);
+const openPost = async() => {
   localStorage.setItem("post", JSON.stringify(props.post));
+  incrementView(props.post.id, props.post.views);
   router.push(`/post/${props.post.id}`);
 };
 </script>
@@ -75,19 +75,13 @@ h2 {
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
-.btn-more {
-  cursor: pointer;
-  color: var(--main-font-color);
-  font-weight: bold;
-  border: 1px solid rgba(38, 38, 242, 0.628);
-  border-radius: 5px;
-  padding: 10px 20px;
-  background-color: transparent;
+.btn-post {
+  border: 1px solid rgba(38, 38, 242, 0.678) ;
+  color: rgba(0, 72, 255, 0.854);
   margin-top: 30px;
-  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
-.btn-more:hover {
+.btn-post:hover {
   background-color: rgba(38, 38, 242, 0.628);
   color: rgb(255, 255, 255);
 }

@@ -29,7 +29,7 @@
     </form>
 
     <v-md-editor v-model="post.text" height="900px" />
-    <button @click="save()" class="btn-create-post">Сохранить</button>
+    <VButton @click="save()" class="btn-create-post">Сохранить</VButton>
   </div>
 </template>
 <script setup>
@@ -38,6 +38,7 @@ import { ref, onMounted } from "vue";
 import getPost from "../firebase/getPost";
 import createPost from "../firebase/createPost";
 import VPopupMsg from "./v-popup-msg.vue";
+import VButton from "./UI/v-button.vue";
 
 const isMessage = ref(false);
 const post = ref({});
@@ -103,18 +104,11 @@ textarea {
 }
 
 .btn-create-post {
-  box-sizing: border-box;
   margin-bottom: 100px;
   margin-top: 40px;
-  cursor: pointer;
   color: rgb(28, 171, 49);
-  font-weight: bold;
-  font-size: 22px;
   border: 1px solid rgb(32, 158, 23);
-  border-radius: 5px;
   padding: 10px 20px;
-  background-color: transparent;
-  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 .btn-create-post:hover {
   color: white;

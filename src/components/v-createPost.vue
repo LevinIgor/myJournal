@@ -30,18 +30,19 @@
     <div class="post-content">
       <v-md-editor v-model="post.text" height="900px" />
     </div>
-    <button @click="createPost" class="btn-create-post">Создать</button>
+    <VButton @click="createPost" class="btn-create-post">Создать</VButton>
   </div>
 </template>
 <script setup>
 import { reactive, ref } from "vue";
 import createPostBD from "../firebase/createPost.js";
 import VPopupMsg from "@/components/v-popup-msg.vue";
+import VButton from "@/components/UI/v-button.vue";
 
 const isMessage = ref(false);
 const post = reactive({
   id: Date.now(),
-  views:0,
+  views: 0,
   title: "",
   img: "",
   text: "",
@@ -92,17 +93,9 @@ textarea {
 }
 
 .btn-create-post {
-  box-sizing: border-box;
   margin-top: 40px;
-  cursor: pointer;
   color: rgb(28, 171, 49);
-  font-weight: bold;
-  font-size: 22px;
   border: 1px solid rgb(32, 158, 23);
-  border-radius: 5px;
-  padding: 10px 20px;
-  background-color: transparent;
-  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
   margin-bottom: 100px;
 }
 .btn-create-post:hover {
