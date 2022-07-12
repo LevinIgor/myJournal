@@ -12,18 +12,17 @@
 import VPost from "@/components/v-post.vue";
 import VHeader from "@/components/v-header.vue";
 
-import { onMounted, ref, computed, inject, watch } from "vue";
+import { onMounted, ref, computed } from "vue";
 import getPosts from "@/firebase/getPosts";
 
 const posts = ref([]);
-const searchValue = ref('')
+const searchValue = ref("");
 
 const filterPost = computed(() => {
   return posts.value.filter((post) => {
     return post.title.toUpperCase().includes(searchValue.value.toUpperCase());
   });
 });
-
 
 onMounted(async () => {
   posts.value = await getPosts();

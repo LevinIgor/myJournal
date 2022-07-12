@@ -22,12 +22,13 @@ import VProgressBar from "../components/v-progress-bar.vue";
 const post = ref("");
 const notFound = ref(false);
 
-
 onMounted(async () => {
   const route = useRoute();
   const postId = route.params.id;
   const answer = await getPost(postId);
   answer === undefined ? (notFound.value = true) : (post.value = answer);
+
+  window.scroll(0, 0);
 });
 </script>
 <style scoped>
