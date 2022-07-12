@@ -1,21 +1,23 @@
 <template>
   <header>
-    <RouterLink to="/"><span class="logo">Journal</span></RouterLink>
+    <span class="logo" @click="$router.push('/')">Journal</span>
     <div class="right-block" v-if="props.mode != 'onlyLogo'">
-      <input
-        type="text"
-        placeholder="Поиск"
-        class="search"
-        @input="emits('search', $event)"
-      />
+      <VSearchBlock @search="emit('search',$event)" />
       <slot />
-      <img src="@/assets/icons/admin.png" alt="" class="admin-icon" @click="$router.push('/admin/posts')" />
+      <img
+        src="@/assets/icons/admin.png"
+        alt=""
+        class="admin-icon"
+        @click="$router.push('/admin/posts')"
+      />
     </div>
   </header>
 </template>
 <script setup>
+import VSearchBlock from "./v-search-block.vue";
 const props = defineProps(["mode"]);
-const emits = defineEmits(["search"]);
+const emit = defineEmits(['search'])
+
 </script>
 <style scoped>
 header {
@@ -51,14 +53,7 @@ a {
   display: flex;
   align-items: center;
 }
-.search {
-  border: 1px solid rgb(58, 58, 58);
-  outline: none;
-  font-size: 20px;
-  padding: 5px 20px;
-  background-color: rgba(0, 0, 0, 0.411);
-  color: white;
-}
+
 .admin-icon {
   cursor: pointer;
   width: 30px !important;
@@ -70,4 +65,5 @@ a {
 .admin-icon:hover {
   filter: invert(100%);
 }
+
 </style>

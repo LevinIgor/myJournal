@@ -102,7 +102,7 @@ main {
 }
 .admin-menu-title {
   margin-bottom: 40px;
-  color: rgba(240, 248, 255, 0.422);
+  color: var(--second-text-color);
 }
 .admin-menu-item {
   cursor: pointer;

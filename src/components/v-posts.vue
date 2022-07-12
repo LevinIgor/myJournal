@@ -6,7 +6,7 @@
       <span class="post-title" @click="$router.push(`/post/${post.id}`)">
         {{ post.title }}</span
       >
-      <div class="post-id">{{ post.id }}</div>
+      <span class="post-id">{{ post.id }}</span>
       <div class="post-control">
         <img
           src="@/assets/icons/edit.png"
@@ -60,7 +60,7 @@ h1 {
   text-decoration: none;
   color: var(--main-font-color);
 }
-.post-id{
+.post-id {
   position: absolute;
   top: -10px;
   right: 10px;

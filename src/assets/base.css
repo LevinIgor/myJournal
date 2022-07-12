@@ -50,7 +50,7 @@ li {
   --main-bg-color:#232529;
   --main-border-color:#35383fab;
   --main-text-color:#e2e3e7;
-  --second-text-color:#e2e3e7e2;
+  --second-text-color:rgba(240, 248, 255, 0.271);
   --main-block-color:#35383f;
   --main-block-color-hover:#35383f93;
 }
