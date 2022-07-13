@@ -22,11 +22,6 @@
         />
       </div>
     </div>
-
-    <div class="not-found" v-if="props.posts.length == 0">
-      <img src="@/assets/icons/notFound.png" alt="" />
-      <h2>Not found</h2>
-    </div>
   </div>
 </template>
 <script setup>

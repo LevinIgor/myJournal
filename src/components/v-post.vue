@@ -5,7 +5,11 @@
       <span class="post-views">Просмотров: {{ post.views }}</span>
     </div>
     <h2 class="post-title">{{ post.title }}</h2>
-    <div class="post-tags">Vue3 JavaScript</div>
+    <div class="post-tags">
+      <span class="post-tag" v-for="(tag, index) in post.tags" :key="index">{{
+        tag
+      }}</span>
+    </div>
     <img :src="post.img" alt="" class="img-post" v-if="post.img.length != 0" />
     <div class="post-description" v-html="post.text" />
     <VButton class="btn-post">Читать далее</VButton>
@@ -21,7 +25,7 @@ const props = defineProps(["post"]);
 const router = useRouter();
 const date = useDateFormat(props.post.id, "YYYY-MM-DD HH:mm");
 
-const openPost = async() => {
+const openPost = async () => {
   localStorage.setItem("post", JSON.stringify(props.post));
   incrementView(props.post.id, props.post.views);
   router.push(`/post/${props.post.id}`);
@@ -61,9 +65,13 @@ h2 {
 }
 
 .post-tags {
+  display: flex;
   font-size: 12px;
   color: var(--second-font-color);
   padding: 5px 0;
+}
+.post-tag{
+  margin: 0 5px;
 }
 .post-description {
   font-size: 16px;
@@ -76,7 +84,7 @@ h2 {
   -webkit-box-orient: vertical;
 }
 .btn-post {
-  border: 1px solid rgba(38, 38, 242, 0.678) ;
+  border: 1px solid rgba(38, 38, 242, 0.678);
   color: rgba(0, 72, 255, 0.854);
   margin-top: 30px;
 }

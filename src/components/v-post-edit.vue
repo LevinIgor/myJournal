@@ -11,20 +11,11 @@
         placeholder="Заголовок публикации"
         required
       />
-      <input
-        class="post-tags"
-        v-model="post.tags"
-        placeholder="Теги публикации"
-      />
+      <VTags @updateTags="post.tags = $event" :test="post.tags" />
       <input
         class="post-img"
         v-model="post.img"
         placeholder="Если необходимо фото, вставить ссылку"
-      />
-      <textarea
-        class="post-desc"
-        v-model="post.desc"
-        placeholder="Описание поста"
       />
     </form>
 
@@ -39,6 +30,7 @@ import getPost from "../firebase/getPost";
 import createPost from "../firebase/createPost";
 import VPopupMsg from "./v-popup-msg.vue";
 import VButton from "./UI/v-button.vue";
+import VTags from "./UI/v-tags.vue";
 
 const isMessage = ref(false);
 const post = ref({});
@@ -55,9 +47,9 @@ const save = async () => {
 onMounted(async () => {
   const route = useRoute();
   const id = route.params.id;
-  console.log(id);
   await getPost(id).then((_post) => {
     post.value = _post;
+    
   });
 });
 </script>

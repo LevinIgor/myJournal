@@ -4,29 +4,20 @@
   </VPopupMsg>
   <div class="create-post">
     <h1>Создание публикации</h1>
-    <form class="post-details">
+    <div class="post-details">
       <input
         class="post-title"
         v-model="post.title"
         placeholder="Заголовок публикации"
         required
       />
-      <input
-        class="post-tags"
-        v-model="post.tags"
-        placeholder="Теги публикации"
-      />
+      <VTags @updateTags="post.tags = $event" />
       <input
         class="post-img"
         v-model="post.img"
         placeholder="Если необходимо фото, вставить ссылку"
       />
-      <textarea
-        class="post-desc"
-        v-model="post.desc"
-        placeholder="Описание поста"
-      />
-    </form>
+    </div>
     <div class="post-content">
       <v-md-editor v-model="post.text" height="900px" />
     </div>
@@ -38,6 +29,7 @@ import { reactive, ref } from "vue";
 import createPostBD from "../firebase/createPost.js";
 import VPopupMsg from "@/components/v-popup-msg.vue";
 import VButton from "@/components/UI/v-button.vue";
+import VTags from "./UI/v-tags.vue";
 
 const isMessage = ref(false);
 const post = reactive({
@@ -46,8 +38,7 @@ const post = reactive({
   title: "",
   img: "",
   text: "",
-  tags: "",
-  desc: "",
+  tags: ["", ""],
 });
 
 const createPost = async () => {
@@ -59,7 +50,7 @@ const createPost = async () => {
     post.title = "";
     post.img = "";
     post.text = "";
-    post.tags = [];
+    post.tags = [""];
   });
 };
 </script>
