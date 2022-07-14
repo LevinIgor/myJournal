@@ -1,7 +1,7 @@
 <template>
   <div class="tags">
     <input
-      v-for="(tag, index) in tags"
+      v-for="(tag, index) in props.tags"
       :key="index"
       ref="tagsRef"
       class="input"
@@ -9,18 +9,19 @@
       @keydown.space="createTag(index)"
       @keydown.enter="createTag(index)"
       @blur="inputCheck(index)"
-      placeholder="Тег "
+      placeholder="Тег"
     />
   </div>
 </template>
 <script setup>
-import { ref, watch, nextTick, computed } from "vue";
-const props = defineProps(["test"]);
+import { ref, watch, nextTick} from "vue";
 
+const props = defineProps(["tags"]);
 const emit = defineEmits(["updateTags"]);
 
 const tags = ref([""]);
 const tagsRef = ref([]);
+
 
 const createTag = (index) => {
   if (tags.value[index] != "") {
@@ -48,7 +49,6 @@ watch(
   },
   { deep: true }
 );
-
 </script>
 <style scoped>
 .input {

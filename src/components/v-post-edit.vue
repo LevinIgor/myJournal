@@ -9,9 +9,24 @@
         class="post-title"
         v-model="post.title"
         placeholder="Заголовок публикации"
-        required
       />
-      <VTags @updateTags="post.tags = $event" :test="post.tags" />
+      <div class="tags">
+        <VInput
+          v-for="(_, index) in post.tags"
+          :key="index"
+          :placeholder="'Тег'"
+          v-model.trim="post.tags[index]"
+          @blur="
+            post.tags[index].length == 0 ? post.tags.splice(index, 1) : null
+          "
+          @keydown.space="
+            post.tags[index].length != 0 ? post.tags.push('') : null
+          "
+          @keydown.enter="
+            post.tags[index].length != 0 ? post.tags.push('') : null
+          "
+        />
+      </div>
       <input
         class="post-img"
         v-model="post.img"
@@ -30,12 +45,17 @@ import getPost from "../firebase/getPost";
 import createPost from "../firebase/createPost";
 import VPopupMsg from "./v-popup-msg.vue";
 import VButton from "./UI/v-button.vue";
-import VTags from "./UI/v-tags.vue";
+import VInput from "./UI/v-input.vue";
 
 const isMessage = ref(false);
 const post = ref({});
 
+const clearEmptyTags = () => {
+  post.value.tags = post.value.tags.filter((tag) => tag.length > 0);
+};
+
 const save = async () => {
+  clearEmptyTags()
   await createPost(post.value).then(() => {
     isMessage.value = true;
     setTimeout(() => {
@@ -49,7 +69,6 @@ onMounted(async () => {
   const id = route.params.id;
   await getPost(id).then((_post) => {
     post.value = _post;
-    
   });
 });
 </script>
@@ -90,6 +109,9 @@ textarea {
 .post-title {
   font-size: 24px;
   font-weight: bold;
+}
+.post-tags {
+  display: flex;
 }
 .post-content {
   margin-top: 40px;

@@ -11,7 +11,7 @@
         placeholder="Заголовок публикации"
         required
       />
-      <VTags @updateTags="post.tags = $event" />
+      <VTags @updateTags="post.tags = $event" :tags="post.tags" />
       <input
         class="post-img"
         v-model="post.img"
@@ -38,7 +38,7 @@ const post = reactive({
   title: "",
   img: "",
   text: "",
-  tags: ["", ""],
+  tags: [""],
 });
 
 const createPost = async () => {
