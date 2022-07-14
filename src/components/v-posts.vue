@@ -2,7 +2,7 @@
   <div class="main">
     <h1>Все публикации</h1>
 
-    <div class="post" v-for="post in props.posts" :key="post.id">
+    <div class="post" v-for="post in filterPosts" :key="post.id">
       <span class="post-title" @click="$router.push(`/post/${post.id}`)">
         {{ post.title }}</span
       >
@@ -12,21 +12,42 @@
           src="@/assets/icons/edit.png"
           alt="edit"
           class="icon"
-          @click="emits('editPost', post.id)"
+          @click="$router.push('/admin/edit/' + post.id)"
         />
         <img
           src="@/assets/icons/delete.png"
           alt="delete"
           class="icon"
-          @click="emits('deletePost', post.id)"
+          @click="deletePost(post.id)"
         />
       </div>
     </div>
   </div>
 </template>
 <script setup>
-const props = defineProps(["posts"]);
-const emits = defineEmits(["deletePost", "editPost"]);
+import getPosts from "../firebase/getPosts";
+import deletePostAPI from "../firebase/deletePost";
+import { onMounted, ref, computed } from "vue";
+
+const props = defineProps(["search"]);
+const posts = ref([]);
+
+const deletePost = async (id) => {
+  if (confirm("Delete post?")) {
+    deletePostAPI(id);
+    posts.value = posts.value.filter((post) => post.id !== id);
+  }
+};
+
+const filterPosts = computed(() => {
+  return posts.value.filter((post) => {
+    return post.title.toLowerCase().includes(props.search.toLowerCase());
+  });
+});
+
+onMounted(async () => {
+  posts.value = await getPosts();
+});
 </script>
 <style scoped>
 h1 {

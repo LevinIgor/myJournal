@@ -11,9 +11,6 @@ import enUS from '@kangc/v-md-editor/lib/lang/en-US';
 
 
 VMdEditor.lang.use('en-US', enUS);
-
-
-
 // Prism
 import Prism from 'prismjs';
 // highlight code

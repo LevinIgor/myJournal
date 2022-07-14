@@ -9,12 +9,10 @@
   </div>
 </template>
 <script setup>
-import VPost from "@/components/v-post.vue";
+import { onMounted, ref, computed, } from "vue";
+import getPostsAPI from "@/firebase/getPosts";
 import VHeader from "@/components/v-header.vue";
-
-import { onMounted, ref, computed } from "vue";
-import getPosts from "@/firebase/getPosts";
-
+import VPost from "@/components/v-post.vue";
 const posts = ref([]);
 const searchValue = ref("");
 
@@ -25,7 +23,7 @@ const filterPost = computed(() => {
 });
 
 onMounted(async () => {
-  posts.value = await getPosts();
+  posts.value = await getPostsAPI();
 });
 </script>
 <style scoped>
@@ -54,11 +52,11 @@ onMounted(async () => {
 
 .list-enter-active,
 .list-leave-active {
-  transition: all 0.2s ease;
+  transition: opacity .4s, transform .3s;
 }
 .list-enter-from,
 .list-leave-to {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(300px);
 }
 </style>
