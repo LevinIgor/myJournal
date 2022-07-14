@@ -5,18 +5,9 @@
   <div class="create-post">
     <h1>Создание публикации</h1>
     <div class="post-details">
-      <input
-        class="post-title"
-        v-model="post.title"
-        placeholder="Заголовок публикации"
-        required
-      />
+      <VInputHeader v-model="post.title" :placeholder="placeholders.title" />
       <VTags @updateTags="post.tags = $event" :tags="post.tags" />
-      <input
-        class="post-img"
-        v-model="post.img"
-        placeholder="Если необходимо фото, вставить ссылку"
-      />
+      <VInput v-model="post.img" :placeholder="placeholders.img" />
     </div>
     <div class="post-content">
       <v-md-editor v-model="post.text" height="900px" />
@@ -30,8 +21,14 @@ import createPostBD from "../firebase/createPost.js";
 import VPopupMsg from "@/components/v-popup-msg.vue";
 import VButton from "@/components/UI/v-button.vue";
 import VTags from "./UI/v-tags.vue";
+import VInputHeader from "./UI/v-inputHeader.vue";
+import VInput from "./UI/v-input.vue";
 
 const isMessage = ref(false);
+const placeholders = ref({
+  title: "Заголовок публикации",
+  img: "Если необходимо фото, вставить ссылку",
+});
 const post = reactive({
   id: Date.now(),
   views: 0,
@@ -55,7 +52,6 @@ const createPost = async () => {
 };
 </script>
 <style scoped>
-input,
 textarea {
   box-sizing: border-box;
   border: none;
@@ -74,11 +70,9 @@ textarea {
   display: flex;
   flex-direction: column;
   border: 1px solid var(--main-border-color);
+  padding: 10px;
 }
-.post-title {
-  font-size: 24px;
-  font-weight: bold;
-}
+
 .post-content {
   margin-top: 40px;
 }

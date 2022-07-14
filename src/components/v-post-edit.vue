@@ -4,12 +4,8 @@
   </VPopupMsg>
   <div class="post-edit">
     <h1 class="header">Редактирование публикации</h1>
-    <form class="post-details">
-      <input
-        class="post-title"
-        v-model="post.title"
-        placeholder="Заголовок публикации"
-      />
+    <div class="post-details">
+      <VInputHeader v-model="post.title" :placeholder="placeholders.title" />
       <div class="tags">
         <VInput
           v-for="(_, index) in post.tags"
@@ -27,12 +23,8 @@
           "
         />
       </div>
-      <input
-        class="post-img"
-        v-model="post.img"
-        placeholder="Если необходимо фото, вставить ссылку"
-      />
-    </form>
+      <VInput v-model="post.img" :placeholder="placeholders.img" />
+    </div>
 
     <v-md-editor v-model="post.text" height="900px" />
     <VButton @click="save()" class="btn-create-post">Сохранить</VButton>
@@ -46,16 +38,21 @@ import createPost from "../firebase/createPost";
 import VPopupMsg from "./v-popup-msg.vue";
 import VButton from "./UI/v-button.vue";
 import VInput from "./UI/v-input.vue";
+import VInputHeader from "./UI/v-inputHeader.vue";
 
 const isMessage = ref(false);
 const post = ref({});
+const placeholders = ref({
+  title: "Заголовок публикации",
+  img: "Если необходимо фото, вставить ссылку",
+});
 
 const clearEmptyTags = () => {
   post.value.tags = post.value.tags.filter((tag) => tag.length > 0);
 };
 
 const save = async () => {
-  clearEmptyTags()
+  clearEmptyTags();
   await createPost(post.value).then(() => {
     isMessage.value = true;
     setTimeout(() => {
@@ -85,7 +82,6 @@ h1 {
   flex-direction: column;
 }
 
-input,
 textarea {
   box-sizing: border-box;
   border: none;
@@ -105,18 +101,8 @@ textarea {
   flex-direction: column;
   margin-bottom: 50px;
   border: 1px solid var(--main-border-color);
+  padding: 10px;
 }
-.post-title {
-  font-size: 24px;
-  font-weight: bold;
-}
-.post-tags {
-  display: flex;
-}
-.post-content {
-  margin-top: 40px;
-}
-
 .btn-create-post {
   margin-bottom: 100px;
   margin-top: 40px;

@@ -3,13 +3,11 @@
     ref="input"
     :value="props.modelValue"
     @input="emit('update:modelValue', $event.target.value)"
-    :placeholder="props.placeholder"
   />
 </template>
 <script setup>
-const props = defineProps(["modelValue", "placeholder"]);
+const props = defineProps(["modelValue"]);
 const emit = defineEmits(["update:modelValue"]);
-
 </script>
 <style scoped>
 input {
@@ -17,9 +15,9 @@ input {
   outline: none;
   border: 1px solid var(--main-border-color);
   color: var(--main-font-color);
-  padding: 15px 20px;
-  margin: 5px 0;
-  font-size: 16px;
+  padding: 10px 15px;
   background-color: transparent;
+  font-size: 24px;
+  font-weight: bold;
 }
 </style>
