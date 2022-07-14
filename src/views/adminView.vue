@@ -7,6 +7,7 @@
         <VPosts v-if="$route.params.tab == 'posts'" :search="search" />
         <VPostCreate v-if="$route.params.tab == 'create'" />
         <VPostEdit v-if="$route.params.tab == 'edit'" />
+        <VStatistics v-if="$route.params.tab == 'statistics'" />
       </div>
     </main>
   </div>
@@ -18,6 +19,7 @@ import VHeader from "../components/v-header.vue";
 import VPosts from "../components/v-posts.vue";
 import VPostCreate from "../components/v-createPost.vue";
 import VPostEdit from "../components/v-post-edit.vue";
+import VStatistics from "../components/v-statistics.vue";
 
 let search = ref("");
 </script>

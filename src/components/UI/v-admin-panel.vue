@@ -17,6 +17,14 @@
       <img src="@/assets/icons/create.png" alt="create" />
       <span>Создать пост</span>
     </div>
+    <div
+      class="admin-panel-item"
+      @click="$router.push('/admin/statistics')"
+      :class="{ active: $route.params.tab == 'statistics' }"
+    >
+      <img src="@/assets/icons/statistic.png" alt="statistics" />
+      <span>Статистика</span>
+    </div>
   </div>
 </template>
 <script setup></script>
