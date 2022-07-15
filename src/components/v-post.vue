@@ -70,7 +70,7 @@ h2 {
   color: var(--second-font-color);
   padding: 5px 0;
 }
-.post-tag{
+.post-tag {
   margin: 0 5px;
 }
 .post-description {
@@ -84,8 +84,8 @@ h2 {
   -webkit-box-orient: vertical;
 }
 .btn-post {
-  border: 1px solid rgba(38, 38, 242, 0.678);
-  color: rgba(0, 72, 255, 0.854);
+  border: 1px solid rgba(96, 96, 215, 0.678);
+  color: rgba(91, 130, 238, 0.854);
   margin-top: 30px;
 }
 
