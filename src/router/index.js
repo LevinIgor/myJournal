@@ -9,6 +9,11 @@ const router = createRouter({
       component: () => import("@/views/mainView.vue"),
     },
     {
+      path: "/posts/:tag",
+      name: "postsTag",
+      component: () => import("@/views/postsTagView.vue"),
+    },
+    {
       path: "/admin/:tab/:id?",
       name: "admin",
       component: () => import("@/views/adminView.vue"),
@@ -17,12 +22,7 @@ const router = createRouter({
       path: "/post/:id",
       name: "post",
       component: () => import("@/views/postView.vue"),
-    }, 
-    {
-      path: "/test",
-      name: "test",
-      component: () => import("@/views/test.vue"),
-    }, 
+    },
   ],
 });
 

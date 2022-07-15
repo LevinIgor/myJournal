@@ -1,18 +1,28 @@
 <template>
-  <div class="post" @click="openPost()">
+  <div class="post">
     <div class="post-header">
       <span class="post-date">{{ date }}</span>
       <span class="post-views">Просмотров: {{ post.views }}</span>
     </div>
-    <h2 class="post-title">{{ post.title }}</h2>
+    <h2 class="post-title" @click="openPost()">{{ post.title }}</h2>
     <div class="post-tags">
-      <span class="post-tag" v-for="(tag, index) in post.tags" :key="index">{{
-        tag
-      }}</span>
+      <span
+        class="post-tag"
+        @click="$router.push('/posts/' + tag)"
+        v-for="(tag, index) in post.tags"
+        :key="index"
+        >{{ tag }}</span
+      >
     </div>
-    <img :src="post.img" alt="" class="img-post" v-if="post.img.length != 0" />
+    <img
+      :src="post.img"
+      @click="openPost()"
+      alt="post img"
+      class="img-post"
+      v-if="post.img.length != 0"
+    />
     <div class="post-description" v-html="post.text" />
-    <VButton class="btn-post">Читать далее</VButton>
+    <VButton class="btn-post" @click="openPost()">Читать далее</VButton>
   </div>
 </template>
 <script setup>
@@ -40,11 +50,11 @@ h2 {
 }
 .post {
   box-sizing: border-box;
-  width: 100%;
   margin: 30px 0;
   padding: 1rem 1rem 2rem 2rem;
   border: 1px solid #6e7a97ab;
   background-color: var(--main-block-color);
+  width: var(--content-wrapper-width);
   /* box-shadow: 1px 2px 10px rgba(255, 255, 255, 0.2); */
 }
 .post-header {
@@ -54,6 +64,7 @@ h2 {
 }
 
 .img-post {
+  cursor: pointer;
   margin: 40px 0;
   width: 100%;
   max-height: 450px;
@@ -72,6 +83,8 @@ h2 {
 }
 .post-tag {
   margin: 0 5px;
+  cursor: pointer;
+  text-decoration: underline;
 }
 .post-description {
   font-size: 16px;

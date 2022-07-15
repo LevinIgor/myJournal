@@ -41,6 +41,7 @@ h2 {
   padding: 1rem 1rem 2rem 2rem;
   border-radius: 10px;
   background-color: grey;
+  width: var(--content-wrapper-width);
   /* box-shadow: 1px 2px 10px rgba(255, 255, 255, 0.2); */
 }
 .post-header {

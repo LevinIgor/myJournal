@@ -2,15 +2,15 @@
   <div class="main">
     <VHeader @search="searchValue = $event" />
     <div class="posts">
-      <VPostSkeleton v-if="posts.length == 0"/>
-      
+      <VPostSkeleton v-if="posts.length == 0" />
+
       <VPost v-for="post in filterPost" :post="post" :key="post.id" />
     </div>
   </div>
 </template>
 <script setup>
 import { onMounted, ref, computed } from "vue";
-import getPostsAPI from "@/firebase/getPosts";
+import getPostsAPI from "@/firebase/getPosts.js";
 import VHeader from "@/components/v-header.vue";
 import VPost from "@/components/v-post.vue";
 import VPostSkeleton from "@/components/skeletons/v-post.vue";
@@ -25,6 +25,7 @@ const filterPost = computed(() => {
 });
 
 onMounted(async () => {
+  
   posts.value = await getPostsAPI();
 });
 </script>

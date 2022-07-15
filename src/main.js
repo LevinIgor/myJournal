@@ -4,10 +4,10 @@ import router from './router'
 import Markdown from 'vue3-markdown-it';
 
 import VMdEditor from '@kangc/v-md-editor';
-import '@kangc/v-md-editor/lib/style/base-editor.css';
 import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';
-import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
 import enUS from '@kangc/v-md-editor/lib/lang/en-US';
+import '@kangc/v-md-editor/lib/style/base-editor.css';
+import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
 
 
 VMdEditor.lang.use('en-US', enUS);
