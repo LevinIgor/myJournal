@@ -15,5 +15,6 @@
   margin: 10px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 </style>
