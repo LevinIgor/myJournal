@@ -8,6 +8,7 @@
 
     <div class="post">
       <Markdown :source="post.text" :html="true" :linkify="true" />
+      <VComments />
     </div>
   </div>
 </template>
@@ -18,6 +19,7 @@ import getPost from "../firebase/getPost";
 import VHeader from "../components/v-header.vue";
 import Markdown from "vue3-markdown-it";
 import VProgressBar from "../components/v-progress-bar.vue";
+import VComments from "../components/v-comments.vue";
 
 const post = ref("");
 const notFound = ref(false);
