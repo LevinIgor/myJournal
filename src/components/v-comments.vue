@@ -1,38 +1,45 @@
 <template>
   <div class="comments">
-    <h2 class="comments-title">Комментарии</h2>
+    <h2 class="comments-title">
+      <img src="@/assets/icons/comment.png" alt="" />
+      <span>Комментарии</span>
+    </h2>
     <div class="comments-list">
-      <div class="comment">
-        <div class="comment-header">
-          <div class="author">Levin Ihor</div>
-          <div class="number">#1222</div>
-          <div class="date">12.12.2020</div>
-        </div>
-        <div class="comment-content">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Pellentesque euismod, nisi eu consectetur euismod, nisl nisi
-            consectetur nisi, eu consectetur nisi nisi euismod nisi.
-          </p>
-        </div>
-      </div>
+      <VComment
+        v-for="(comment, index) in comments"
+        :key="index"
+        :comment="comment"
+      />
+      
     </div>
   </div>
 </template>
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import VComment from "./v-comment.vue";
+
+const comments = ref([
+  {
+    author: "Levin Ihor",
+    id: 1657363082422,
+    date: "12.12.2000",
+    content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat hic earum dolorem velit consequatur exercitationem dolores, voluptate rerum! Quasi dolore dolorem ducimus aliquid repellendus tempora error eius quibusdam, nam repudiandae architecto ex voluptatem aliquam adipisci porro exercitationem consequatur suscipit praesentium rerum, voluptas assumenda ea. Placeat dolores earum debitis impedit totam.",
+    replies: [{}],
+  },
+]);
+</script>
 <style scoped>
-.comments{
-    margin-top: 100px;
+.comments {
+  margin-top: 100px;
 }
-.comment{
-    padding: 20px 40px;
-    margin-left: 20px;
-    border: 1px solid var(--main-border-color);
-}
-.comment-header {
+.comments-title {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 40px;
+  align-items: flex-end;
+}
+.comments-title img {
+  width: 30px !important;
+  height: 30px;
+  filter: invert(70%);
+  margin-right: 10px;
 }
 </style>
