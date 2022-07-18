@@ -1,18 +1,17 @@
 <template>
-  <input
+  <textarea
     ref="input"
     :value="props.modelValue"
     @input="emit('update:modelValue', $event.target.value)"
     :placeholder="props.placeholder"
-  />
+  ></textarea>
 </template>
 <script setup>
 const props = defineProps(["modelValue", "placeholder"]);
 const emit = defineEmits(["update:modelValue"]);
-
 </script>
 <style scoped>
-input {
+textarea {
   box-sizing: border-box;
   outline: none;
   border: 1px solid var(--main-border-color);
@@ -21,5 +20,6 @@ input {
   margin: 5px 0;
   font-size: 18px;
   background-color: transparent;
+  resize: vertical;
 }
 </style>

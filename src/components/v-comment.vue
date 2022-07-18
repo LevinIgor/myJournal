@@ -22,14 +22,8 @@ import { ref } from "vue";
 import { useDateFormat } from "@vueuse/core";
 
 const props = defineProps(["comment"]);
-
-console.log('date now',Date.now());
-console.log('date comment',props.comment.id);
 const inc = Date.now() - props.comment.id
-console.log(inc)
-
 const result = useDateFormat(inc, "YYYY-MM-DD HH:mm");
-console.log(result.value);
 </script>
 <style scoped>
 .comment {
