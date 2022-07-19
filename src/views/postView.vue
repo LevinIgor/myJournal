@@ -20,11 +20,11 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
-import getPost from "../firebase/getPost";
-import VHeader from "../components/v-header.vue";
+import getPost from "@/firebase/getPost";
+import VHeader from "@/components/main/header/v-header.vue";
 import Markdown from "vue3-markdown-it";
-import VProgressBar from "../components/v-progress-bar.vue";
-import VComments from "../components/comment/v-comments.vue";
+import VProgressBar from "@/components/UI/v-progress-bar.vue";
+import VComments from "@/components/comment/v-comments.vue";
 
 const post = ref("");
 const notFound = ref(false);

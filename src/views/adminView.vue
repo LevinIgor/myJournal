@@ -14,12 +14,12 @@
 </template>
 <script setup>
 import { ref } from "vue";
-import VAdminPanel from "../components/UI/v-admin-panel.vue";
-import VHeader from "../components/v-header.vue";
-import VPosts from "../components/v-posts.vue";
-import VPostCreate from "../components/v-createPost.vue";
-import VPostEdit from "../components/v-post-edit.vue";
-import VStatistics from "../components/v-statistics.vue";
+import VAdminPanel from "@/components/UI/v-admin-panel.vue";
+import VHeader from "@/components/main/header/v-header.vue";
+import VPosts from "@/components/main/post/v-posts.vue";
+import VPostCreate from "@/components/main/post/v-postCreate.vue";
+import VPostEdit from "@/components/main/post/v-postEdit.vue";
+import VStatistics from "@/components/v-statistics.vue";
 
 let search = ref("");
 </script>

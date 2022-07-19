@@ -17,14 +17,14 @@
     />
     <span class="search-span" v-if="!isSearch">Ctrl K</span>
     <img
-      src="../assets/icons/close.png"
+      src="@/assets/icons/close.png"
       alt="close"
       class="search-img close-icon"
       @click="searchValue = ''"
       v-if="isSearch"
     />
     <img
-      src="../assets/icons/search.png"
+      src="@/assets/icons/search.png"
       alt="search"
       class="search-img"
       v-if="!isSearch"

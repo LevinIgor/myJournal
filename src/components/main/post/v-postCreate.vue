@@ -17,12 +17,12 @@
 </template>
 <script setup>
 import { reactive, ref } from "vue";
-import createPostBD from "../firebase/createPost.js";
+import createPostBD from "@/firebase/createPost.js";
 import VPopupMsg from "@/components/v-popup-msg.vue";
 import VButton from "@/components/UI/v-button.vue";
-import VTags from "./UI/v-tags.vue";
-import VInputHeader from "./UI/v-inputHeader.vue";
-import VInput from "./UI/v-input.vue";
+import VTags from "@/components/UI/v-tags.vue";
+import VInputHeader from "@/components/UI/v-inputHeader.vue";
+import VInput from "@/components/UI/v-input.vue";
 
 const isMessage = ref(false);
 const placeholders = ref({
@@ -36,7 +36,7 @@ const post = reactive({
   img: "",
   text: "",
   tags: [""],
-  comments:[],
+  comments: [],
 });
 
 const createPost = async () => {

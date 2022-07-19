@@ -28,8 +28,8 @@
 <script setup>
 import { useDateFormat } from "@vueuse/core";
 import { useRouter } from "vue-router";
-import incrementView from "../firebase/incrementView";
-import VButton from "./UI/v-button.vue";
+import incrementView from "@/firebase/incrementView";
+import VButton from "@/components/UI/v-button.vue";
 
 const props = defineProps(["post"]);
 const router = useRouter();

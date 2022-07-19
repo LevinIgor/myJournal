@@ -25,8 +25,8 @@
   </div>
 </template>
 <script setup>
-import getPosts from "../firebase/getPosts";
-import deletePostAPI from "../firebase/deletePost";
+import getPosts from "@/firebase/getPosts";
+import deletePostAPI from "@/firebase/deletePost";
 import { onMounted, ref, computed } from "vue";
 
 const props = defineProps(["search"]);

@@ -33,12 +33,12 @@
 <script setup>
 import { useRoute } from "vue-router";
 import { ref, onMounted } from "vue";
-import getPost from "../firebase/getPost";
-import createPost from "../firebase/createPost";
-import VPopupMsg from "./v-popup-msg.vue";
-import VButton from "./UI/v-button.vue";
-import VInput from "./UI/v-input.vue";
-import VInputHeader from "./UI/v-inputHeader.vue";
+import getPost from "@/firebase/getPost";
+import createPost from "@/firebase/createPost";
+import VPopupMsg from "@/components/v-popup-msg.vue";
+import VButton from "@/components/UI/v-button.vue";
+import VInput from "@/components/UI/v-input.vue";
+import VInputHeader from "@/components/UI/v-inputHeader.vue";
 
 const isMessage = ref(false);
 const post = ref({});

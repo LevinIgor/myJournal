@@ -11,8 +11,8 @@
 <script setup>
 import { onMounted, ref, computed } from "vue";
 import getPostsAPI from "@/firebase/getPosts.js";
-import VHeader from "@/components/v-header.vue";
-import VPost from "@/components/v-post.vue";
+import VHeader from "@/components/main/header/v-header.vue";
+import VPost from "@/components/main/post/v-post.vue";
 import VPostSkeleton from "@/components/skeletons/v-post.vue";
 
 const posts = ref([]);
@@ -25,7 +25,6 @@ const filterPost = computed(() => {
 });
 
 onMounted(async () => {
-  
   posts.value = await getPostsAPI();
 });
 </script>

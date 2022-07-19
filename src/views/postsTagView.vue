@@ -11,8 +11,8 @@
 <script setup>
 import { useRoute, useRouter } from "vue-router";
 import { onMounted, ref, computed } from "vue";
-import vHeader from "@/components/v-header.vue";
-import VPost from "../components/v-post.vue";
+import vHeader from "@/components/main/header/v-header.vue";
+import VPost from "@/components/main/post/v-post.vue";
 import tagQuery from "@/firebase/tagQuery.js";
 import VPostSkeleton from "@/components/skeletons/v-post.vue";
 
