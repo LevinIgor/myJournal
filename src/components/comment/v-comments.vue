@@ -1,4 +1,5 @@
 <template>
+  <VPopupMsg :show="isMessageShow">Успешно добавлено</VPopupMsg>
   <div class="comments">
     <h2 class="comments-title">
       <img src="@/assets/icons/comment.png" alt="" />
@@ -17,26 +18,20 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import VComment from "./v-comment.vue";
-import VCommentCreate from "./v-comment-create.vue";
+import VCommentCreate from "./v-create.vue";
 import { createComment } from "@/firebase/postAPI.js";
+import VPopupMsg from "@/components/v-popup-msg.vue";
 
 const emits = defineEmits(["create"]);
-const props = defineProps({
-  comments: {
-    type: Array,
-    default: () => [],
-  },
-  postId: {
-    type: Number,
-    default: 0,
-  },
-});
+const props = defineProps(["comments", "postId"]);
+
+const isMessageShow = ref(false);
 
 const create = (_comment) => {
   let comment = {
-    commentId: Date.now(),
+    id: Date.now(),
     postId: props.postId,
     author: _comment.author,
     content: _comment.content,
@@ -45,10 +40,11 @@ const create = (_comment) => {
 
   createComment(comment).then(() => {
     emits("create", comment);
+    isMessageShow.value = true;
+    setTimeout(() => {
+      isMessageShow.value = false;
+    }, 3000);
   });
-};
-const createReplies = (comment) => {
-  console.log(comment);
 };
 </script>
 <style scoped>

@@ -4,6 +4,7 @@
     :value="props.modelValue"
     @input="emit('update:modelValue', $event.target.value)"
     :placeholder="props.placeholder"
+    maxlength="200"
   />
 </template>
 <script setup>

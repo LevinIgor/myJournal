@@ -1,14 +1,22 @@
 <template>
-  <VPopupMsg :show="isMessageShow"> Не все поля заполнены</VPopupMsg>
+  <VPopupMsg :show="isMessageShow" class="popup">
+    Не все поля заполнены</VPopupMsg
+  >
   <div class="comment-create">
     <label>Имя пользователя</label>
-    <VInput class="input" :placeholder="'Пользователь'" v-model="comment.author" />
+    <VInput
+      class="input"
+      :placeholder="'Пользователь'"
+      v-model="comment.author"
+    />
 
     <label>Текст комментария</label>
     <VBaseTextarea
+      @keypress.enter.prevent="create()"
       class="textarea"
-      :placeholder="'Текст комментария'"
+      :placeholder="'Текст комментария. Mакс 1000 символов'"
       v-model="comment.content"
+      :maxlength="1000"
     />
     <div class="footer">
       <VButton class="create" @click="create()">Добавить</VButton>
@@ -16,15 +24,16 @@
   </div>
 </template>
 <script setup>
-import VInput from "./UI/v-input.vue";
-import VBaseTextarea from "./UI/v-base-textarea.vue";
-import VButton from "./UI/v-button.vue";
+import VInput from "@/components/UI/v-input.vue";
+import VBaseTextarea from "@/components/UI/v-base-textarea.vue";
+import VButton from "@/components/UI/v-button.vue";
 import { ref } from "vue";
-import VPopupMsg from "./v-popup-msg.vue";
+import VPopupMsg from "@/components/v-popup-msg.vue";
 
 const comment = ref({
   id: Date.now(),
 });
+
 const isMessageShow = ref(false);
 
 const emits = defineEmits(["create"]);
@@ -44,13 +53,16 @@ const create = () => {
 };
 </script>
 <style scoped>
+.popup {
+  background-color: rgba(255, 0, 0, 0.318) !important;
+}
 .textarea {
   width: 100%;
 }
 .input,
 .textarea {
-  background-color: rgb(144, 166, 184);
-  color: rgb(0, 0, 0);
+  background-color: rgb(230, 230, 230);
+  color: rgba(0, 0, 0, 0.867);
   margin-bottom: 40px;
 }
 .comment-create {

@@ -24,7 +24,7 @@ import getPost from "../firebase/getPost";
 import VHeader from "../components/v-header.vue";
 import Markdown from "vue3-markdown-it";
 import VProgressBar from "../components/v-progress-bar.vue";
-import VComments from "../components/v-comments.vue";
+import VComments from "../components/comment/v-comments.vue";
 
 const post = ref("");
 const notFound = ref(false);
