@@ -10,6 +10,7 @@
   background-color: transparent;
   font-size: 16px;
   cursor: pointer;
+  outline: none;
   transition: all .3s ease-in-out;
 }
 

@@ -8,7 +8,12 @@
 
     <div class="post">
       <Markdown :source="post.text" :html="true" :linkify="true" />
-      <VComments />
+      <VComments
+        :comments="post.comments"
+        :postId="post.id"
+        @create="createComment($event)"
+        v-if="post"
+      />
     </div>
   </div>
 </template>
@@ -24,8 +29,13 @@ import VComments from "../components/v-comments.vue";
 const post = ref("");
 const notFound = ref(false);
 
+const createComment = (comment) => {
+  post.value.comments.unshift(comment);
+};
+
 onMounted(async () => {
   const _post = localStorage.getItem("post");
+
   if (_post) {
     post.value = JSON.parse(_post);
   } else {
@@ -35,6 +45,7 @@ onMounted(async () => {
 
     post.value = answer === undefined ? (notFound = true) : answer;
   }
+
   window.scroll(0, 0);
 });
 </script>

@@ -60,6 +60,7 @@ const create = () => {
   border: 1px solid var(--main-border-color);
   padding: 20px;
   margin-top: 20px;
+  margin-bottom: 50px;
 }
 
 .footer {

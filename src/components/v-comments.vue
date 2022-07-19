@@ -6,34 +6,50 @@
     </h2>
 
     <div class="comments-list">
-      <VCommentCreate @create="create($event)"  />
+      <VCommentCreate @create="create($event)" />
       <VComment
-        v-for="(comment, index) in comments"
+        v-for="(comment, index) in props.comments"
         :key="index"
         :comment="comment"
+        @createReplies="createReplies($event)"
       />
     </div>
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import VComment from "./v-comment.vue";
 import VCommentCreate from "./v-comment-create.vue";
+import { createComment } from "@/firebase/postAPI.js";
 
-const comments = ref([
-  {
-    author: "Levin Ihor",
-    id: 1657363082422,
-    date: "12.12.2000",
-    content:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat hic earum dolorem velit consequatur exercitationem dolores, voluptate rerum! Quasi dolore dolorem ducimus aliquid repellendus tempora error eius quibusdam, nam repudiandae architecto ex voluptatem aliquam adipisci porro exercitationem consequatur suscipit praesentium rerum, voluptas assumenda ea. Placeat dolores earum debitis impedit totam.",
-    replies: [{}],
+const emits = defineEmits(["create"]);
+const props = defineProps({
+  comments: {
+    type: Array,
+    default: () => [],
   },
-]);
+  postId: {
+    type: Number,
+    default: 0,
+  },
+});
 
-const create = (comment) =>{
+const create = (_comment) => {
+  let comment = {
+    commentId: Date.now(),
+    postId: props.postId,
+    author: _comment.author,
+    content: _comment.content,
+    replies: [],
+  };
+
+  createComment(comment).then(() => {
+    emits("create", comment);
+  });
+};
+const createReplies = (comment) => {
   console.log(comment);
-}
+};
 </script>
 <style scoped>
 .comments {
@@ -48,5 +64,9 @@ const create = (comment) =>{
   height: 30px;
   filter: invert(70%);
   margin-right: 10px;
+}
+.comment-create {
+  margin-bottom: 100px;
+  background-color: aqua;
 }
 </style>
