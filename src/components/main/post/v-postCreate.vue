@@ -40,6 +40,10 @@ const post = reactive({
 });
 
 const createPost = async () => {
+  if (post.title.length === 0) {
+    alert("Введите заголовок");
+    return;
+  }
   createPostBD(post).then(() => {
     isMessage.value = true;
     setTimeout(() => {
