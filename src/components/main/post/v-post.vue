@@ -45,11 +45,12 @@ h2 {
   box-sizing: border-box;
   margin: 30px 0;
   padding: 1rem 1rem 2rem 2rem;
-  border: 1px solid #6e7a97ab;
+  border: 1px solid var(--main-border-color);
   background-color: var(--main-block-color);
   width: var(--content-wrapper-width);
-  /* box-shadow: 1px 2px 10px rgba(255, 255, 255, 0.2); */
+  box-shadow: 0px 0px 50px rgba(255, 255, 255, 0.138);
 }
+
 .post-header {
   display: flex;
   justify-content: space-between;

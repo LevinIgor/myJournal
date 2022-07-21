@@ -51,10 +51,10 @@ li {
 :root {
   --content-wrapper-width: 1000px;
   --header-height: 60px;
-  --main-bg-color:#232529;
+  --main-bg-color:#181a1d;
   --main-border-color:#35383fab;
   --main-text-color:#e2e3e7;
   --second-text-color:rgba(240, 248, 255, 0.271);
-  --main-block-color:#35383f;
+  --main-block-color:#35383fe1;
   --main-block-color-hover:#35383f93;
 }

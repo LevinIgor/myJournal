@@ -3,7 +3,6 @@
     <VHeader @search="searchValue = $event" />
     <div class="posts">
       <VPostSkeleton v-if="posts.length == 0" />
-
       <VPost v-for="post in filterPost" :post="post" :key="post.id" />
     </div>
   </div>
