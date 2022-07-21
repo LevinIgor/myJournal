@@ -1,5 +1,6 @@
 # myJournal
 
+url - my-journal-smoky.vercel.app
 
 
 ## Project Setup
