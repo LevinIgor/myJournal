@@ -5,15 +5,7 @@
       <span class="post-views">Просмотров: {{ post.views }}</span>
     </div>
     <h2 class="post-title" @click="openPost()">{{ post.title }}</h2>
-    <div class="post-tags">
-      <span
-        class="post-tag"
-        @click="$router.push('/posts/' + tag)"
-        v-for="(tag, index) in post.tags"
-        :key="index"
-        >{{ tag }}</span
-      >
-    </div>
+    <VTags :tags="post.tags" />
     <img
       :src="post.img"
       @click="openPost()"
@@ -30,6 +22,7 @@ import { useDateFormat } from "@vueuse/core";
 import { useRouter } from "vue-router";
 import incrementView from "@/firebase/incrementView";
 import VButton from "@/components/UI/v-button.vue";
+import VTags from "../../v-tags.vue";
 
 const props = defineProps(["post"]);
 const router = useRouter();
@@ -75,17 +68,6 @@ h2 {
   font-weight: bold;
 }
 
-.post-tags {
-  display: flex;
-  font-size: 12px;
-  color: var(--second-font-color);
-  padding: 5px 0;
-}
-.post-tag {
-  margin: 0 5px;
-  cursor: pointer;
-  text-decoration: underline;
-}
 .post-description {
   font-size: 16px;
   line-height: 1.5rem;

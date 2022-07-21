@@ -5,8 +5,9 @@
     <div class="not-found" v-if="notFound">
       <h1>Post of that index is not found</h1>
     </div>
-
     <div class="post">
+      <VPath :title="post.title" class="path" />
+      <VTags :tags="post.tags" />
       <Markdown :source="post.text" :html="true" :linkify="true" />
       <VComments
         :comments="post.comments"
@@ -25,6 +26,8 @@ import VHeader from "@/components/main/header/v-header.vue";
 import Markdown from "vue3-markdown-it";
 import VProgressBar from "@/components/UI/v-progress-bar.vue";
 import VComments from "@/components/comment/v-comments.vue";
+import VTags from "@/components/v-tags.vue";
+import VPath from "@/components/UI/v-path.vue";
 
 const post = ref("");
 const notFound = ref(false);
@@ -66,6 +69,9 @@ onMounted(async () => {
   margin-top: 40px;
   font-size: 28px;
   font-weight: 600;
+}
+.path{
+  margin-bottom: 20px;
 }
 
 .post-img {
