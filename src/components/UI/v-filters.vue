@@ -8,10 +8,10 @@
         @click="invert()"
       />
     </div>
-    <div class="filter" @click="setFilter('date', 'По дате')">
+    <div class="filter" @click="setFilter('id', 'По дате')">
       <img src="@/assets/icons/calendar.png" alt="filter by date" />
     </div>
-    <div class="filter" @click="setFilter('alphabet', 'По алфавиту')">
+    <div class="filter" @click="setFilter('title', 'По алфавиту')">
       <img src="@/assets/icons/alphabetic.png" alt="filter by alphabets" />
     </div>
     <div class="filter" @click="setFilter('views', 'По просмотрам')">
@@ -26,8 +26,14 @@ const emits = defineEmits(["changeFilter", "changeOrder"]);
 const filter = ref({ name: "По дате", value: "date", order: "desc" });
 
 const setFilter = (value, name) => {
-  filter.value.value === value ? "" : emits("changeFilter", filter.value);
-  filter.value = { name, value: value, order: "desc" };
+  const currentFilterValue = filter.value.value;
+  filter.value = { name, value, order: "desc" };
+
+  if (currentFilterValue == value) {
+    emits("changeOrder");
+  } else {
+    emits("changeFilter", value);
+  }
 };
 
 const invert = () => {
