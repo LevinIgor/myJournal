@@ -3,6 +3,7 @@
     <VHeader @search="searchValue = $event" />
     <div class="posts">
       <VPostSkeleton v-if="posts.length == 0" />
+      <VFilters @changeFilter="changeFilter($event)" @changeOrder="changeOrder($event)" />
       <VPost v-for="post in filterPost" :post="post" :key="post.id" />
     </div>
   </div>
@@ -13,6 +14,7 @@ import getPostsAPI from "@/firebase/getPosts.js";
 import VHeader from "@/components/main/header/v-header.vue";
 import VPost from "@/components/main/post/v-post.vue";
 import VPostSkeleton from "@/components/skeletons/v-post.vue";
+import VFilters from "@/components/UI/v-filters.vue";
 
 const posts = ref([]);
 const searchValue = ref("");
@@ -22,6 +24,13 @@ const filterPost = computed(() => {
     return post.title.toUpperCase().includes(searchValue.value.toUpperCase());
   });
 });
+
+const changeFilter = (filter) => {
+  
+};
+const changeOrder = () => {
+  posts.value.reverse()
+};
 
 onMounted(async () => {
   posts.value = await getPostsAPI();
