@@ -14,7 +14,7 @@
 <script setup>
 import { onMounted, ref, computed } from "vue";
 import getPostsAPI from "@/firebase/getPosts.js";
-import {getPosts} from "@/firebase/postAPI.js";
+import { getPosts } from "@/firebase/postAPI.js";
 import VHeader from "@/components/main/header/v-header.vue";
 import VPost from "@/components/main/post/v-post.vue";
 import VPostSkeleton from "@/components/skeletons/v-post.vue";
@@ -30,10 +30,12 @@ const filterPost = computed(() => {
 });
 
 const changeFilter = (filter) => {
-  posts.value = []
-  getPosts(filter).then((data) => {
-    posts.value = data;
-  });
+  posts.value = [];
+  setTimeout(() => {
+    getPosts(filter).then((data) => {
+      posts.value = data;
+    });
+  }, 1000);
 };
 const changeOrder = () => {
   posts.value.reverse();
