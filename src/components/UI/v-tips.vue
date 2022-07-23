@@ -26,6 +26,7 @@ div{
 }
 .hover-text {
   position: absolute;
+  z-index: 100;
   display: none;
   padding: 10px 20px;
   background-color: rgb(76, 76, 76);

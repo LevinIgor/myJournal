@@ -2,22 +2,27 @@
   <header>
     <span class="logo" @click="$router.push('/')">Journal</span>
     <div class="right-block" v-if="props.mode != 'onlyLogo'">
-      <VSearchBlock @search="emit('search',$event)" />
+      <VSearchBlock @search="emit('search', $event)" />
       <slot />
-      <img
-        src="@/assets/icons/admin.png"
-        alt=""
-        class="admin-icon"
-        @click="$router.push('/admin/posts')"
-      />
+      <VTips>
+        <template v-slot:content>
+          <img
+            src="@/assets/icons/admin.png"
+            alt=""
+            class="admin-icon"
+            @click="$router.push('/admin/posts')"
+          />
+        </template>
+        <template v-slot:tips>Панель</template>
+      </VTips>
     </div>
   </header>
 </template>
 <script setup>
 import VSearchBlock from "./v-search-block.vue";
+import VTips from "@/components/UI/v-tips.vue";
 const props = defineProps(["mode"]);
-const emit = defineEmits(['search'])
-
+const emit = defineEmits(["search"]);
 </script>
 <style scoped>
 header {
@@ -67,5 +72,4 @@ a {
 .admin-icon:hover {
   filter: invert(100%);
 }
-
 </style>
