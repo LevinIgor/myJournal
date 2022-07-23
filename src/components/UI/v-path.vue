@@ -1,9 +1,14 @@
 <template>
   <div class="path">
-    <div class="block" @click="$router.push('/')">
-      <img src="@/assets/icons/home.png" class="home" alt="home" />
-      <span>Главная</span>
-    </div>
+    <VTips>
+      <template v-slot:content>
+        <div class="block" @click="$router.push('/')">
+          <img src="@/assets/icons/home.png" class="home" alt="home" />
+          <span>Главная</span>
+        </div>
+      </template>
+      <template v-slot:tips>Назад на главную</template>
+    </VTips>
 
     <img src="@/assets/icons/arrow-right.png" class="arrow" alt="arrow" />
 
@@ -13,6 +18,7 @@
   </div>
 </template>
 <script setup>
+import VTips from "./v-tips.vue";
 const props = defineProps(["title"]);
 </script>
 <style scoped>
