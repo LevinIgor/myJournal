@@ -1,14 +1,15 @@
 <template>
   <div class="filters">
     <div class="current-filter">
-      <span>{{ filter.name }}</span>
+      <span class="current-span">{{ filter.name }}</span>
       <VTips>
         <template v-slot:content>
           <img
             src="@/assets/icons/up-down-arrow.png"
             alt="invert filters"
             @click="invert()"
-        /></template>
+          />
+        </template>
         <template v-slot:tips>Изменить порядок</template>
       </VTips>
     </div>
@@ -52,7 +53,7 @@ import { ref } from "vue";
 import VTips from "@/components/UI/v-tips.vue";
 
 const emits = defineEmits(["changeFilter", "changeOrder"]);
-const filter = ref({ name: "По дате", value: "date", order: "desc" });
+const filter = ref({ name: "По дате", value: "id", order: "desc" });
 const order = ref("desc");
 
 const setFilter = (value, name) => {
@@ -84,6 +85,11 @@ span {
   padding: 0px 10px;
   margin-left: 10px;
   cursor: pointer;
+}
+.current-span {
+  font-size: 16px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.624);
 }
 img {
   width: 25px !important;

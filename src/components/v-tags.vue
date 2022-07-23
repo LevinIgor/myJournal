@@ -1,16 +1,21 @@
 <template>
   <div class="post-tags">
     <span>Метки:</span>
+
     <span
       class="post-tag"
       @click="$router.push('/posts/' + tag)"
       v-for="(tag, index) in props.tags"
       :key="index"
-      >{{ tag }}</span
+      ><VTips>
+        <template v-slot:content>{{ tag }}</template>
+        <template v-slot:tips>Поиск по метке {{ tag }}</template>
+      </VTips></span
     >
   </div>
 </template>
 <script setup>
+import VTips from "./UI/v-tips.vue";
 const props = defineProps(["tags"]);
 </script>
 <style scoped>
