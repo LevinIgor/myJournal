@@ -46,7 +46,7 @@ onMounted(async () => {
     const postId = route.params.id;
     const answer = await getPost(postId);
 
-    post.value = answer === undefined ? (notFound = true) : answer;
+    post.value = answer === undefined ? (notFound.value = true) : answer;
   }
 
   window.scroll(0, 0);

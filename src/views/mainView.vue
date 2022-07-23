@@ -13,7 +13,6 @@
 </template>
 <script setup>
 import { onMounted, ref, computed } from "vue";
-import getPostsAPI from "@/firebase/getPosts.js";
 import { getPosts } from "@/firebase/postAPI.js";
 import VHeader from "@/components/main/header/v-header.vue";
 import VPost from "@/components/main/post/v-post.vue";
@@ -42,7 +41,7 @@ const changeOrder = () => {
 };
 
 onMounted(async () => {
-  posts.value = await getPostsAPI();
+  posts.value = await getPosts();
 });
 </script>
 <style scoped>

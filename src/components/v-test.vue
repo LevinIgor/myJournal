@@ -1,12 +1,12 @@
 <template>
-  <input
-    type="text"
-    :value="props.modelValue.text"
-    @input="emit('update:modelValue', $event.target.value)"
-  />
+  <div class="test">
+    <VHint>
+      <span>Hover me</span>
+    </VHint>
+  </div>
 </template>
 <script setup>
-const props = defineProps(["modelValue"]);
-const emit = defineEmits(["update:modelValue"]);
+import VHint from './UI/v-hint.vue';
+
 </script>
 <style scoped></style>
