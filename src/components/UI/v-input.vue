@@ -20,7 +20,7 @@ input {
   color: var(--main-font-color);
   padding: 10px 15px;
   margin: 5px 0;
-  font-size: 18px;
+  font-size: 14px;
   background-color: transparent;
 }
 </style>

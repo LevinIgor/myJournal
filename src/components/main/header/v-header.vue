@@ -13,7 +13,7 @@
             @click="$router.push('/admin/posts')"
           />
         </template>
-        <template v-slot:tips>Панель</template>
+        <template v-slot:tips>Панель администратора</template>
       </VTips>
     </div>
   </header>

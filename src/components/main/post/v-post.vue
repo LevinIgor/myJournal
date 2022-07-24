@@ -48,7 +48,6 @@ h2 {
   border: 1px solid var(--main-border-color);
   background-color: var(--main-block-color);
   width: var(--content-wrapper-width);
-  box-shadow: 0px 0px 50px rgba(255, 255, 255, 0.138);
 }
 
 .post-header {
