@@ -6,20 +6,28 @@
       <span class="post-title" @click="$router.push(`/post/${post.id}`)">
         {{ post.title }}</span
       >
-      <span class="post-id">{{ post.id }}</span>
       <div class="post-control">
-        <img
-          src="@/assets/icons/edit.png"
-          alt="edit"
-          class="icon"
-          @click="$router.push('/admin/edit/' + post.id)"
-        />
-        <img
-          src="@/assets/icons/delete.png"
-          alt="delete"
-          class="icon"
-          @click="deletePost(post.id)"
-        />
+        <VTips>
+          <template v-slot:content>
+            <img
+              src="@/assets/icons/edit.png"
+              alt="edit"
+              class="icon"
+              @click="$router.push('/admin/edit/' + post.id)"
+          /></template>
+          <template v-slot:tips>Редактировать пост</template>
+        </VTips>
+
+        <VTips>
+          <template v-slot:content>
+            <img
+              src="@/assets/icons/delete.png"
+              alt="delete"
+              class="icon"
+              @click="deletePost(post.id)"
+          /></template>
+          <template v-slot:tips>Удалить пост</template>
+        </VTips>
       </div>
     </div>
   </div>
@@ -28,6 +36,7 @@
 import getPosts from "@/firebase/getPosts";
 import deletePostAPI from "@/firebase/deletePost";
 import { onMounted, ref, computed } from "vue";
+import VTips from "../../UI/v-tips.vue";
 
 const props = defineProps(["search"]);
 const posts = ref([]);
@@ -55,7 +64,6 @@ h1 {
 }
 .post {
   box-sizing: border-box;
-  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -75,11 +83,6 @@ h1 {
   font-weight: bold;
   text-decoration: none;
   color: var(--main-font-color);
-}
-.post-id {
-  position: absolute;
-  top: -10px;
-  right: 10px;
 }
 .post-control {
   display: flex;
