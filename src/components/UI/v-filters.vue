@@ -1,7 +1,9 @@
 <template>
   <div class="filters">
     <div class="current-filter">
-      <span class="current-span">{{ filter.name }}</span>
+      <transition name="slide-fade" mode="out-in">
+        <span class="current-span" :key="filter.name">{{ filter.name }}</span>
+      </transition>
       <VTips>
         <template v-slot:content>
           <img
@@ -13,9 +15,14 @@
         <template v-slot:tips>Изменить порядок</template>
       </VTips>
     </div>
+
     <VTips>
       <template v-slot:content>
-        <div class="filter" @click="setFilter('id', 'По дате')">
+        <div
+          class="filter"
+          :class="{ active: filter.value == 'id' }"
+          @click="setFilter('id', 'По дате')"
+        >
           <img src="@/assets/icons/calendar.png" alt="filter by date" />
         </div>
       </template>
@@ -24,7 +31,11 @@
 
     <VTips>
       <template v-slot:content>
-        <div class="filter" @click="setFilter('title', 'По алфавиту')">
+        <div
+          class="filter"
+          :class="{ active: filter.value == 'title' }"
+          @click="setFilter('title', 'По алфавиту')"
+        >
           <img
             v-if="order == 'desc'"
             src="@/assets/icons/alphabetic.png"
@@ -41,7 +52,11 @@
 
     <VTips>
       <template v-slot:content>
-        <div class="filter" @click="setFilter('views', 'По просмотрам')">
+        <div
+          class="filter"
+          :class="{ active: filter.value == 'views' }"
+          @click="setFilter('views', 'По просмотрам')"
+        >
           <img src="@/assets/icons/eye.png" alt="filter by views" /></div
       ></template>
       <template v-slot:tips>По просмотрам</template>
@@ -83,9 +98,16 @@ span {
 .filter {
   display: flex;
   align-items: center;
-  padding: 0px 10px;
+  padding: 5px 10px;
   margin-left: 10px;
   cursor: pointer;
+}
+.active {
+  background-color: rgba(99, 99, 99, 0.337);
+  border: 1px solid rgba(0, 0, 0, 0.076);
+  padding: 5px 25px;
+  border-radius: 5px;
+  transition: padding 0.1s;
 }
 .current-span {
   font-size: 16px;
@@ -111,5 +133,15 @@ img {
 }
 .current-filter img {
   margin-left: 20px;
+}
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: rotateX(180deg);
+  opacity: 0;
 }
 </style>
