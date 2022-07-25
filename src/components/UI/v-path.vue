@@ -33,6 +33,7 @@ span {
 }
 .path {
   display: flex;
+  width: var(--content-wrapper-width);
 }
 .home {
   margin-right: 10px;

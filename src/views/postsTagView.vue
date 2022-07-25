@@ -1,7 +1,7 @@
 <template>
   <div class="postsTag">
     <vHeader @search="search = $event" />
-    <h2 class="tag-name">Выборка по выбраному тегу: {{ $route.params.tag }}</h2>
+  <VPath :title="'Поиск по метке ' + $route.params.tag" />
     <VPostSkeleton v-if="posts.length == 0" />
     <div class="posts">
       <VPost v-for="(item, index) in filteredPosts" :key="index" :post="item" />
@@ -15,6 +15,7 @@ import vHeader from "@/components/main/header/v-header.vue";
 import VPost from "@/components/main/post/v-post.vue";
 import tagQuery from "@/firebase/tagQuery.js";
 import VPostSkeleton from "@/components/skeletons/v-post.vue";
+import VPath from "../components/UI/v-path.vue";
 
 const posts = ref([]);
 const route = useRoute();
@@ -45,6 +46,7 @@ const filteredPosts = computed(() => {
 <style scoped>
 .postsTag {
   margin-top: var(--header-height);
+  padding-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;

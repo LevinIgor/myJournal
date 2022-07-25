@@ -90,6 +90,9 @@ h1 {
 }
 .icon {
   cursor: pointer;
+  box-sizing: content-box;
+  width: 25px !important;
+  height: 25px;
   padding: 10px 20px;
   filter: grayscale(100%);
 }
@@ -97,14 +100,4 @@ h1 {
   filter: grayscale(0%);
 }
 
-.not-found {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-.not-found img {
-  width: 200px !important;
-  filter: invert(90%);
-}
 </style>

@@ -123,7 +123,7 @@ img {
   transition: filter 0.3s ease-in-out;
 }
 
-.filter:hover img {
+img:hover{
   filter: invert(100%);
 }
 .current-filter {
