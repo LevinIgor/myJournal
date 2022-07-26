@@ -67,7 +67,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  /* width: 100%; */
   padding: 20px 40px;
   margin-top: 20px;
   border: 1px solid rgba(221, 221, 221, 0.671);
@@ -99,6 +99,25 @@ h1 {
 }
 .icon:hover {
   filter: grayscale(0%);
+}
+
+@media (max-width:600px){
+h1{
+  font-size: 26px;
+}
+.post{
+  padding: 10px 15px;
+}
+.post-title{
+  font-size: 10px;
+}
+
+.icon{
+  width: 20px !important;
+  height: 20px;
+  padding: 0px;
+}
+
 }
 
 </style>
