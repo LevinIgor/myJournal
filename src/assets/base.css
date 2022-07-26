@@ -21,7 +21,6 @@ P {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   tab-size: 2;
   line-height: 24px;
- 
 }
 h1 {
   margin: 0.67em 0;
@@ -51,10 +50,21 @@ li {
 :root {
   --content-wrapper-width: 1000px;
   --header-height: 60px;
-  --main-bg-color:#0f1012;
-  --main-border-color:#35383fab;
-  --main-text-color:#e2e3e7;
-  --second-text-color:rgba(240, 248, 255, 0.271);
-  --main-block-color:#444343b2;
-  --main-block-color-hover:#35383f93;
+  --main-bg-color: #0f1012;
+  --main-border-color: #35383fab;
+  --main-text-color: #e2e3e7;
+  --second-text-color: rgba(240, 248, 255, 0.271);
+  --main-block-color: #444343b2;
+  --main-block-color-hover: #35383f93;
+}
+
+@media (max-width: 1200px) {
+  :root {
+    --content-wrapper-width: 700px;
+  }
+}
+@media (max-width: 800px) {
+  :root {
+    --content-wrapper-width: 400px;
+  }
 }

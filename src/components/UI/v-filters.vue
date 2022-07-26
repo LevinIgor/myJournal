@@ -90,7 +90,7 @@ span {
 .filters {
   background-color: var(--main-block-color);
   border: 1px solid var(--main-border-color);
-  padding: 10px 10px;
+  padding: 5px 10px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
