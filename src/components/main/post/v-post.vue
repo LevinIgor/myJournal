@@ -46,8 +46,7 @@ h2 {
   margin: 30px 0;
   padding: 1rem 1rem 2rem 2rem;
   border: 1px solid var(--main-border-color);
-  background-color: var(--main-block-color);
-  width: var(--content-wrapper-width);
+background-color: var(--main-block-color);
 }
 
 .post-header {
@@ -58,6 +57,7 @@ h2 {
 
 .img-post {
   cursor: pointer;
+  box-sizing: border-box;
   margin: 40px 0;
   width: 100%;
   max-height: 450px;
@@ -87,5 +87,17 @@ h2 {
 .btn-post:hover {
   background-color: rgba(38, 38, 242, 0.628);
   color: rgb(255, 255, 255);
+}
+
+@media (max-width: 768px) {
+  .post {
+    padding: 0.7rem;
+  }
+  .img-post {
+    margin: 20px 0;
+  }
+  .post-description{
+    margin-top: 10px;
+  }
 }
 </style>

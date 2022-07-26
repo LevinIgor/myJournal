@@ -88,6 +88,8 @@ span {
   user-select: none;
 }
 .filters {
+  box-sizing: border-box;
+  width: 100%;
   background-color: var(--main-block-color);
   border: 1px solid var(--main-border-color);
   padding: 5px 10px;

@@ -67,6 +67,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   padding: 20px 40px;
   margin-top: 20px;
   border: 1px solid rgba(221, 221, 221, 0.671);

@@ -27,27 +27,19 @@ let search = ref("");
 .wrapper {
   width: 100%;
   min-height: 100vh;
-  display: flex;
 }
 main {
+ 
   width: 100%;
   min-height: 100vh;
   margin-top: 50px;
+ 
+  display: flex;
 }
 .content {
+  box-sizing: border-box;
   width: var(--content-wrapper-width);
-  margin: 0 0 0 350px;
+  padding: 20px;
 }
 
-.create-icon {
-  cursor: pointer;
-  width: 30px !important;
-  height: 30px;
-  filter: invert(70%);
-  margin-left: 10px;
-  transition: filter 0.3s ease-in-out;
-}
-.create-icon:hover {
-  filter: invert(100%);
-}
 </style>

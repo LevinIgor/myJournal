@@ -31,10 +31,7 @@
 <style scoped>
 .admin-panel {
   user-select: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 80px 10px 0 10px;
+  padding: 30px 10px 0 10px;
   box-sizing: border-box;
   height: 100%;
   width: 300px;
@@ -43,6 +40,12 @@
   align-items: center;
   background-color: var(--main-bg-color);
   border-right: 1px solid var(--main-border-color);
+}
+@media (max-width: 768px) {
+  .admin-panel {
+    display: none;
+  }
+
 }
 .admin-panel-title {
   margin-bottom: 40px;

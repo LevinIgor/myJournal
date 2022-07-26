@@ -50,7 +50,9 @@ onMounted(async () => {
   min-height: 100vh;
 }
 .posts {
+  box-sizing: border-box;
   margin: 0 auto;
+  padding: 0 20px;
   padding-top: 100px;
   width: var(--content-wrapper-width);
 }
