@@ -120,4 +120,10 @@ onMounted(() => {
   width: 20px !important;
   height: 20px;
 }
+
+@media (max-width: 768px) {
+  .search-span {
+    display: none;
+  }
+}
 </style>

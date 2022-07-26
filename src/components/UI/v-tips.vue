@@ -25,7 +25,7 @@ const num = ref(0);
 const tipsRef = ref(null);
 
 watch(isHover, () => {
-  if (x.value + tipsRef.value.offsetWidth > window.innerWidth) {
+  if (x.value + tipsRef.value.offsetWidth  > window.innerWidth) {
     num.value = tipsRef.value.offsetWidth + 50;
   } else {
     num.value = 0;

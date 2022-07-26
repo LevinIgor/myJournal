@@ -30,7 +30,7 @@ header {
   box-sizing: border-box;
   width: 100%;
   height: var(--header-height);
-  padding: 1px 20px;
+  padding: 0px 20px;
   position: fixed;
   top: 0;
   display: flex;
@@ -54,7 +54,6 @@ a {
   user-select: none;
   font-size: 30px;
   color: aliceblue;
-  padding: 1px 20px;
 }
 .right-block {
   display: flex;
