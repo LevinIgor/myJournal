@@ -99,5 +99,11 @@ background-color: var(--main-block-color);
   .post-description{
     margin-top: 0px;
   }
+  h2{
+    font-size: 1.5rem;
+  }
+  .post-header{
+    font-size: 10px;
+  }
 }
 </style>
