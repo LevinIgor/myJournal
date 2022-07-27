@@ -1,27 +1,33 @@
 <template>
   <div class="test">
     <main>
-      <span @mouseenter="isHover = true" @mouseleave="isHover = false"
-        >Hover me </span
-      >
-      <span
-        class="hover-text"
-        :style="[
-          isHover
-            ? { left: `${x + 10}px`, top: `${y + 10}px`, opacity: '1' }
-            : '',
-        ]"
-        >Hover text</span
-      >
+      <VButton :style="{ color: 'white' }">
+       <img src="../assets/icons/calendar.png" alt="" title="test">
+      </VButton>
     </main>
   </div>
 </template>
 <script setup>
-import { useMouse } from "@vueuse/core";
-import { reactive, computed, watch, ref } from "vue";
+import VButton from "../components/UI/v-button.vue";
 
-const { x, y } = useMouse();
-const isHover = ref(false);
+function funcDeclaration() {
+  const name = 'John';
+  return this;
+}
+const funcExpression = function () {
+  const name = "John";
+  return this;
+};
+
+const funcArrow = () => {
+  const name = "John";
+  return this;
+};
+
+console.log(funcDeclaration());
+console.log(funcExpression());
+console.log(funcArrow());
+
 </script>
 <style scoped>
 .test {
@@ -30,11 +36,9 @@ const isHover = ref(false);
   align-items: center;
   min-height: 100vh;
 }
-.hover-text {
-  position: absolute;
-  opacity: 0;
-  padding: 20px 30px;
-  transition: opacity 0.3s ease-in-out;
-  background-color: rgba(240, 248, 255, 0.153);
+img{
+  width: 100px;
+  height: 100px;
+  filter: invert(100%);
 }
 </style>

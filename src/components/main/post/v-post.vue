@@ -94,10 +94,10 @@ background-color: var(--main-block-color);
     padding: 0.7rem;
   }
   .img-post {
-    margin: 20px 0;
+    margin: 10px 0;
   }
   .post-description{
-    margin-top: 10px;
+    margin-top: 0px;
   }
 }
 </style>
