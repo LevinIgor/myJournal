@@ -10,7 +10,7 @@
       placeholder="Поиск"
       class="search-input"
       ref="inputRef"
-      v-model="searchValue"
+      v-model.trim="searchValue"
       @blur="searchValue === '' ? hideInput() : null"
       @keypress.enter="inputRef.blur()"
       @keydown.esc="hideInput()"
