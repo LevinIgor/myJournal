@@ -52,7 +52,7 @@ background-color: var(--main-block-color);
 .post-header {
   display: flex;
   justify-content: space-between;
-  font-size: 0.8rem;
+  font-size: 0.6rem;
 }
 
 .img-post {
