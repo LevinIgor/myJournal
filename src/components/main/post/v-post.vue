@@ -73,6 +73,7 @@ background-color: var(--main-block-color);
 .post-description {
   font-size: var(--content-font-size);
   line-height: 1.5rem;
+  
   margin-top: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
