@@ -1,9 +1,9 @@
 <template>
   <div class="postsTag">
     <vHeader @search="search = $event" />
-  <VPath :title="'Поиск по метке ' + $route.params.tag" />
-    <VPostSkeleton v-if="posts.length == 0" />
+    <VPath :title="'Поиск по метке ' + $route.params.tag" />
     <div class="posts">
+      <VPostSkeleton v-if="posts.length == 0" />
       <VPost v-for="(item, index) in filteredPosts" :key="index" :post="item" />
     </div>
   </div>
@@ -53,8 +53,9 @@ const filteredPosts = computed(() => {
   min-height: 100vh;
 }
 .posts {
-  display: grid;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  width: var(--content-wrapper-width);
 }
 .tag-name {
   text-align: center;
