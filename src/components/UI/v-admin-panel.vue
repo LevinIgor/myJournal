@@ -1,13 +1,13 @@
 <template>
   <div class="admin-panel">
-    <div class="admin-panel-title">Панель администратора</div>
+
     <div
       class="admin-panel-item"
       @click="$router.push('/admin/posts')"
       :class="{ active: $route.params.tab == 'posts' }"
     >
       <img src="@/assets/icons/list.png" alt="list" />
-      <span>Список постов</span>
+      <span>Список</span>
     </div>
     <div
       class="admin-panel-item"
@@ -15,7 +15,7 @@
       :class="{ active: $route.params.tab == 'create' }"
     >
       <img src="@/assets/icons/create.png" alt="create" />
-      <span>Создать пост</span>
+      <span>Создать</span>
     </div>
     <div
       class="admin-panel-item"
@@ -30,42 +30,37 @@
 <script setup></script>
 <style scoped>
 .admin-panel {
+  background-color: var(--fixed-bg-color);
   user-select: none;
-  padding: 30px 10px 0 10px;
+  position: fixed;
   box-sizing: border-box;
+  padding-top: 20px;
   height: 100%;
-  width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--main-bg-color);
-  border-right: 1px solid var(--main-border-color);
 }
 @media (max-width: 768px) {
   .admin-panel {
     display: none;
   }
-
-}
-.admin-panel-title {
-  margin-bottom: 40px;
-  color: var(--second-text-color);
 }
 .admin-panel-item {
   cursor: pointer;
   box-sizing: border-box;
   width: 100%;
-  margin: 10px 0;
-  padding: 10px 10px;
+  padding: 10px 20px;
+  font-size: var(--secondary-font-size);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  background-color: var(--main-block-color);
+  text-align: center;
 }
 
 .admin-panel-item img {
   filter: invert(100%);
-  margin-right: 10px;
-  width: 30px !important;
+  margin-bottom: 5px;
+  width: 20px !important;
 }
 .admin-panel-item:hover {
   background-color: var(--main-block-color-hover);

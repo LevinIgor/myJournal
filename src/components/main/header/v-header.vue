@@ -36,7 +36,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--main-bg-color);
+  background-color: var(--fixed-bg-color);
   border-bottom: 4px solid var(--main-border-color);
 }
 a {

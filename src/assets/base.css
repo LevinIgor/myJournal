@@ -56,7 +56,7 @@ li {
   --second-text-color: rgba(240, 248, 255, 0.271);
   --main-block-color: #444343b2;
   --main-block-color-hover: #35383f93;
-
+  --fixed-bg-color: #151515;
   --title-font-size: xx-large;
   --content-font-size: medium;
   --secondary-font-size: small;

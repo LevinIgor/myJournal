@@ -1,4 +1,4 @@
-<template>
+p<template>
   <div class="wrapper">
     <VHeader @search="search = $event" />
     <main>
@@ -29,16 +29,15 @@ let search = ref("");
   min-height: 100vh;
 }
 main {
- 
   width: 100%;
   min-height: 100vh;
-  margin-top: 50px;
- 
+  margin-top: var(--header-height);
   display: flex;
 }
 .content {
   box-sizing: border-box;
   width: var(--content-wrapper-width);
+  margin-left: 150px;
   padding: 20px;
 }
 
