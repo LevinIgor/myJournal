@@ -50,15 +50,17 @@ background-color: var(--main-block-color);
 }
 
 .post-header {
+  cursor: default;
   display: flex;
   justify-content: space-between;
-  font-size: 0.6rem;
+  font-size: var(--secondary-font-size);
+  color:rgba(255, 255, 255, 0.655);
 }
 
 .img-post {
   cursor: pointer;
   box-sizing: border-box;
-  margin: 40px 0;
+  margin-top: 10px;
   width: 100%;
   max-height: 450px;
   object-fit: cover;
@@ -69,9 +71,9 @@ background-color: var(--main-block-color);
 }
 
 .post-description {
-  font-size: 16px;
+  font-size: var(--content-font-size);
   line-height: 1.5rem;
-  margin-top: 20px;
+  margin-top: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -98,12 +100,6 @@ background-color: var(--main-block-color);
   }
   .post-description{
     margin-top: 0px;
-  }
-  h2{
-    font-size: 1.5rem;
-  }
-  .post-header{
-    font-size: 10px;
   }
 }
 </style>
