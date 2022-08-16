@@ -31,12 +31,11 @@
     </section>
     <div class="posts">
       <div class="post" v-for="post in searchPosts" :key="post.id">
-        <img
-          :src="post.img"
-          class="img"
-          :alt="post.title"
-          @click="$router.push('/post/' + post.id)"
-        />
+        <div class="img" @click="$router.push('/post/' + post.id)">
+          <img :src="post.img" class="img" :alt="post.title" v-if="post.img" />
+          <img v-else src="@/assets/icons/image.png" alt="" />
+        </div>
+
         <section>
           <div class="title" @click="$router.push('/post/' + post.id)">
             {{ post.title }}
@@ -114,8 +113,12 @@ onMounted(async () => {
 .img {
   width: 100px !important;
   height: 60px;
-  object-fit: cover;
   margin-right: 40px;
+}
+.img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .views {
   font-size: 0.8rem;
