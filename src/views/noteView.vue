@@ -1,8 +1,9 @@
 <template>
   <VHeader :mode="'onlyLogo'" />
   <VProgressBar />
-  <div class="container">
+  <div class="note-page">
     <div class="note">
+      <h1>Note title</h1>
       <div class="line" v-for="(line, index) in note" :key="index">
         <div class="line-title" @click="showContent(index)">
           {{ line.title }}
@@ -12,6 +13,18 @@
         </div>
       </div>
     </div>
+    <section class="right-section">
+      <h2 class="section-title">Оглавление</h2>
+      <div class="section-content">
+        <span class="section-item section-item-active"
+          ># title 1 sdd d;lfds;lk l;k;l k ;l</span
+        >
+        <span class="section-item">title 1</span>
+        <span class="section-item">title 1</span>
+        <span class="section-item">title 1</span>
+        <span class="section-item">title 1</span>
+      </div>
+    </section>
   </div>
 </template>
 <script setup>
@@ -118,18 +131,21 @@ const note = ref([
   },
 ]);
 
-function showContent(index){
-    note.value[index].hide = !note.value[index].hide;
+function showContent(index) {
+  note.value[index].hide = !note.value[index].hide;
 }
 </script>
 <style scoped>
-.container {
+.note-page {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  padding-left: 5vw;
   margin-top: var(--header-height);
 }
 .note {
+  box-sizing: border-box;
   width: var(--content-wrapper-width);
+  padding: 10px;
 }
 .line {
   margin-top: 10px;
@@ -137,7 +153,7 @@ function showContent(index){
 }
 .line-title {
   font-size: x-large;
-  cursor: pointer;    
+  cursor: pointer;
 }
 .line-content {
   font-size: var(--content-font-size);
@@ -145,6 +161,34 @@ function showContent(index){
   padding: 0 0 20px 20px;
 }
 .hide {
-    display: none;
+  display: none;
+}
+
+.right-section {
+  position: sticky;
+  box-sizing: border-box;
+  top: 50px;
+  width: 100%;
+  max-width: 200px;
+  height: 100%;
+  background-color: var(--fixed-bg-color);
+  padding: 10px;
+}
+.section-title {
+  font-size: large;
+  margin-top: 10px;
+}
+.section-content {
+  display: flex;
+  flex-direction: column;
+}
+.section-item {
+  cursor: pointer;
+  margin-top: 20px;
+  color: rgba(240, 248, 255, 0.651);
+}
+.section-item-active {
+  color: white;
+  transform: scale(1.1);
 }
 </style>

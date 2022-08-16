@@ -20,7 +20,7 @@ p
       <VAdminPanel :mode="mode" />
       <div class="content">
         <VListView v-if="$route.params.tab == 'list'" />
-        <VEditorView v-if="$route.params.tab == 'editor'" />
+        <VCreateView v-if="$route.params.tab == 'create'" />
         <VStatisticsView v-if="$route.params.tab == 'statistics'" />
       </div>
     </main>
@@ -32,7 +32,7 @@ import VAdminPanel from "@/components/admin/v-admin-panel.vue";
 import VHeader from "@/components/main/header/v-header.vue";
 import VToggle from "@/components/UI/v-toggle.vue";
 import VListView from "@/components/admin/views/v-list-view.vue";
-import VEditorView from "@/components/admin/views/v-editor-view.vue";
+import VCreateView from "@/components/admin/views/v-create-view.vue";
 import VStatisticsView from "@/components/admin/views/v-statistics-view.vue";
 
 const search = ref("");

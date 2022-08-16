@@ -3,19 +3,19 @@
 
     <div
       class="admin-panel-item"
-      @click="$router.push('/admin/list/')"
-      :class="{ active: $route.params.tab == 'posts' }"
+      @click="$router.push('/admin/list')"
+      :class="{ active: $route.params.tab == 'list' }"
     >
       <img src="@/assets/icons/list.png" alt="list" />
       <span>Список</span>
     </div>
     <div
       class="admin-panel-item"
-      @click="$router.push('/admin/editor/')"
+      @click="$router.push('/admin/create')"
       :class="{ active: $route.params.tab == 'create' }"
     >
       <img src="@/assets/icons/create.png" alt="create" />
-      <span>Редактор</span>
+      <span>Создать</span>
     </div>
     <div
       class="admin-panel-item"
