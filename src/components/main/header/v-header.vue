@@ -2,15 +2,15 @@
   <header>
     <span class="logo" @click="$router.push('/')">Journal</span>
     <div class="right-block" v-if="props.mode != 'onlyLogo'">
-      <VSearchBlock @search="emit('search', $event)" />
       <slot />
+      <VSearchBlock @search="emit('search', $event)" />
       <VTips>
         <template v-slot:content>
           <img
             src="@/assets/icons/admin.png"
             alt=""
             class="admin-icon"
-            @click="$router.push('/admin/posts')"
+            @click="$router.push('/admin/list/')"
           />
         </template>
         <template v-slot:tips>Панель администратора</template>

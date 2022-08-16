@@ -2,16 +2,20 @@
   <VPopupMsg :show="isMessage" @click="isMessage = false">
     <span>Публикация успешно добавлена</span>
   </VPopupMsg>
+
   <div class="create-post">
     <h1>Создание публикации</h1>
+
     <div class="post-details">
       <VInputHeader v-model="post.title" :placeholder="placeholders.title" />
       <VTags @updateTags="post.tags = $event" :tags="post.tags" />
       <VInput v-model="post.img" :placeholder="placeholders.img" />
     </div>
+
     <div class="post-content">
       <v-md-editor v-model="post.text" height="900px" />
     </div>
+
     <VButton @click="createPost" class="btn-create-post">Создать</VButton>
   </div>
 </template>

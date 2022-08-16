@@ -9,11 +9,6 @@ const router = createRouter({
       component: () => import("@/views/mainView.vue"),
     },
     {
-      path: "/posts/",
-      name: "main2",
-      component: () => import("@/views/mainView.vue"),
-    },
-    {
       path: "/posts/:tag",
       name: "postsTag",
       component: () => import("@/views/postsTagView.vue"),
@@ -36,7 +31,7 @@ const router = createRouter({
     {
       path: "/notes/:id",
       name: "note",
-      component: () => import("@/views/noteView.vue"),
+      component: () => import("@/components/notes/v-note.vue"),
     },
     {
       path: "/test",

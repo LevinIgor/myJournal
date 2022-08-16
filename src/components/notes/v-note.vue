@@ -13,7 +13,7 @@
   </div>
 </template>
 <script setup>
-import VButton from "../UI/v-button.vue";
+import VButton from "@/components/UI/v-button.vue";
 </script>
 <style scoped>
 

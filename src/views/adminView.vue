@@ -1,29 +1,50 @@
-p<template>
+p
+<template>
   <div class="wrapper">
-    <VHeader @search="search = $event" />
+    <VHeader @search="search = $event">
+      <div class="switch-mode">
+        <span class="switch-span">Посты</span>
+        <VToggle @onSwitch="switchMode()" />
+        <span class="switch-span">Записки</span>
+      </div>
+    </VHeader>
     <main>
-      <VAdminPanel />
+      <VAdminPanel :mode="mode" />
       <div class="content">
-        <VPosts v-if="$route.params.tab == 'posts'" :search="search" />
-        <VPostCreate v-if="$route.params.tab == 'create'" />
-        <VPostEdit v-if="$route.params.tab == 'edit'" />
-        <VStatistics v-if="$route.params.tab == 'statistics'" />
+        <VListView v-if="$route.params.tab == 'list'" />
+        <VEditorView v-if="$route.params.tab == 'editor'" />
+        <VStatisticsView v-if="$route.params.tab == 'statistics'" />
       </div>
     </main>
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
-import VAdminPanel from "@/components/UI/v-admin-panel.vue";
+import { ref, provide } from "vue";
+import VAdminPanel from "@/components/admin/v-admin-panel.vue";
 import VHeader from "@/components/main/header/v-header.vue";
-import VPosts from "@/components/main/post/v-posts.vue";
-import VPostCreate from "@/components/main/post/v-postCreate.vue";
-import VPostEdit from "@/components/main/post/v-postEdit.vue";
-import VStatistics from "@/components/v-statistics.vue";
+import VToggle from "@/components/UI/v-toggle.vue";
+import VListView from "@/components/admin/views/v-list-view.vue";
+import VEditorView from "@/components/admin/views/v-editor-view.vue";
+import VStatisticsView from "@/components/admin/views/v-statistics-view.vue";
 
-let search = ref("");
+const search = ref("");
+const mode = ref("post");
+
+function switchMode() {
+  mode.value = mode.value == "post" ? "note" : "post";
+}
+
+provide("mode", mode);
+provide("search", search);
 </script>
 <style scoped>
+.switch-mode {
+  display: flex;
+  align-items: center;
+}
+.switch-span {
+  color: rgba(240, 248, 255, 0.607);
+}
 .wrapper {
   width: 100%;
   min-height: 100vh;
@@ -40,5 +61,4 @@ main {
   margin-left: 150px;
   padding: 20px;
 }
-
 </style>

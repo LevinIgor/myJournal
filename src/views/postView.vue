@@ -31,18 +31,23 @@ import VPath from "@/components/UI/v-path.vue";
 
 const post = ref("");
 const notFound = ref(false);
+const route = useRoute()
 
-const createComment = (comment) => {
+function createComment(comment) {
   post.value.comments.unshift(comment);
-};
+}
 
 onMounted(async () => {
-  const _post = localStorage.getItem("post");
 
-  if (_post) {
-    post.value = JSON.parse(_post);
+  let _post = localStorage.getItem("post");
+
+  _post = JSON.parse(_post);
+
+  if (_post && _post?.id == route.params.id) {
+
+    post.value = _post;
   } else {
-    const route = useRoute();
+
     const postId = route.params.id;
     const answer = await getPost(postId);
 

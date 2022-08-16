@@ -3,7 +3,7 @@
 
     <div
       class="admin-panel-item"
-      @click="$router.push('/admin/posts')"
+      @click="$router.push('/admin/list/')"
       :class="{ active: $route.params.tab == 'posts' }"
     >
       <img src="@/assets/icons/list.png" alt="list" />
@@ -11,11 +11,11 @@
     </div>
     <div
       class="admin-panel-item"
-      @click="$router.push('/admin/create')"
+      @click="$router.push('/admin/editor/')"
       :class="{ active: $route.params.tab == 'create' }"
     >
       <img src="@/assets/icons/create.png" alt="create" />
-      <span>Создать</span>
+      <span>Редактор</span>
     </div>
     <div
       class="admin-panel-item"
@@ -27,7 +27,11 @@
     </div>
   </div>
 </template>
-<script setup></script>
+<script setup>
+
+const props = defineProps(['mode'])
+
+</script>
 <style scoped>
 .admin-panel {
   background-color: var(--fixed-bg-color);
@@ -39,11 +43,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-@media (max-width: 768px) {
-  .admin-panel {
-    display: none;
-  }
 }
 .admin-panel-item {
   cursor: pointer;
