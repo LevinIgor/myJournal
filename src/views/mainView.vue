@@ -2,10 +2,10 @@
   <div class="main">
     <VHeader @search="searchValue = $event" />
     <div class="posts">
-      <VFilters
-        @changeFilter="changeFilter($event)"
-        @changeOrder="changeOrder($event)"
-      />
+      <section>
+        <h1>Популярные публикации</h1>
+        <VFiltersList @onFilterBy="filterBy($event)" @onInvert="invert()" />
+      </section>
       <VPost v-for="post in filterPost" :post="post" :key="post.id" />
       <VPostSkeleton v-if="posts.length == 0" />
     </div>
@@ -17,7 +17,7 @@ import { getPosts } from "@/firebase/postAPI.js";
 import VHeader from "@/components/main/header/v-header.vue";
 import VPost from "@/components/main/post/v-post.vue";
 import VPostSkeleton from "@/components/skeletons/v-post.vue";
-import VFilters from "@/components/UI/v-filters.vue";
+import VFiltersList from "../components/UI/v-filters-list.vue";
 
 const posts = ref([]);
 const searchValue = ref("");
@@ -28,23 +28,31 @@ const filterPost = computed(() => {
   });
 });
 
-const changeFilter = (filter) => {
-  posts.value = [];
-  setTimeout(() => {
-    getPosts(filter).then((data) => {
-      posts.value = data;
-    });
-  }, 1000);
-};
-const changeOrder = () => {
+function invert() {
   posts.value.reverse();
-};
+}
+
+let currentFilter = "";
+
+function filterBy(filter) {
+  if (currentFilter === filter) {
+    posts.value.reverse();
+  } else {
+    posts.value.sort((a, b) => a[filter] - b[filter]);
+    currentFilter = filter;
+  }
+}
 
 onMounted(async () => {
   posts.value = await getPosts();
 });
 </script>
 <style scoped>
+section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .main {
   width: 100%;
   min-height: 100vh;
@@ -55,18 +63,5 @@ onMounted(async () => {
   padding: 0 20px;
   padding-top: 100px;
   width: var(--content-wrapper-width);
-}
-.filter {
-  margin-top: 50px;
-  margin-bottom: 20px;
-  background-color: white;
-  padding: 10px 20px;
-}
-.filter select {
-  cursor: pointer;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  padding: 10px 100px 10px 10px;
 }
 </style>

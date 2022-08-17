@@ -11,7 +11,9 @@ import {
 import { db } from "@/firebase/";
 
 export async function getPost(postId) {
- 
+  const docRef = doc(db, "posts", postId);
+  const docSnap = await getDoc(docRef);
+  return Promise.resolve(docSnap.data());
 }
 
 export async function createComment(comment) {

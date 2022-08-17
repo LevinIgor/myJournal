@@ -5,7 +5,12 @@
       <VFiltersList @onFilterBy="filterBy($event)" @onInvert="invert()" />
     </div>
     <div class="notes">
-      <div class="note" v-for="(note, index) in searchNotes" :key="index">
+      <div
+        class="note"
+        v-for="(note, index) in searchNotes"
+        :key="index"
+        @click="$router.push('/notes/' + note.id)"
+      >
         <section>
           <span class="note-title">{{ note.title }}</span>
           <span class="note-blocks"
