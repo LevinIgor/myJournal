@@ -1,6 +1,15 @@
 <template>
   <div class="main">
-    <VHeader @search="searchValue = $event" />
+    <VHeader @search="searchValue = $event">
+      <img
+        src="@/assets/icons/note.png"
+        alt="note page"
+        class="note-link"
+        title="Записки"
+        @click="$router.push('/notes/')"
+      />
+    </VHeader>
+    
     <div class="posts">
       <section>
         <h1>Популярные публикации</h1>
@@ -63,5 +72,17 @@ section {
   padding: 0 20px;
   padding-top: 100px;
   width: var(--content-wrapper-width);
+}
+
+.note-link{
+  cursor: pointer;
+  width: 25px !important;
+  height: 25px;
+  filter: invert(.7);
+  transition: filter .3s ease-in-out;
+  margin-left: 30px;
+}
+.note-link:hover{
+  filter: invert(1);
 }
 </style>

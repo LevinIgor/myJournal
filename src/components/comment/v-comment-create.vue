@@ -6,7 +6,7 @@
     <label>Имя пользователя</label>
     <VInput
       class="input"
-      :placeholder="'Пользователь'"
+      :placeholder="'Ваше имя'"
       v-model="comment.author"
     />
 
@@ -14,12 +14,12 @@
     <VBaseTextarea
       @keypress.enter.prevent="create()"
       class="textarea"
-      :placeholder="'Текст комментария. Mакс 1000 символов'"
+      :placeholder="'Введите коментарий. Mакс 1000 символов'"
       v-model="comment.content"
       :maxlength="1000"
     />
     <div class="footer">
-      <VButton class="create" @click="create()">Добавить</VButton>
+      <VButton class="create" @click="create()">Отправить</VButton>
     </div>
   </div>
 </template>

@@ -2,8 +2,8 @@
   <header>
     <span class="logo" @click="$router.push('/')">Journal</span>
     <div class="right-block" v-if="props.mode != 'onlyLogo'">
-      <slot />
       <VSearchBlock @search="emit('search', $event)" />
+      <slot />
       <img
         src="@/assets/icons/admin.png"
         alt="admin page"
