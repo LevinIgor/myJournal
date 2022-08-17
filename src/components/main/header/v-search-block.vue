@@ -22,12 +22,14 @@
       class="search-img close-icon"
       @click="searchValue = ''"
       v-if="isSearch"
+      title="Закрыть"
     />
     <img
       src="@/assets/icons/search.png"
       alt="search"
       class="search-img"
       v-if="!isSearch"
+      title="Поиск"
     />
   </div>
 </template>

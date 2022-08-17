@@ -5,15 +5,15 @@
     <div class="note">
       <h1>Note title</h1>
       <div class="line" v-for="(line, index) in note" :key="index">
-        <div class="line-title" @click="showContent(index)">
+        <span class="line-title" @click="showContent(index)">
           {{ line.title }}
-        </div>
-        <div class="line-content" :class="{ hide: line.hide }">
+        </span>
+        <span class="line-content" :class="{ hide: line.hide }">
           {{ line.content }}
-        </div>
+        </span>
       </div>
     </div>
-    <section class="right-section">
+    <aside class="right-section">
       <h2 class="section-title">Оглавление</h2>
       <div class="section-content">
         <span class="section-item section-item-active"
@@ -24,7 +24,7 @@
         <span class="section-item">title 1</span>
         <span class="section-item">title 1</span>
       </div>
-    </section>
+    </aside>
   </div>
 </template>
 <script setup>

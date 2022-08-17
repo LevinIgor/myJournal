@@ -52,6 +52,7 @@ provide("search", search);
   margin-right: 20px;
 }
 .switch-span {
+  user-select: none;
   color: rgba(240, 248, 255, 0.397);
   transition: color 0.2s ease-in-out;
 }

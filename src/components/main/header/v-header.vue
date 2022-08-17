@@ -4,23 +4,18 @@
     <div class="right-block" v-if="props.mode != 'onlyLogo'">
       <slot />
       <VSearchBlock @search="emit('search', $event)" />
-      <VTips>
-        <template v-slot:content>
-          <img
-            src="@/assets/icons/admin.png"
-            alt=""
-            class="admin-icon"
-            @click="$router.push('/admin/list/')"
-          />
-        </template>
-        <template v-slot:tips>Панель администратора</template>
-      </VTips>
+      <img
+        src="@/assets/icons/admin.png"
+        alt="admin page"
+        class="admin-icon"
+        @click="$router.push('/admin/list/')"
+        title="Админка"
+      />
     </div>
   </header>
 </template>
 <script setup>
 import VSearchBlock from "./v-search-block.vue";
-import VTips from "@/components/UI/v-tips.vue";
 const props = defineProps(["mode"]);
 const emit = defineEmits(["search"]);
 </script>
