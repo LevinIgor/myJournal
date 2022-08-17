@@ -5,7 +5,7 @@
       <span class="post-views">Просмотров: {{ post.views }}</span>
     </div>
     <h2 class="post-title" @click="openPost()">{{ post.title }}</h2>
-    <VTags :tags="post.tags" />
+    <VTags :tags="post.tags" v-if="post.tags.length > 1" />
     <img
       :src="post.img"
       @click="openPost()"
@@ -46,7 +46,7 @@ h2 {
   margin: 30px 0;
   padding: 1rem 1rem 2rem 2rem;
   border: 1px solid var(--main-border-color);
-background-color: var(--main-block-color);
+  background-color: var(--main-block-color);
 }
 
 .post-header {
@@ -54,7 +54,7 @@ background-color: var(--main-block-color);
   display: flex;
   justify-content: space-between;
   font-size: var(--secondary-font-size);
-  color:rgba(255, 255, 255, 0.655);
+  color: rgba(255, 255, 255, 0.655);
 }
 
 .img-post {
@@ -73,7 +73,7 @@ background-color: var(--main-block-color);
 .post-description {
   font-size: var(--content-font-size);
   line-height: 1.5rem;
-  
+
   margin-top: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -99,7 +99,7 @@ background-color: var(--main-block-color);
   .img-post {
     margin: 10px 0;
   }
-  .post-description{
+  .post-description {
     margin-top: 0px;
   }
 }

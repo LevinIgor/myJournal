@@ -41,6 +41,7 @@ function onFilter(filter) {
 </script>
 <style scoped>
 .filter img {
+  user-select: none;
   width: 20px !important;
   height: 20px;
   margin-right: 10px;

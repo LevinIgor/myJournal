@@ -20,7 +20,7 @@
 <script setup>
 import { ref } from "vue";
 import VComment from "./v-comment.vue";
-import VCommentCreate from "./v-create.vue";
+import VCommentCreate from "./v-comment-create.vue";
 import { createComment } from "@/firebase/postAPI.js";
 import VPopupMsg from "@/components/v-popup-msg.vue";
 

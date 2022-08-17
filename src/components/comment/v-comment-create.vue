@@ -53,17 +53,24 @@ const create = () => {
 };
 </script>
 <style scoped>
+label {
+  color: rgb(128, 128, 128);
+  font-size: small;
+}
 .popup {
   background-color: rgba(255, 0, 0, 0.318) !important;
 }
-.textarea {
-  width: 100%;
-}
+
 .input,
 .textarea {
-  background-color: rgb(230, 230, 230);
-  color: rgba(0, 0, 0, 0.867);
+  width: 100%;
+  background-color: rgba(98, 98, 98, 0.253);
+  color: rgb(235, 235, 235);
   margin-bottom: 40px;
+}
+input::placeholder,
+textarea::placeholder {
+  color: rgba(235, 235, 235, 0.642);
 }
 .comment-create {
   display: flex;
