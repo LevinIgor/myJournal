@@ -2,32 +2,7 @@
   <div class="list">
     <section class="header">
       <h1 class="title">Публикации</h1>
-      <div class="filter">
-        <img
-          src="@/assets/icons/alphabetic.png"
-          title="По алфавиту"
-          alt="По алфавиту"
-          @click="filterBy('title')"
-        />
-        <img
-          src="@/assets/icons/calendar.png"
-          title="По дате"
-          alt=" По дате"
-          @click="filterBy('id')"
-        />
-        <img
-          src="@/assets/icons/eye.png"
-          title="По просмотрам"
-          alt="По просмотрам"
-          @click="filterBy('views')"
-        />
-        <img
-          src="@/assets/icons/up-down-arrow.png"
-          title="Изменить порядок"
-          alt="Изменить порядок"
-          @click="invert()"
-        />
-      </div>
+      <VFiltersList @onFilterBy="filterBy($event)" @onInvert="invert()" />
     </section>
     <div class="posts">
       <div class="post" v-for="post in searchPosts" :key="post.id">
@@ -51,6 +26,7 @@
 import { getPosts } from "@/firebase/postAPI";
 import { onMounted, ref, inject, computed } from "vue";
 import { useDateFormat } from "@vueuse/core";
+import VFiltersList from "@/components/UI/v-filters-list.vue";
 
 const posts = ref([]);
 
@@ -90,17 +66,7 @@ onMounted(async () => {
   align-items: center;
   justify-content: space-between;
 }
-.filter img {
-  width: 20px !important;
-  height: 20px;
-  margin-right: 10px;
-  filter: invert(0.5);
-  cursor: pointer;
-  transition: filter 0.2s ease-in-out;
-}
-.filter img:hover {
-  filter: invert(1);
-}
+
 .post {
   position: relative;
   display: flex;

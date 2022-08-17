@@ -5,7 +5,7 @@
     </VPopupMsg>
     <h1>Создание записки</h1>
     <section>
-      <VInputHeader :placeholder="'Заголовок'" v-model="note.title" />
+      <VInputHeader :placeholder="'Заголовок записки'" v-model="note.title" />
       <div class="btn-control">
         <span @click="addBlock()">Добавить</span>
         <span @click="onDeleteMode()" :class="{ 'delete-active': isDeleteMode }"
@@ -41,6 +41,7 @@ const isDeleteMode = ref(false);
 const isMessage = ref(false);
 const note = ref({
   title: "",
+  views: 0,
   id: Date.now(),
   blocks: [{ title: "", content: "" }],
 });
