@@ -2,21 +2,27 @@
   <div class="note">
     <div class="details">
       <span class="date">2022-08-22 22:22</span>
-      <span class="lines">Линий: 1111</span>
+      <span class="id">#{{ note.id }}</span>
     </div>
-    <div class="title">Test title fro test note</div>
-    <div class="content">
-      Lzorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, autem
-      tempore. Maiores rem quos molestiae amet incidunt aperiam, fugiat enim?
-    </div>
-    <VButton class="btn-open">Смотреть</VButton>
+    <section>
+      <div class="title" @click="goToNote()">{{ props.note.title }}</div>
+      <span class="blocks">Блоков: {{ props.note.blocks.length }}</span>
+    </section>
+    <VButton class="btn-open" @click="goToNote()">Смотреть</VButton>
   </div>
 </template>
 <script setup>
 import VButton from "@/components/UI/v-button.vue";
+import { useRouter } from "vue-router";
+const props = defineProps(["note"]);
+
+const router = useRouter();
+
+function goToNote() {
+  router.push(`/notes/${props.note.id}`);
+}
 </script>
 <style scoped>
-
 .details {
   user-select: none;
   display: flex;
@@ -29,14 +35,10 @@ import VButton from "@/components/UI/v-button.vue";
   margin-top: 10px;
   font-size: var(--title-font-size);
 }
-.content {
-  margin-top: 30px;
-  font-size: var(--content-font-size);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
+.blocks {
+  margin-top: 10px;
+  font-size: var(--secondary-font-size);
+  color: rgba(255, 255, 255, 0.742);
 }
 .btn-open {
   opacity: 0;

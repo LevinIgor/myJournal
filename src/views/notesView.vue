@@ -1,15 +1,34 @@
 <template>
-  <vHeader />
+  <vHeader @search="search = $event" />
   <div class="container">
     <div class="notes">
-      <VNote v-for="index in 10" :key="index" class="note" />
+      <VNote
+        v-for="note in filteredNotes"
+        :key="note.id"
+        class="note"
+        :note="note"
+      />
     </div>
   </div>
 </template>
 <script setup>
 import vHeader from "@/components/main/header/v-header.vue";
 import VNote from "@/components/notes/v-note.vue";
+import { getNotes } from "@/firebase/notesAPI";
+import { onMounted, ref, computed } from "vue";
 
+const notes = ref([]);
+const search = ref("");
+
+const filteredNotes = computed(() => {
+  return notes.value.filter((notes) => {
+    return notes.title.toUpperCase().includes(search.value.toUpperCase());
+  });
+});
+
+onMounted(async () => {
+  notes.value = await getNotes();
+});
 </script>
 <style scoped>
 .container {
