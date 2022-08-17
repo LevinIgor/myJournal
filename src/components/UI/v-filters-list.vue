@@ -4,19 +4,22 @@
       src="@/assets/icons/alphabetic.png"
       title="По алфавиту"
       alt="По алфавиту"
-      @click="emits('onFilterBy', 'title')"
+      @click="onFilter('title')"
+      :class="{'active': currentFilter === 'title'}"
     />
     <img
       src="@/assets/icons/calendar.png"
       title="По дате"
       alt=" По дате"
-      @click="emits('onFilterBy', 'id')"
+      @click="onFilter('id')"
+      :class="{'active': currentFilter === 'id'}"
     />
     <img
       src="@/assets/icons/eye.png"
       title="По просмотрам"
       alt="По просмотрам"
-      @click="emits('onFilterBy', 'views')"
+      @click="onFilter('views')"
+      :class="{'active': currentFilter === 'views'}"
     />
     <img
       src="@/assets/icons/up-down-arrow.png"
@@ -27,7 +30,14 @@
   </div>
 </template>
 <script setup>
+import { ref } from 'vue';
 const emits = defineEmits(["onFilterBy", "onInvert"]);
+const currentFilter = ref("");
+
+function onFilter(filter) {
+  currentFilter.value = filter;
+  emits("onFilterBy", filter);
+}
 </script>
 <style scoped>
 .filter img {
@@ -40,5 +50,8 @@ const emits = defineEmits(["onFilterBy", "onInvert"]);
 }
 .filter img:hover {
   filter: invert(1);
+}
+.active{
+  filter: invert(1) !important;
 }
 </style>
