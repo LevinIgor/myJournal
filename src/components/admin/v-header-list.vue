@@ -8,11 +8,12 @@
       <img
         src="@/assets/icons/delete.png"
         alt="delete post"
-        class="delete-icon"
+        class="icon"
         @click="onDeleteMode()"
         title="Включить режим удаления"
         :class="{ active: isDeleteMode }"
       />
+      
     </VFiltersList>
   </article>
 </template>
@@ -39,7 +40,7 @@ function onDeleteMode() {
   align-items: center;
   justify-content: space-between;
 }
-.delete-icon {
+.icon {
   cursor: pointer;
   width: 20px !important;
   height: 20px;
@@ -48,7 +49,7 @@ function onDeleteMode() {
   filter: grayscale(1);
   transition: filter 0.3s ease;
 }
-.delete-icon:hover {
+.icon:hover {
   filter: grayscale(0);
 }
 .active {

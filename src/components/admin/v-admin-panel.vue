@@ -1,6 +1,5 @@
 <template>
   <div class="admin-panel">
-
     <div
       class="admin-panel-item"
       @click="$router.push('/admin/list')"
@@ -28,9 +27,7 @@
   </div>
 </template>
 <script setup>
-
-const props = defineProps(['mode'])
-
+const props = defineProps(["mode"]);
 </script>
 <style scoped>
 .admin-panel {
@@ -45,6 +42,7 @@ const props = defineProps(['mode'])
   align-items: center;
 }
 .admin-panel-item {
+  position: relative;
   cursor: pointer;
   box-sizing: border-box;
   width: 100%;
@@ -66,5 +64,16 @@ const props = defineProps(['mode'])
 }
 .active {
   background-color: rgba(238, 238, 238, 0.398);
+}
+.active::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -5px;
+  transform: translate(0%, -50%);
+  box-sizing: border-box;
+  border-top: 10px solid transparent;
+  border-left: 5px solid rgba(238, 238, 238, 0.398);
+  border-bottom: 10px solid transparent;
 }
 </style>
