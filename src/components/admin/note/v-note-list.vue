@@ -1,38 +1,36 @@
 <template>
   <div class="list">
-    <div class="title">
-      <h1>Записки</h1>
-      <VFiltersList @onFilterBy="filterBy($event)" @onInvert="invert()" />
-    </div>
+    <VHeaderList
+      @onInvert="invert()"
+      @onFilterBy="filterBy($event)"
+      @onDeleteMode="isDeleteMode = $event"
+    />
     <div class="notes">
-      <div
-        class="note"
-        v-for="(note, index) in searchNotes"
-        :key="index"
-        @click="$router.push('/notes/' + note.id)"
-      >
-        <section>
-          <span class="note-title">{{ note.title }}</span>
-          <span class="note-blocks"
-            >Кол-во блоков: {{ note.blocks.length }}</span
-          >
-        </section>
-        <section>
-          <div class="note-date">{{ getDate(note.id) }}</div>
-          <div class="note-id">Просмотров: {{ note.views }}</div>
-        </section>
-      </div>
+      <TransitionGroup name="list">
+        <VNote
+          class="note"
+          v-for="note in searchNotes"
+          :key="note.id"
+          :note="note"
+          :isDeleteMode="isDeleteMode"
+          @onDelete="onDeleteNote($event)"
+        />
+      </TransitionGroup>
+      <h1 class="empty" v-if="notes.length == 0">Пусто...</h1>
     </div>
   </div>
 </template>
 <script setup>
 import { ref, inject, onMounted, computed } from "vue";
 import { getNotes } from "@/firebase/notesAPI";
-import { useDateFormat } from "@vueuse/core";
-import VFiltersList from "../../UI/v-filters-list.vue";
+import VHeaderList from "@/components/admin/v-header-list.vue";
+import VNote from "./v-note.vue";
+
+import { deleteNote } from "@/firebase/notesAPI";
 
 const search = inject("search");
 const notes = ref([]);
+const isDeleteMode = ref(false);
 
 const searchNotes = computed(() => {
   return notes.value.filter((note) => {
@@ -55,35 +53,32 @@ function filterBy(filter) {
   }
 }
 
-function getDate(id) {
-  return useDateFormat(id, "YYYY-MM-DD HH:mm");
+function onDeleteNote(id) {
+  if (confirm("Вы действительно хотите удалить заметку?")) {
+    deleteNote(id).then(() => {
+      notes.value = notes.value.filter((note) => note.id !== id);
+    });
+  }
 }
 
 onMounted(async () => {
   notes.value = await getNotes();
-  console.log(notes.value);
 });
 </script>
 <style scoped>
-section {
-  display: flex;
-  flex-direction: column;
+
+.empty{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(240, 248, 255, 0.445);
 }
-.title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.list-leave-active {
+  transition: all 0.3s ease;
 }
-.note-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-.note {
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid #ccc;
-  padding: 10px 20px;
+
+.list-leave-to {
+  opacity: 0;
 }
 </style>

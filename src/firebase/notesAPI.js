@@ -40,9 +40,9 @@ export async function getNote(id) {
 
 export async function deleteNote(id) {
   if (id) {
-    return new Promise(() => {
+    return new Promise((resolve) => {
       deleteDoc(doc(db, "notes", id.toString())).then(() => {
-        return;
+        resolve(true);
       });
     });
   }

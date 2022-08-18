@@ -1,29 +1,22 @@
 <template>
   <div class="list">
-    <section class="header">
-      <h1 class="title">Публикации</h1>
-      <VFiltersList @onFilterBy="filterBy($event)" @onInvert="invert()">
-        <img
-          src="../../../assets/icons/delete.png"
-          alt="delete post"
-          class="delete-icon"
-          @click="onDeleteMode()"
-          title="Включить режим удаления"
-          :class="{ active: isDeleteMode }"
-        />
-      </VFiltersList>
-    </section>
+    <VHeaderList
+      @onInvert="invert()"
+      @onFilterBy="filterBy($event)"
+      @onDeleteMode="isDeleteMode = $event"
+    />
     <div class="posts">
       <TransitionGroup name="list" mode="out-in">
-        <div class="post" v-for="post in searchPosts" :key="post.id">
-          <VPostInList
-            :post="post"
-            :isDeleteMode="isDeleteMode"
-            @deletePost="onDeletePost($event)"
-          />
-        </div>
+        <VPostInList
+          :post="post"
+          v-for="post in searchPosts"
+          :key="post.id"
+          :isDeleteMode="isDeleteMode"
+          @deletePost="onDeletePost($event)"
+        />
       </TransitionGroup>
     </div>
+    <h1 class="empty" v-if="posts.length == 0">Пусто</h1>
   </div>
 </template>
 <script setup>
@@ -31,8 +24,8 @@ import { getPosts } from "@/firebase/postAPI";
 import { onMounted, ref, inject, computed } from "vue";
 import { deletePost } from "@/firebase/postAPI";
 
-import VFiltersList from "@/components/UI/v-filters-list.vue";
 import VPostInList from "@/components/admin/post/v-post-in-list.vue";
+import VHeaderList from "../v-header-list.vue";
 
 const posts = ref([]);
 const isDeleteMode = ref(false);
@@ -59,10 +52,6 @@ const searchPosts = computed(() => {
   });
 });
 
-function onDeleteMode() {
-  isDeleteMode.value = !isDeleteMode.value;
-}
-
 function onDeletePost(id) {
   if (confirm("Вы уверены?")) {
     deletePost(id).then(() => {
@@ -76,33 +65,13 @@ onMounted(async () => {
 });
 </script>
 <style scoped>
-.header {
-  position: sticky;
-  z-index: 100;
-  top: var(--header-height);
-  background-color: var(--main-bg-color);
-  opacity: 0.9;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.empty {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(240, 248, 255, 0.445);
 }
-.delete-icon {
-  cursor: pointer;
-  width: 20px !important;
-  height: 20px;
-  margin-left: auto;
-  margin-right: 10px;
-  filter: grayscale(1);
-  transition: filter 0.3s ease;
-}
-.delete-icon:hover {
-  filter: grayscale(0);
-}
-.active {
-  filter: grayscale(0);
-}
-
-.list-move, /* apply transition to moving elements */
 .list-leave-active {
   transition: all 0.3s ease;
 }
