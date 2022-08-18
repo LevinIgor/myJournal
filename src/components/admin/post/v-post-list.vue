@@ -4,19 +4,21 @@
       @onInvert="invert()"
       @onFilterBy="filterBy($event)"
       @onDeleteMode="isDeleteMode = $event"
+      @onEditMode="isEditMode = $event"
     />
     <div class="posts">
       <TransitionGroup name="list" mode="out-in">
         <VPostInList
-          :post="post"
           v-for="post in searchPosts"
+          :post="post"
           :key="post.id"
           :isDeleteMode="isDeleteMode"
+          :isEditMode="isEditMode"
           @deletePost="onDeletePost($event)"
         />
       </TransitionGroup>
     </div>
-    <h1 class="empty" v-if="posts.length == 0">Пусто</h1>
+    <h1 class="empty" v-if="posts.length == 0">Пусто...</h1>
   </div>
 </template>
 <script setup>
@@ -29,6 +31,7 @@ import VHeaderList from "../v-header-list.vue";
 
 const posts = ref([]);
 const isDeleteMode = ref(false);
+const isEditMode = ref(false);
 
 function invert() {
   posts.value.reverse();

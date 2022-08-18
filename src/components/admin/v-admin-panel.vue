@@ -63,7 +63,7 @@ const props = defineProps(["mode"]);
   background-color: var(--main-block-color-hover);
 }
 .active {
-  background-color: rgba(238, 238, 238, 0.398);
+  background-color: rgba(238, 238, 238, 0.089);
 }
 .active::after {
   content: "";
@@ -73,7 +73,7 @@ const props = defineProps(["mode"]);
   transform: translate(0%, -50%);
   box-sizing: border-box;
   border-top: 10px solid transparent;
-  border-left: 5px solid rgba(238, 238, 238, 0.398);
+  border-left: 5px solid rgba(238, 238, 238, 0.089);
   border-bottom: 10px solid transparent;
 }
 </style>

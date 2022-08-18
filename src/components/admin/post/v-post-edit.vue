@@ -1,33 +1,35 @@
 <template>
-  <VPopupMsg :show="isMessage">
-    <span>Изменения успешно применены</span>
-  </VPopupMsg>
-  <div class="post-edit">
-    <h1 class="header">Редактирование публикации</h1>
-    <div class="post-details">
-      <VInputHeader v-model="post.title" :placeholder="placeholders.title" />
-      <div class="tags">
-        <VInput
-          v-for="(_, index) in post.tags"
-          :key="index"
-          :placeholder="'Тег'"
-          v-model.trim="post.tags[index]"
-          @blur="
-            post.tags[index].length == 0 ? post.tags.splice(index, 1) : null
-          "
-          @keydown.space="
-            post.tags[index].length != 0 ? post.tags.push('') : null
-          "
-          @keydown.enter="
-            post.tags[index].length != 0 ? post.tags.push('') : null
-          "
-        />
+  <div class="container">
+    <VPopupMsg :show="isMessage">
+      <span>Изменения успешно применены</span>
+    </VPopupMsg>
+    <div class="post-edit">
+      <h1 class="header">Редактирование публикации</h1>
+      <div class="post-details">
+        <VInputHeader v-model="post.title" :placeholder="placeholders.title" />
+        <div class="tags">
+          <VInput
+            v-for="(_, index) in post.tags"
+            :key="index"
+            :placeholder="'Тег'"
+            v-model.trim="post.tags[index]"
+            @blur="
+              post.tags[index].length == 0 ? post.tags.splice(index, 1) : null
+            "
+            @keydown.space="
+              post.tags[index].length != 0 ? post.tags.push('') : null
+            "
+            @keydown.enter="
+              post.tags[index].length != 0 ? post.tags.push('') : null
+            "
+          />
+        </div>
+        <VInput v-model="post.img" :placeholder="placeholders.img" />
       </div>
-      <VInput v-model="post.img" :placeholder="placeholders.img" />
-    </div>
 
-    <v-md-editor v-model="post.text" height="900px" />
-    <VButton @click="save()" class="btn-create-post">Сохранить</VButton>
+      <v-md-editor v-model="post.text" />
+      <VButton @click="save()" class="btn-create-post">Сохранить</VButton>
+    </div>
   </div>
 </template>
 <script setup>
@@ -70,16 +72,21 @@ onMounted(async () => {
 });
 </script>
 <style scoped>
+
 h1 {
   margin-bottom: 40px;
 }
-.edit {
-  box-sizing: border-box;
-  width: var(--content-wrapper-width);
-  background-color: aliceblue;
-
+.container {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.post-edit {
+  box-sizing: border-box;
+  width: var(--content-wrapper-width);
 }
 
 textarea {

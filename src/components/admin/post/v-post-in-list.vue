@@ -18,16 +18,27 @@
     </section>
     <div class="date">{{ getDate(props.post.id) }}</div>
 
-    <section class="delete-mode" v-if="props.isDeleteMode">
-      <span class="delete-span" @click="emits('deletePost', props.post.id)"
+    <section class="delete-mode mode-section" v-if="props.isDeleteMode">
+      <span
+        class="delete-span mode-span"
+        @click="emits('deletePost', props.post.id)"
         >Удалить</span
+      >
+    </section>
+    <section class="edit-mode mode-section" v-if="props.isEditMode">
+      <router-link
+        class="delete-span mode-span"
+        :to="'/admin/post/edit/' + props.post.id"
+        target="_blank"
+        >Редактировать</router-link
       >
     </section>
   </div>
 </template>
 <script setup>
 import { useDateFormat } from "@vueuse/core";
-const props = defineProps(["post", "isDeleteMode"]);
+const props = defineProps(["post", "isDeleteMode", "isEditMode"]);
+console.log(props.isEditMode);
 const emits = defineEmits(["deletePost"]);
 
 function getDate(id) {
@@ -75,7 +86,7 @@ function getDate(id) {
   font-size: small;
 }
 
-.delete-mode {
+.mode-section {
   user-select: none;
   position: absolute;
   z-index: 10;
@@ -86,17 +97,25 @@ function getDate(id) {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.delete-mode {
   background-color: rgba(242, 82, 82, 0.208);
 }
 .delete-mode:hover {
   background-color: rgba(242, 82, 82, 0.408);
 }
-.delete-span {
+.edit-mode {
+  background-color: rgba(85, 242, 82, 0.208);
+}
+.edit-mode:hover {
+  background-color: rgba(85, 242, 82, 0.408);
+}
+.mode-span {
   color: rgba(240, 248, 255, 0.607);
   cursor: pointer;
   transition: color 0.3s ease-in-out;
 }
-.delete-span:hover {
+.mode-span:hover {
   color: rgb(240, 248, 255);
 }
 </style>
