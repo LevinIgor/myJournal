@@ -60,7 +60,7 @@ h2 {
 .img-post {
   cursor: pointer;
   box-sizing: border-box;
-  margin-top: 10px;
+  margin-top: 20px;
   width: 100%;
   max-height: 450px;
   object-fit: cover;

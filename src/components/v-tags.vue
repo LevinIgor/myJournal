@@ -24,7 +24,6 @@ const props = defineProps(["tags"]);
   display: flex;
   font-size: 12px;
   color: rgba(255, 255, 255, 0.756);
-  padding: 5px 0;
 }
 .post-tag {
   margin: 0 5px;

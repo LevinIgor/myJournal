@@ -2,37 +2,40 @@
   <div class="list">
     <section class="header">
       <h1 class="title">Публикации</h1>
-      <VFiltersList @onFilterBy="filterBy($event)" @onInvert="invert()" />
+      <VFiltersList @onFilterBy="filterBy($event)" @onInvert="invert()">
+        <img
+          src="../../../assets/icons/delete.png"
+          alt="delete post"
+          class="delete-icon"
+          @click="onDeleteMode()"
+          title="Включить режим удаления"
+          :class="{ active: isDeleteMode }"
+        />
+      </VFiltersList>
     </section>
     <div class="posts">
-      <div class="post" v-for="post in searchPosts" :key="post.id">
-        <div class="img" @click="$router.push('/post/' + post.id)">
-          <img :src="post.img" class="img" :alt="post.title" v-if="post.img" />
-          <img v-else src="@/assets/icons/image.png" alt="" />
+      <TransitionGroup name="list" mode="out-in">
+        <div class="post" v-for="post in searchPosts" :key="post.id">
+          <VPostInList
+            :post="post"
+            :isDeleteMode="isDeleteMode"
+            @deletePost="onDeletePost($event)"
+          />
         </div>
-
-        <section>
-          <div class="title" @click="$router.push('/post/' + post.id)">
-            {{ post.title }}
-          </div>
-          <div class="views">Просмотров: {{ post.views }}</div>
-        </section>
-        <div class="date">{{ getDate(post.id) }}</div>
-      </div>
+      </TransitionGroup>
     </div>
   </div>
 </template>
 <script setup>
 import { getPosts } from "@/firebase/postAPI";
 import { onMounted, ref, inject, computed } from "vue";
-import { useDateFormat } from "@vueuse/core";
+import { deletePost } from "@/firebase/postAPI";
+
 import VFiltersList from "@/components/UI/v-filters-list.vue";
+import VPostInList from "@/components/admin/post/v-post-in-list.vue";
 
 const posts = ref([]);
-
-function getDate(id) {
-  return useDateFormat(id, "YYYY-MM-DD HH:mm");
-}
+const isDeleteMode = ref(false);
 
 function invert() {
   posts.value.reverse();
@@ -56,46 +59,55 @@ const searchPosts = computed(() => {
   });
 });
 
+function onDeleteMode() {
+  isDeleteMode.value = !isDeleteMode.value;
+}
+
+function onDeletePost(id) {
+  if (confirm("Вы уверены?")) {
+    deletePost(id).then(() => {
+      posts.value = posts.value.filter((item) => item.id !== id);
+    });
+  }
+}
+
 onMounted(async () => {
   posts.value = await getPosts();
 });
 </script>
 <style scoped>
 .header {
+  position: sticky;
+  z-index: 100;
+  top: var(--header-height);
+  background-color: var(--main-bg-color);
+  opacity: 0.9;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-
-.post {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  padding: 0.5rem;
-  border-bottom: 1px solid rgba(240, 248, 255, 0.607);
+.delete-icon {
   cursor: pointer;
-  margin-top: 10px;
+  width: 20px !important;
+  height: 20px;
+  margin-left: auto;
+  margin-right: 10px;
+  filter: grayscale(1);
+  transition: filter 0.3s ease;
 }
-.img {
-  width: 100px !important;
-  height: 60px;
-  margin-right: 40px;
+.delete-icon:hover {
+  filter: grayscale(0);
 }
-.img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.active {
+  filter: grayscale(0);
 }
-.views {
-  font-size: 0.8rem;
-  color: rgba(240, 248, 255, 0.607);
-  margin-top: 5px;
+
+.list-move, /* apply transition to moving elements */
+.list-leave-active {
+  transition: all 0.3s ease;
 }
-.date {
-  position: absolute;
-  top: 0;
-  right: 0;
-  color: rgba(240, 248, 255, 0.607);
-  font-size: small;
+
+.list-leave-to {
+  opacity: 0;
 }
 </style>

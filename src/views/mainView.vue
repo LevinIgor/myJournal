@@ -9,10 +9,10 @@
         @click="$router.push('/notes/')"
       />
     </VHeader>
-    
+
     <div class="posts">
       <section>
-        <h1>Популярные публикации</h1>
+        <h1>{{ pageTitle }}</h1>
         <VFiltersList @onFilterBy="filterBy($event)" @onInvert="invert()" />
       </section>
       <VPost v-for="post in filterPost" :post="post" :key="post.id" />
@@ -30,6 +30,7 @@ import VFiltersList from "../components/UI/v-filters-list.vue";
 
 const posts = ref([]);
 const searchValue = ref("");
+const pageTitle = ref("Новые публикации");
 
 const filterPost = computed(() => {
   return posts.value.filter((post) => {
@@ -49,6 +50,15 @@ function filterBy(filter) {
   } else {
     posts.value.sort((a, b) => a[filter] - b[filter]);
     currentFilter = filter;
+    setPageTitle(filter);
+  }
+}
+
+function setPageTitle(filter) {
+  if (filter === "views") {
+    pageTitle.value = "Популярные публикации";
+  } else {
+    pageTitle.value = "Новые публикации";
   }
 }
 
@@ -70,19 +80,19 @@ section {
   box-sizing: border-box;
   margin: 0 auto;
   padding: 0 20px;
-  padding-top: 100px;
+  padding-top: 60px;
   width: var(--content-wrapper-width);
 }
 
-.note-link{
+.note-link {
   cursor: pointer;
   width: 25px !important;
   height: 25px;
-  filter: invert(.7);
-  transition: filter .3s ease-in-out;
+  filter: invert(0.7);
+  transition: filter 0.3s ease-in-out;
   margin-left: 30px;
 }
-.note-link:hover{
+.note-link:hover {
   filter: invert(1);
 }
 </style>

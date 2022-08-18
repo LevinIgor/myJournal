@@ -49,7 +49,7 @@ provide("search", search);
 .switch-mode {
   display: flex;
   align-items: center;
-  margin-right: 20px;
+  margin: 0px 20px;
 }
 .switch-span {
   user-select: none;

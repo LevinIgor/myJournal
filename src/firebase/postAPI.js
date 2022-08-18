@@ -2,6 +2,7 @@ import {
   doc,
   getDoc,
   updateDoc,
+  deleteDoc,
   arrayUnion,
   query,
   orderBy,
@@ -36,4 +37,14 @@ export async function getPosts(_orderBy = "id") {
   });
 
   return Promise.resolve(posts);
+}
+
+export async function deletePost(id) {
+  if (id) {
+    return new Promise((resolve) => {
+      deleteDoc(doc(db, "posts", id.toString())).then(() => {
+        resolve(true);
+      });
+    });
+  }
 }

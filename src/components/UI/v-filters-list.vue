@@ -1,36 +1,32 @@
 <template>
   <div class="filter">
-    <img
-      src="@/assets/icons/alphabetic.png"
-      title="По алфавиту"
-      alt="По алфавиту"
-      @click="onFilter('title')"
-      :class="{'active': currentFilter === 'title'}"
-    />
-    <img
-      src="@/assets/icons/calendar.png"
-      title="По дате"
-      alt=" По дате"
-      @click="onFilter('id')"
-      :class="{'active': currentFilter === 'id'}"
-    />
-    <img
-      src="@/assets/icons/eye.png"
-      title="По просмотрам"
-      alt="По просмотрам"
-      @click="onFilter('views')"
-      :class="{'active': currentFilter === 'views'}"
-    />
-    <img
-      src="@/assets/icons/up-down-arrow.png"
-      title="Изменить порядок"
-      alt="Изменить порядок"
-      @click="emits('onInvert')"
-    />
+    <slot />
+    <section>
+      <img
+        src="@/assets/icons/calendar.png"
+        title="По дате"
+        alt=" По дате"
+        @click="onFilter('id')"
+        :class="{ active: currentFilter === 'id' }"
+      />
+      <img
+        src="@/assets/icons/eye.png"
+        title="По просмотрам"
+        alt="По просмотрам"
+        @click="onFilter('views')"
+        :class="{ active: currentFilter === 'views' }"
+      />
+      <img
+        src="@/assets/icons/up-down-arrow.png"
+        title="Изменить порядок"
+        alt="Изменить порядок"
+        @click="emits('onInvert')"
+      />
+    </section>
   </div>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 const emits = defineEmits(["onFilterBy", "onInvert"]);
 const currentFilter = ref("");
 
@@ -40,11 +36,20 @@ function onFilter(filter) {
 }
 </script>
 <style scoped>
+section {
+  display: flex;
+  align-items: center;
+  border-left: 2px solid rgba(204, 204, 204, 0.272);
+}
+.filter {
+  user-select: none;
+  display: flex;
+}
 .filter img {
   user-select: none;
   width: 20px !important;
   height: 20px;
-  margin-right: 10px;
+  margin: 0px 10px;
   filter: invert(0.5);
   cursor: pointer;
   transition: filter 0.2s ease-in-out;
@@ -52,7 +57,7 @@ function onFilter(filter) {
 .filter img:hover {
   filter: invert(1);
 }
-.active{
+.active {
   filter: invert(1) !important;
 }
 </style>
