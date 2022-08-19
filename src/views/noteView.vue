@@ -1,5 +1,5 @@
 <template>
-  <VHeader :offSearch="true" :offAdmin="true" :onProgressBar="true">
+  <VHeader :offAdmin="true" :onProgressBar="true">
     <img
       class="note-link"
       src="@/assets/icons/list.png"
@@ -8,15 +8,17 @@
       @click="$router.push('/notes/')"
     />
   </VHeader>
- 
+
   <div class="note-page">
     <VAside @onAsideLinkClick="scrollTo($event)" :note="note" />
-    <VNotePage :note="note" @onMounted="pageMounted($event)" />
+    <VNotePage
+      :note="note"
+      @onMounted="pageMounted($event)"
+    />
   </div>
 </template>
 <script setup>
 import VHeader from "@/components/main/header/v-header.vue";
-import VProgressBar from "@/components/UI/v-progress-bar.vue";
 import { ref, onMounted } from "vue";
 import { getNote } from "@/firebase/notesAPI";
 import { useRoute } from "vue-router";
@@ -26,6 +28,7 @@ import { useElementBounding } from "@vueuse/core";
 
 const note = ref([]);
 let itemRefs = [];
+
 
 async function scrollTo(index) {
   const { top } = useElementBounding(itemRefs[index]);

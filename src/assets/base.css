@@ -9,6 +9,13 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+input,
+textarea,
+span {
+  color: var(--main-text-color);
+  font-family: "Roboto", sans-serif;
+}
+
 a {
   line-height: 1.7;
   color: #3eaf7c;
@@ -52,7 +59,7 @@ li {
   --header-height: 60px;
   --main-bg-color: #0f1012;
   --main-border-color: #35383fab;
-  --main-text-color: #e2e3e7;
+  --main-text-color: #e2e3e7e7;
   --second-text-color: rgba(240, 248, 255, 0.271);
   --main-block-color: #444343b2;
   --main-block-color-hover: #35383f93;

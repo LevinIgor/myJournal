@@ -1,9 +1,6 @@
 <template>
   <div class="wrapper">
     <VHeader :onlyLogo="true" :onProgressBar="true" />
-    <div class="not-found" v-if="notFound">
-      <h1>Post of that index is not found</h1>
-    </div>
     <div class="post">
       <VPath :title="post.title" class="path" />
       <VTags :tags="post.tags" />
@@ -23,7 +20,6 @@ import { useRoute } from "vue-router";
 import getPost from "@/firebase/getPost";
 import VHeader from "@/components/main/header/v-header.vue";
 import Markdown from "vue3-markdown-it";
-import VProgressBar from "@/components/UI/v-progress-bar.vue";
 import VComments from "@/components/comment/v-comments.vue";
 import VTags from "@/components/v-tags.vue";
 import VPath from "@/components/UI/v-path.vue";
