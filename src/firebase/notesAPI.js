@@ -34,7 +34,7 @@ export async function getNote(id) {
   const docRef = doc(db, "notes", id);
 
   const docSnap = await getDoc(docRef);
-
+  
   return Promise.resolve(docSnap.data());
 }
 

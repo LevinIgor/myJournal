@@ -1,10 +1,9 @@
 <template>
   <div class="statistics">
- <h1>statistics</h1>
+    <h1>statistics</h1>
   </div>
 </template>
-<script setup>  
-</script>
+<script setup></script>
 <style scoped>
 .statistics {
   width: 75vw;

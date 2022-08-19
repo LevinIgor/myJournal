@@ -1,10 +1,11 @@
 <template>
   <header>
     <span class="logo" @click="$router.push('/')">Journal</span>
-    <div class="right-block" v-if="props.mode != 'onlyLogo'">
-      <VSearchBlock @search="emit('search', $event)" />
+    <div class="right-block" v-if="!props.onlyLogo">
+      <VSearchBlock @search="emit('search', $event)" v-if="!props.offSearch" />
       <slot />
       <img
+        v-if="!offAdmin"
         src="@/assets/icons/admin.png"
         alt="admin page"
         class="admin-icon"
@@ -13,10 +14,30 @@
       />
     </div>
   </header>
+  <VProgressBar v-if="props.onProgressBar" />
 </template>
 <script setup>
 import VSearchBlock from "./v-search-block.vue";
-const props = defineProps(["mode"]);
+import VProgressBar from "@/components/UI/v-progress-bar.vue";
+const props = defineProps({
+  onlyLogo: {
+    type: Boolean,
+    default: false,
+  },
+  offSearch: {
+    type: Boolean,
+    default: false,
+  },
+  offAdmin: {
+    type: Boolean,
+    default: false,
+  },
+  onProgressBar: {
+    type: Boolean,
+    default: false,
+  },
+});
+
 const emit = defineEmits(["search"]);
 </script>
 <style scoped>

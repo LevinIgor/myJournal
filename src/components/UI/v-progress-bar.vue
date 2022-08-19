@@ -27,6 +27,7 @@ onMounted(() => {
 <style scoped>
 .progress-bar {
   position: fixed;
+  z-index: 100;
   top: var(--header-height);
   left: 0;
   background-color: green;

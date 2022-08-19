@@ -38,7 +38,6 @@
 <script setup>
 import { useDateFormat } from "@vueuse/core";
 const props = defineProps(["post", "isDeleteMode", "isEditMode"]);
-console.log(props.isEditMode);
 const emits = defineEmits(["deletePost"]);
 
 function getDate(id) {

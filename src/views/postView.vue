@@ -1,7 +1,6 @@
 <template>
   <div class="wrapper">
-    <VProgressBar />
-    <VHeader mode="onlyLogo" />
+    <VHeader :onlyLogo="true" :onProgressBar="true" />
     <div class="not-found" v-if="notFound">
       <h1>Post of that index is not found</h1>
     </div>
@@ -31,23 +30,20 @@ import VPath from "@/components/UI/v-path.vue";
 
 const post = ref("");
 const notFound = ref(false);
-const route = useRoute()
+const route = useRoute();
 
 function createComment(comment) {
   post.value.comments.unshift(comment);
 }
 
 onMounted(async () => {
-
   let _post = localStorage.getItem("post");
 
   _post = JSON.parse(_post);
 
   if (_post && _post?.id == route.params.id) {
-
     post.value = _post;
   } else {
-
     const postId = route.params.id;
     const answer = await getPost(postId);
 
@@ -75,7 +71,7 @@ onMounted(async () => {
   font-size: 28px;
   font-weight: 600;
 }
-.path{
+.path {
   margin-bottom: 20px;
 }
 
