@@ -14,8 +14,8 @@
       <div class="note-date">{{ getDate(props.note.id) }}</div>
       <div class="note-id">Просмотров: {{ props.note.views }}</div>
     </section>
-    <section class="delete-mode" v-if="props.isDeleteMode">
-      <span class="delete-span" @click="emits('onDelete', props.note.id)"
+    <section class="mode" v-if="props.isDeleteMode">
+      <span class="mode-span" @click="emits('onDelete', props.note.id)"
         >Удалить</span
       >
     </section>
@@ -50,7 +50,7 @@ section {
   margin-bottom: 0.5rem;
 }
 
-.delete-mode {
+.mode {
   user-select: none;
   z-index: 20;
   position: absolute;
@@ -60,17 +60,18 @@ section {
   height: 100%;
   justify-content: center;
   align-items: center;
-  background-color: rgba(242, 82, 82, 0.208);
+  background-color: rgba(255, 255, 255, 0.208);
 }
-.delete-mode:hover {
-  background-color: rgba(242, 82, 82, 0.408);
+.mode:hover {
+  border: 1px solid #ccc;
+  background-color: rgba(255, 255, 255, 0.329);
 }
-.delete-span {
+.mode-span {
   color: rgba(240, 248, 255, 0.607);
   cursor: pointer;
   transition: color 0.3s ease-in-out;
 }
-.delete-span:hover {
+.mode-span:hover {
   color: rgb(240, 248, 255);
 }
 </style>
