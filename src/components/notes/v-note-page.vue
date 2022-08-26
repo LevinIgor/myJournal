@@ -35,8 +35,10 @@
       :key="index"
       :ref="setItemRef"
     >
-      <span class="block-title" v-if="!isEditMode">{{ block.title }}</span>
-      <textarea
+      <span class="block-title" v-if="!isEditMode">
+        {{ block.title }}
+      </span>
+      <input
         v-else
         type="text"
         class="note-input block-title"
@@ -46,6 +48,7 @@
       <div class="block-content" v-if="!isEditMode">
         {{ block.content }}
       </div>
+
       <textarea
         v-else
         type="text"
@@ -84,6 +87,10 @@ textarea,
 input {
   width: 100%;
   resize: vertical;
+  overflow: scroll;
+}
+textarea{
+  min-height:400px ;
 }
 .note-input {
   border: none;
@@ -107,6 +114,9 @@ input {
 }
 .block-title {
   font-size: large;
+}
+.block-title:hover a {
+  color: rgba(0, 128, 0, 0.897);
 }
 
 .control-icon {
@@ -141,8 +151,9 @@ input {
   margin-bottom: 10px;
 }
 .block-content {
+  white-space: pre-wrap;
+  word-wrap: wrap;
   font-size: var(--content-font-size);
   margin-top: 10px;
-  height: fit-content;
 }
 </style>

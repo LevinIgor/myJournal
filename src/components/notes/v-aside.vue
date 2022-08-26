@@ -7,8 +7,9 @@
         v-for="(block, index) in props.note.blocks"
         :key="index"
         @click="emits('onAsideLinkClick', index)"
-        >{{ block.title }}</span
       >
+       {{ block.title }}
+      </span>
     </div>
   </aside>
 </template>

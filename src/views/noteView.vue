@@ -1,8 +1,8 @@
 <template>
-  <VHeader :offAdmin="true" :onProgressBar="true">
+  <VHeader :offAdmin="true" :onProgressBar="true" :offSearch="true">
     <img
       class="note-link"
-      src="@/assets/icons/list.png"
+      src="@/assets/icons/note.png"
       alt="notes"
       title="Записки"
       @click="$router.push('/notes/')"
@@ -11,10 +11,7 @@
 
   <div class="note-page">
     <VAside @onAsideLinkClick="scrollTo($event)" :note="note" />
-    <VNotePage
-      :note="note"
-      @onMounted="pageMounted($event)"
-    />
+    <VNotePage :note="note" @onMounted="pageMounted($event)" />
   </div>
 </template>
 <script setup>
@@ -24,15 +21,13 @@ import { getNote } from "@/firebase/notesAPI";
 import { useRoute } from "vue-router";
 import VNotePage from "@/components/notes/v-note-page.vue";
 import VAside from "@/components/notes/v-aside.vue";
-import { useElementBounding } from "@vueuse/core";
+
 
 const note = ref([]);
 let itemRefs = [];
 
-
 async function scrollTo(index) {
-  const { top } = useElementBounding(itemRefs[index]);
-  window.scroll(0, top.value - 100);
+  itemRefs[index].scrollIntoView({ behavior: "smooth" });
 }
 function pageMounted(refs) {
   itemRefs = refs;
