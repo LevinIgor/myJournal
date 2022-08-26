@@ -18,18 +18,18 @@
     </section>
     <div class="date">{{ getDate(props.post.id) }}</div>
 
-    <section class="delete-mode mode-section" v-if="props.isDeleteMode">
+    <section class="mode-section" v-if="isDeleteMode || isEditMode">
       <span
-        class="delete-span mode-span"
+        v-if="props.isDeleteMode"
+        class="mode-span"
         @click="emits('deletePost', props.post.id)"
         >Удалить</span
       >
-    </section>
-    <section class="edit-mode mode-section" v-if="props.isEditMode">
+
       <router-link
-        class="delete-span mode-span"
+        v-if="props.isEditMode"
+        class="mode-span"
         :to="'/admin/post/edit/' + props.post.id"
-        target="_blank"
         >Редактировать</router-link
       >
     </section>
@@ -96,23 +96,18 @@ function getDate(id) {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: rgba(255, 255, 255, 0.034);
 }
-.delete-mode {
-  background-color: rgba(242, 82, 82, 0.208);
+.mode-section:hover {
+  background-color: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(240, 248, 255, 0.607);
 }
-.delete-mode:hover {
-  background-color: rgba(242, 82, 82, 0.408);
-}
-.edit-mode {
-  background-color: rgba(85, 242, 82, 0.208);
-}
-.edit-mode:hover {
-  background-color: rgba(85, 242, 82, 0.408);
-}
+
 .mode-span {
   color: rgba(240, 248, 255, 0.607);
   cursor: pointer;
   transition: color 0.3s ease-in-out;
+  font-size: 20px;
 }
 .mode-span:hover {
   color: rgb(240, 248, 255);

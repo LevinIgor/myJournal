@@ -32,6 +32,7 @@ span {
   text-decoration: underline;
 }
 .path {
+  user-select: none;
   display: flex;
   width: var(--content-wrapper-width);
 }
