@@ -4,7 +4,12 @@
   </VPopupMsg>
 
   <div class="create-post">
-    <h1>Создание публикации</h1>
+    <section>
+      <h1>Создание публикации</h1>
+      <span @click="createPost" :class="{ disable: post.title.length == 0 }"
+        >Создать</span
+      >
+    </section>
 
     <div class="post-details">
       <VInputHeader v-model="post.title" :placeholder="placeholders.title" />
@@ -15,8 +20,6 @@
     <div class="post-content">
       <v-md-editor v-model="post.text" height="900px" />
     </div>
-
-    <VButton @click="createPost" class="btn-create-post">Создать</VButton>
   </div>
 </template>
 <script setup>
@@ -45,7 +48,6 @@ const post = reactive({
 
 const createPost = async () => {
   if (post.title.length === 0) {
-    alert("Введите заголовок");
     return;
   }
   createPostBD(post).then(() => {
@@ -70,7 +72,28 @@ textarea {
   color: var(--main-font-color);
   resize: vertical;
 }
+section {
+  position: sticky;
+  top: var(--header-height);
+  background-color: var(--main-bg-color);
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+section span {
+  user-select: none;
+  color: rgba(240, 248, 255, 0.701);
+  cursor: pointer;
+}
+section span:hover {
+  color: var(--main-font-color);
+}
 
+.disable {
+  color: rgba(240, 248, 255, 0.329) !important;
+  cursor: default;
+}
 .create-post {
   box-sizing: border-box;
   width: var(--content-wrapper-width);
@@ -84,16 +107,5 @@ textarea {
 
 .post-content {
   margin-top: 40px;
-}
-
-.btn-create-post {
-  margin-top: 40px;
-  color: rgb(28, 171, 49);
-  border: 1px solid rgb(32, 158, 23);
-  margin-bottom: 100px;
-}
-.btn-create-post:hover {
-  color: white;
-  background-color: rgb(32, 158, 23);
 }
 </style>
