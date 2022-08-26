@@ -20,6 +20,7 @@ const props = defineProps(["tags"]);
 </script>
 <style scoped>
 .post-tags {
+  user-select: none;
   cursor: default;
   display: flex;
   font-size: 12px;
@@ -29,9 +30,9 @@ const props = defineProps(["tags"]);
   margin: 0 5px;
   cursor: pointer;
   text-decoration: underline;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
-.post-tag:hover{
+.post-tag:hover {
   color: white;
 }
 </style>

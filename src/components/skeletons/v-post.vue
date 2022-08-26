@@ -53,7 +53,7 @@ h2 {
 .img-post {
   margin: 40px 0;
   width: 100%;
-  height: 500px;
+  height: 300px;
   background-color: aliceblue;
   border-radius: 10px;
   object-fit: cover;
@@ -96,14 +96,14 @@ h2 {
 }
 
 .skeleton-anim{
-  animation: skeleton-anim 2s infinite;
+  animation: skeleton-anim .7s infinite;
 }
 @keyframes skeleton-anim{
   0%{
     background-color: rgba(128, 128, 128, 0.768);
   }
   50%{
-    background-color: rgba(128, 128, 128, 0.547);
+    background-color: rgba(128, 128, 128, 0.242);
   }
   100%{
     background-color: rgba(128, 128, 128, 0.716);
